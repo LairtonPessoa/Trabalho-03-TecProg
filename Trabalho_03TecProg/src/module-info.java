@@ -6,4 +6,5 @@
  *
  */
 module Trabalho_03TecProg {
+	requires java.desktop;
 }
