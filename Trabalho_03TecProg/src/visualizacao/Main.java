@@ -6,7 +6,8 @@ public class Main {
 	//	new TelaDoJogadorDaVez();
 	//	new TelaDosJogadores();
 		new TelaDeEscolha();
-		System.out.println("Hello Ryam");
+		System.out.println("Hello boatarde");
+		System.out.println("Bolsonaro é o meu presidente");
 	}
 
 }
