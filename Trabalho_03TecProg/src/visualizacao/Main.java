@@ -6,6 +6,7 @@ public class Main {
 	//	new TelaDoJogadorDaVez();
 	//	new TelaDosJogadores();
 		new TelaDeEscolha();
+		System.out.println("Hello Ryam");
 	}
 
 }
