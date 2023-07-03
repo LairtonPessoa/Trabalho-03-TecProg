@@ -69,11 +69,11 @@ public class JogadaDAO {
 							+ "pontuacao=?, "
 							+ "where Id=?");
 			up.setString(1, jog.getCartaEscolhidaJogadorVez());
-			up.setString(1, jog.getJogadorVez());
-			up.setString(1, jog.getFraseDica());
-			up.setString(1, jog.getCartaEscolhida());
-			up.setInt(1, jog.getPontuacao());
-			up.setInt(1, jog.getId());
+			up.setString(2, jog.getJogadorVez());
+			up.setString(3, jog.getFraseDica());
+			up.setString(4, jog.getCartaEscolhida());
+			up.setInt(5, jog.getPontuacao());
+			up.setInt(6, jog.getId());
 			
 			up.executeUpdate();
 		}catch (Exception e) {
@@ -89,10 +89,10 @@ public class JogadaDAO {
 			conexao.prepareStatement("insert into jogada (cartaEscolhidaJogadorVez, jogadorVez, fraseDica, cartaEscolhida, pontuacao) values (?, ?, ?, ?, ?)");
 			
 			inserir.setString(1, jog.getCartaEscolhidaJogadorVez());
-			inserir.setString(1, jog.getJogadorVez());
-			inserir.setString(1, jog.getFraseDica());
-			inserir.setString(1, jog.getCartaEscolhida());
-			inserir.setInt(1, jog.getPontuacao());
+			inserir.setString(2, jog.getJogadorVez());
+			inserir.setString(3, jog.getFraseDica());
+			inserir.setString(4, jog.getCartaEscolhida());
+			inserir.setInt(5, jog.getPontuacao());
 			
 			inserir.executeUpdate();
 
@@ -108,7 +108,7 @@ public class JogadaDAO {
 			Connection conexao = new Conexao().getConexao();
 
 			PreparedStatement deletar = 
-			conexao.prepareStatement("delete from jogadas where id =?");
+			conexao.prepareStatement("delete from jogada where id =?");
 			
 			deletar.setInt(1, jog.getId());
 			deletar.executeUpdate();
