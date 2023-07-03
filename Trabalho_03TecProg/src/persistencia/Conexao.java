@@ -11,7 +11,7 @@ public class Conexao {
 	public Conexao() {
 
 		this.host = "127.0.0.1";
-		this.banco = "tec_prog2023"; // segundo seu PC
+		this.banco = "gartic"; // segundo seu PC
 		this.usuario = "root"; // segundo seu PC
 		this.senha = ""; // segundo seu PC
 	}
@@ -21,7 +21,7 @@ public class Conexao {
 		try {
 			return DriverManager.getConnection(url, usuario, senha);
 		} catch (SQLException ex) {
-			System.out.println("Conex�o com MYSQL n�o realizada");
+			System.out.println("Conexao com MYSQL nao realizada");
 			ex.printStackTrace();
 		}
 		return null;
