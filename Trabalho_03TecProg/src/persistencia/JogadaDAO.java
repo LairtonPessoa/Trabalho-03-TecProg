@@ -21,7 +21,7 @@ public class JogadaDAO {
 		try {
 			Connection conexao = new Conexao().getConexao();
 			
-			java.sql.PreparedStatement r = 
+			PreparedStatement r = 
 				conexao.prepareStatement("select * from carta order by nome");
 			
 			ResultSet resultado = r.executeQuery();
