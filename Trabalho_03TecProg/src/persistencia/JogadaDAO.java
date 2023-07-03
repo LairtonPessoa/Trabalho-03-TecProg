@@ -43,7 +43,7 @@ public class JogadaDAO {
 		try {
 			Connection conexao = new Conexao().getConexao();
 
-			PreparedStatement result = conexao.prepareStatement("select * from produto where id=?");
+			PreparedStatement result = conexao.prepareStatement("select * from jogada where id=?");
 			result.setInt(1, id);
 
 			ResultSet resultado = result.executeQuery();
@@ -62,7 +62,7 @@ public class JogadaDAO {
 		try {
 			Connection conexao = new Conexao().getConexao();
 			PreparedStatement up = conexao.prepareStatement
-					("uptdate Jogada set cartaEscolhidaJogadorVez=?, "
+					("uptdate jogada set cartaEscolhidaJogadorVez=?, "
 							+ "jogadorVez=?, "
 							+ "fraseDica=?, "
 							+ "cartaEscolhida=?, "

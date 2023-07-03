@@ -2,6 +2,7 @@ package visualizacao;
 
 import java.awt.FlowLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,8 +10,12 @@ import javax.swing.JTextField;
 
 public class TelaDoJogadorDaVez extends JFrame{
 
+	private ImageIcon ultimaCartaSelecionada;
+	
+	
 	public TelaDoJogadorDaVez() {
 		
+		ultimaCartaSelecionada = new ImageIcon();
 		JButton b1 = new JButton("carta 1");
 		JButton b2 = new JButton("carta 2");
 		JButton b3 = new JButton("carta 3");
@@ -36,4 +41,5 @@ public class TelaDoJogadorDaVez extends JFrame{
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
+	
 }
