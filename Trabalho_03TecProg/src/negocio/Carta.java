@@ -8,6 +8,7 @@ public class Carta {
 	private ImageIcon iconeVersoDaCarta;
 	private int id;
 	
+	
 	public int getId() {
 		return id;
 	}
