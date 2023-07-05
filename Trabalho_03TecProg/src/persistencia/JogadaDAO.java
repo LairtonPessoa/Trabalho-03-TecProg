@@ -27,7 +27,7 @@ public class JogadaDAO {
 			ResultSet resultado = r.executeQuery();
 			
 			while(resultado.next()) {
-				Jogada jogada = new Jogada(resultado.getString("cartaEscolhidaJogadorVez"), resultado.getString("jogadorVez"), resultado.getString("fraseDica"), resultado.getString("cartaEscolhida"), resultado.getInt("pontuacao"));
+				Jogada jogada = new Jogada(resultado.getString("jogadorVez"), resultado.getString("fraseDica"), resultado.getString("cartaEscolhida"), resultado.getInt("pontuacao"));
 				jogadas.add(jogada);
 			}
 			conexao.close();
@@ -49,7 +49,7 @@ public class JogadaDAO {
 			ResultSet resultado = result.executeQuery();
 
 			while (resultado.next()) {
-				jogada = new Jogada(resultado.getString("cartaEscolhidaJogadorVez"), resultado.getString("jogadorVez"), resultado.getString("fraseDica"), resultado.getString("cartaEscolhida"), resultado.getInt("pontuacao"));
+				jogada = new Jogada(resultado.getString("jogadorVez"), resultado.getString("fraseDica"), resultado.getString("cartaEscolhida"), resultado.getInt("pontuacao"));
 			}
 			conexao.close();
 		} catch (Exception e) {
@@ -62,18 +62,16 @@ public class JogadaDAO {
 		try {
 			Connection conexao = new Conexao().getConexao();
 			PreparedStatement up = conexao.prepareStatement
-					("uptdate jogada set cartaEscolhidaJogadorVez=?, "
-							+ "jogadorVez=?, "
+					("uptdate jogada set jogadorVez=?, "
 							+ "fraseDica=?, "
 							+ "cartaEscolhida=?, "
 							+ "pontuacao=?, "
 							+ "where Id=?");
-			up.setString(1, jog.getCartaEscolhidaJogadorVez());
-			up.setString(2, jog.getJogadorVez());
-			up.setString(3, jog.getFraseDica());
-			up.setString(4, jog.getCartaEscolhida());
-			up.setInt(5, jog.getPontuacao());
-			up.setInt(6, jog.getId());
+			up.setString(1, jog.getJogadorVez());
+			up.setString(2, jog.getFraseDica());
+			up.setString(3, jog.getCartaEscolhida());
+			up.setInt(4, jog.getPontuacao());
+			up.setInt(5, jog.getId());
 			
 			up.executeUpdate();
 		}catch (Exception e) {
@@ -86,32 +84,14 @@ public class JogadaDAO {
 			Connection conexao = new Conexao().getConexao();
 
 			PreparedStatement inserir = 
-			conexao.prepareStatement("insert into jogada (cartaEscolhidaJogadorVez, jogadorVez, fraseDica, cartaEscolhida, pontuacao) values (?, ?, ?, ?, ?)");
+			conexao.prepareStatement("insert into jogada (jogadorVez, fraseDica, cartaEscolhida, pontuacao) values (?, ?, ?, ?)");
 			
-			inserir.setString(1, jog.getCartaEscolhidaJogadorVez());
-			inserir.setString(2, jog.getJogadorVez());
-			inserir.setString(3, jog.getFraseDica());
-			inserir.setString(4, jog.getCartaEscolhida());
-			inserir.setInt(5, jog.getPontuacao());
+			inserir.setString(1, jog.getJogadorVez());
+			inserir.setString(2, jog.getFraseDica());
+			inserir.setString(3, jog.getCartaEscolhida());
+			inserir.setInt(4, jog.getPontuacao());
 			
 			inserir.executeUpdate();
-
-			conexao.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public void deletar(Jogada jog) {
-		try {
-			Connection conexao = new Conexao().getConexao();
-
-			PreparedStatement deletar = 
-			conexao.prepareStatement("delete from jogada where id =?");
-			
-			deletar.setInt(1, jog.getId());
-			deletar.executeUpdate();
 
 			conexao.close();
 		} catch (SQLException e) {
