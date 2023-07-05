@@ -2,18 +2,28 @@ package negocio;
 
 public class Jogador {
 
-	private boolean isJogadorDaVez;
-	private int id;
 	private String nome;
+	private int id;
 	private int pontuacao;
+	private boolean isJogadorDaVez;
+	private Boolean jaJogou;
 	private Carta cartaEscolhida;
 
 	public Jogador(int id) {
 		this.isJogadorDaVez=false;
+		this.jaJogou = false;
 		this.id = id;
 		this.pontuacao=0;
 	}
 	
+	public Boolean getJaJogou() {
+		return jaJogou;
+	}
+
+	public void setJaJogou(Boolean jaJogou) {
+		this.jaJogou = jaJogou;
+	}
+
 	public boolean isJogadorDaVez() {
 		return isJogadorDaVez;
 	}
