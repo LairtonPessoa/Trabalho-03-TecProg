@@ -1,6 +1,7 @@
 package persistencia;
 
 import java.net.Socket;
+import java.util.ArrayList;
 import java.net.ServerSocket;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -12,17 +13,17 @@ import java.io.PrintWriter;
 import javax.swing.*;
 
 import negocio.GerenciadorDeJogo;
+import negocio.Jogador;
 
 import java.awt.*;
 import java.awt.event.*;
 
 public class Servidor {
-
-	BufferedReader leitor;
-	PrintWriter w;
-	private Socket socket1;
-
+	
 	private ServerSocket servSocket;
+	private GerenciadorDeJogo gerenciador;
+	private ArrayList<ConexaoJogares> jogadores;
+	private static final int maxJogadores = 4;
 
 	public Servidor() {
 		try {
@@ -31,22 +32,22 @@ public class Servidor {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		gerenciador = new GerenciadorDeJogo(this);
 	}
 
-	public void configuraRede(GerenciadorDeJogo control) throws Exception {
+	public void iniciar(GerenciadorDeJogo control) {
+		int contator = 0;
 		try {
-			String texto = null;
-			socket1 = servSocket.accept();
-			BufferedReader leitor = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
-
-			while (true) {
-
-				if ((texto = leitor.readLine()) != null) {
-					System.out.println("entrou");
-					control.receberMensagens(texto);
-				}
+			while (contator<maxJogadores) {
+				Socket novoCliente = servSocket.accept();
+				contator++;
+				
+				ConexaoJogares jogador = new ConexaoJogares(novoCliente, gerenciador);
+				Thread thread = new Thread(jogador);
+				thread.start();
+				
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 		}
 
 	}

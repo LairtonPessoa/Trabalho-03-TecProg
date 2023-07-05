@@ -3,12 +3,15 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Random;
 
+import persistencia.Servidor;
+
 public class GerenciadorDeJogo {
 	
 	private ArrayList<Jogador> listaJogadores;
+	private Servidor server;
 
-	public GerenciadorDeJogo() {
-
+	public GerenciadorDeJogo(Servidor server) {
+		this.server = server;
 		// crio uma coneção com os jogadores
 		if (jogadoresProntos()) {
 			comecarJogo();
@@ -18,6 +21,7 @@ public class GerenciadorDeJogo {
 	private void comecarJogo() {
 		sortCartas();
 		sortJogadorDaVez();
+		
 		jogo();
 	}
 
