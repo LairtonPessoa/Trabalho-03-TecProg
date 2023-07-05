@@ -3,7 +3,10 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 import persistencia.Servidor;
+
+
 
 public class GerenciadorDeJogo {
 	
@@ -12,7 +15,11 @@ public class GerenciadorDeJogo {
 
 	public GerenciadorDeJogo(Servidor server) {
 		this.server = server;
+
 		// crio uma coneção com os jogadores
+		this.listaJogadores = new ArrayList<Jogador>();
+
+		
 		if (jogadoresProntos()) {
 			comecarJogo();
 		}
@@ -29,14 +36,20 @@ public class GerenciadorDeJogo {
 		
 		//Sempre enviar as informações de todas as alterações para os jogadores
 		while (!isFimDoJogo()) {
+			Jogada jogada = new Jogada();
 			mostrarTelas(new Jogador(0));
 			// Espero o jogador clicar na tela e enviar a carta e a dica
 			exibirDica();
 			// espero os jogadores clicarem na tela e enviarem a carta
 			exibirCartasComDica();
 			// espero os jogadores escolherem a carta
+			salvarDadosJogada(jogada);
 			exibirResultadosDaRodada();
 		}
+	}
+
+	private void salvarDadosJogada(Jogada jogada) {
+		
 	}
 
 	private boolean jogadoresProntos() {
@@ -73,6 +86,7 @@ public class GerenciadorDeJogo {
 		// jogadorDaVez.tela.setVisible;
 		// jogadordavez.PainelDica.setEnable;
 		// jogador 1, jogador2, jogador3, jogador 4. set enable painelEspera;
+		//botao vai alterar os valores da jogada
 	}
 
 	private void exibirDica() {

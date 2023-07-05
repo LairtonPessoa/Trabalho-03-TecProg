@@ -8,11 +8,16 @@ public class Jogada {
 	private int id;
 	
 	public Jogada(String jogadorVez, String fraseDica, String cartaEscolhida, int pontuacao) {
-		super();
 		this.jogadorVez = jogadorVez;
 		this.fraseDica = fraseDica;
 		this.cartaEscolhida = cartaEscolhida;
 		this.pontuacao = pontuacao;
+	}
+	public Jogada() {
+		this.jogadorVez = "";
+		this.fraseDica = "";
+		this.cartaEscolhida = "";
+		this.pontuacao = 0;
 	}
 	public String getCartaEscolhida() {
 		return cartaEscolhida;
