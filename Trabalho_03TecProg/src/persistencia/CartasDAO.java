@@ -66,7 +66,7 @@ public class CartasDAO {
 	public ArrayList<String> pegarCartas(){
 		ArrayList<String> cartas = new ArrayList<String>();
 		try {
-	        FileReader leitorArquivo = new FileReader("C:\\Users\\Antônio Cruz\\eclipse-workspace\\Trabalho-03-TecProg\\Trabalho_03TecProg\\Cartas.txt");
+	        FileReader leitorArquivo = new FileReader("Cartas.txt");
 
 	        BufferedReader leitor = new BufferedReader(leitorArquivo);
 
