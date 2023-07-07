@@ -15,7 +15,6 @@ public class Gerenciador {
 		
 		// crio uma coneção com os jogadores
 		this.listaJogadores = new ArrayList<Jogador>();
-
 		
 		if (jogadoresProntos()) {
 			comecarJogo();
@@ -72,6 +71,7 @@ public class Gerenciador {
 
 	private void sortCartas() {
 		ArrayList<Integer> idDasCartas = sortIdCartas();
+		
 		
 	}
 	

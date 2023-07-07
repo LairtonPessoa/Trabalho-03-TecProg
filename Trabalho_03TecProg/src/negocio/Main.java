@@ -11,6 +11,10 @@ public class Main {
 		//new TelaDeEscolha();
 		new TelaDoJogadorDaVez(new Gerenciador(new Servidor()));
 	//	new TelaDosJogadores();
+		//new TelaDoJogadorDaVez();
+		//new TelaDosJogadores();
 		//jogada.inserir(j);
+		CartasDAO cartas = new CartasDAO();
+		System.out.println(cartas.pegarCartas().get(1));
 	}
 }

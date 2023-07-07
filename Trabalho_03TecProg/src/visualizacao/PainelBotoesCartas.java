@@ -3,22 +3,23 @@ package visualizacao;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.RoundRectangle2D;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 public class PainelBotoesCartas extends JPanel{
 
 	JPanel painelcartas;
-	JButton carta;
+	JButton carta1;
+	JButton carta2;
+	JButton carta3;
+	JButton carta4;
+	JButton carta5;
+	JButton carta6;
 	JButton cartaSelecionada;
 	PainelDica paineldica;
 
@@ -30,10 +31,32 @@ public class PainelBotoesCartas extends JPanel{
 	//Criar o painel das cartas.
 	public JPanel painelcartas() {
 		painelcartas = new JPanel();
+		
+		ImageIcon cartaum = new ImageIcon("icons\\aviario.png");
+		carta1=criarBotao(cartaum);
 
-		for(int i=0;i<6;i++) {
-			painelcartas.add(criarBotao("Botão"));
-		}
+		ImageIcon cartadois = new ImageIcon("icons\\dragaobranco.png");
+		carta2=criarBotao(cartadois);
+		
+		ImageIcon cartatres = new ImageIcon("icons\\kuriboh.png");
+	    carta3=criarBotao(cartatres);
+	    
+		ImageIcon cartaquatro = new ImageIcon("icons\\magonegro.png");
+		carta4=criarBotao(cartaquatro);
+
+		ImageIcon cartacinco = new ImageIcon("icons\\NEOASV.png");
+		carta5=criarBotao(cartacinco);
+
+		ImageIcon cartaseis = new ImageIcon("icons\\reicaveira.png");
+		carta6=criarBotao(cartaseis);
+
+		painelcartas.add(carta1);
+		painelcartas.add(carta2);
+		painelcartas.add(carta3);
+		painelcartas.add(carta4);
+		painelcartas.add(carta5);
+		painelcartas.add(carta6);
+
 		painelcartas.setBackground(new Color(100,149,237,80));
 		painelcartas.setLayout(new GridLayout(2,3,5,5));
 
@@ -41,32 +64,47 @@ public class PainelBotoesCartas extends JPanel{
 	}	
 
 	//Criar as cartas predefinidas.
-	public JButton criarBotao(String nome) {
-		carta = new JButton(nome);
+	public JButton criarBotao(ImageIcon imgcartas) {
+		JButton carta = new JButton();
 		carta.setPreferredSize(new Dimension(150,200));
-		carta.setBorder(new RoundedBorder());
-		//carta.addActionListener(new acaoCarta(carta));
+		carta.addActionListener(new acaoCarta(carta));
+		
+		int width = carta.getPreferredSize().width;
+	    int height = carta.getPreferredSize().height;
+	    ImageIcon resizedIcon = IconesCartas.resizeImageIcon(imgcartas, width, height);
+	    carta.setIcon(resizedIcon);
 		return carta;
 	}
 
-	//Classe para deixar as bordas redondas
-	private static class RoundedBorder implements Border {
-		private int arcWidth=20;
-		private int arcHeight=20;
+	//Ações nas cartas
+	private class acaoCarta implements ActionListener {
+		private JButton carta;
 
-		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-			Graphics2D g2d = (Graphics2D) g.create();
-			g2d.setColor(c.getForeground());
-			g2d.draw(new RoundRectangle2D.Double(x, y, width - 1, height - 1, arcWidth, arcHeight));
-			g2d.dispose();
+		public acaoCarta(JButton carta) {
+			this.carta = carta;
 		}
 
-		public Insets getBorderInsets(Component c) {
-			return new Insets(arcHeight, arcWidth, arcHeight, arcWidth);
-		}
-
-		public boolean isBorderOpaque() {
-			return true;
+		public void actionPerformed(ActionEvent e) {
+			if (cartaSelecionada == carta) { // Se a carta selecionada for clicada novamente
+				cartaSelecionada = null; // Limpa a carta selecionada
+				
+				// Ativar todas as cartas
+				for (Component component : painelcartas.getComponents()) {
+					if (component instanceof JButton) {
+						JButton outraCarta = (JButton) component;
+						outraCarta.setEnabled(true);
+					}
+				}
+			} else {
+				cartaSelecionada = carta;
+				// Desativar as outras cartas
+				for (Component component : painelcartas.getComponents()) {
+					if (component instanceof JButton) {
+						JButton outraCarta = (JButton) component;
+						outraCarta.setEnabled(outraCarta == carta);
+					}
+				}
+			}
 		}
 	}
 }

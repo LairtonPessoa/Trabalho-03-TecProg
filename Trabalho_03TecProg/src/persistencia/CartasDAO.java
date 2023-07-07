@@ -1,5 +1,10 @@
 package persistencia;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,36 +17,15 @@ import negocio.Carta;
 import negocio.Jogada;
 
 public class CartasDAO {
-
-	public ArrayList<Carta> selecionar(){
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		
-		try {
-			Connection conexao = new Conexao().getConexao();
-			
-			PreparedStatement r = 
-				conexao.prepareStatement("select * from carta order by nome");
-			
-			ResultSet resultado = r.executeQuery();
-			
-			while(resultado.next()) {
-				Carta carta = new Carta(new ImageIcon(resultado.getString("icone")));
-				cartas.add(carta);
-			}
-			conexao.close();
-		}catch(Exception e) {
-			
-		}
-		return cartas;
-	}
 	
-	public Carta selecionarId(int id) {
+	//Pegar carta selecionada
+	/*public Carta selecionarId(int id) {
 		Carta carta = null;
 
 		try {
 			Connection conexao = new Conexao().getConexao();
 
-			PreparedStatement result = conexao.prepareStatement("select * from jogada where id=?");
+			PreparedStatement result = conexao.prepareStatement("select * from cartas_selecionadas where id=?");
 			result.setInt(1, id);
 
 			ResultSet resultado = result.executeQuery();
@@ -54,26 +38,48 @@ public class CartasDAO {
 			// TODO: handle exception
 		}
 		return carta;
-	}
+	}*/
 	
-	public void update(Jogada jog) {
+	//Inserir Carta Selecionada
+	/*public void inserir(Carta carta) {
 		try {
 			Connection conexao = new Conexao().getConexao();
-			PreparedStatement up = conexao.prepareStatement
-					("uptdate jogada set jogadorVez=?, "
-							+ "fraseDica=?, "
-							+ "cartaEscolhida=?, "
-							+ "pontuacao=?, "
-							+ "where Id=?");
-			up.setString(1, jog.getJogadorVez());
-			up.setString(2, jog.getFraseDica());
-			up.setString(3, jog.getCartaEscolhida());
-			up.setInt(4, jog.getPontuacao());
-			up.setInt(5, jog.getId());
+
+			PreparedStatement inserir = 
+			conexao.prepareStatement("insert into jogada (jogadorVez, fraseDica, cartaEscolhida, pontuacao) values (?, ?, ?, ?)");
 			
-			up.executeUpdate();
-		}catch (Exception e) {
+			inserir.setString(1, carta.getJogadorVez());
+			inserir.setString(2, carta.getFraseDica());
+			inserir.setString(3, carta.getCartaEscolhida());
+			inserir.setInt(4, carta.getPontuacao());
+			
+			inserir.executeUpdate();
+
+			conexao.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}*/
+	
+	//Ler Arquivo
+	public ArrayList<String> pegarCartas(){
+		ArrayList<String> cartas = new ArrayList<String>();
+		try {
+	        FileReader leitorArquivo = new FileReader("Cartas.txt");
+
+	        BufferedReader leitor = new BufferedReader(leitorArquivo);
+
+	        String linhaArquivo;
+	        while ((linhaArquivo = leitor.readLine()) != null) {
+	        	cartas.add(linhaArquivo);
+	        }
+
+	        leitor.close();
+	        leitorArquivo.close();
+	    } catch (IOException e1) {
+	        System.out.println("Ocorreu um erro ao ler o arquivo: " + e1.getMessage());
+	    }
+		return cartas;
 	}
 }

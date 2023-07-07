@@ -6,18 +6,18 @@ public class Carta {
 
 	private ImageIcon iconeDaCarta;
 	private boolean jaFoiSorteada;
+	private ImageIcon iconeFrenteDaCarta;
+	private ImageIcon iconeVersoDaCarta;
 	private int id;
-	
+
 	public int getId() {
 		return id;
 	}
-
-	public Carta(ImageIcon iconeDaCarta) {
-		this.iconeDaCarta=iconeDaCarta;
-	}
-
 	public ImageIcon getIconeDaCarta() {
-		return iconeDaCarta;
+		return iconeFrenteDaCarta;
+	}
+	public ImageIcon getIconeVersoDaCarta() {
+		return iconeVersoDaCarta;
 	}
 	
 	public boolean isJaFoiSorteada() {
