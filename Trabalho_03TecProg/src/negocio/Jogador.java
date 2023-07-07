@@ -6,22 +6,22 @@ public class Jogador {
 	private int id;
 	private int pontuacao;
 	private boolean isJogadorDaVez;
-	private Boolean jaJogou;
+	private Boolean jaJogouNaRodada;
 	private Carta cartaEscolhida;
 
 	public Jogador(int id) {
 		this.isJogadorDaVez=false;
-		this.jaJogou = false;
+		this.jaJogouNaRodada = false;
 		this.id = id;
 		this.pontuacao=0;
 	}
 	
-	public Boolean getJaJogou() {
-		return jaJogou;
+	public Boolean getJaJogouNaRodada() {
+		return jaJogouNaRodada;
 	}
 
-	public void setJaJogou(Boolean jaJogou) {
-		this.jaJogou = jaJogou;
+	public void setJaJogouNaRodada(Boolean jaJogou) {
+		this.jaJogouNaRodada = jaJogou;
 	}
 
 	public boolean isJogadorDaVez() {

@@ -3,10 +3,17 @@ package visualizacao;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
+import negocio.Gerenciador;
+import persistencia.Servidor;
+
 public class TelaDoJogadorDaVez extends JFrame{
-
-	public TelaDoJogadorDaVez() {
-
+	
+	private Gerenciador gerenciador;
+	
+	public TelaDoJogadorDaVez(Gerenciador gerenciadorDeJogo) {
+		
+		gerenciador = new Gerenciador(new Servidor());
+		
 		this.setLayout(new BorderLayout());
 		this.setSize(530,510);
 		this.setLocationRelativeTo(null);
@@ -17,5 +24,11 @@ public class TelaDoJogadorDaVez extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
+	private static class Main {
+		 public static void main(String[] args) {
+	     //new TelaDoJogadorDaVez();	
+	     }
+	}
+       
 }
 

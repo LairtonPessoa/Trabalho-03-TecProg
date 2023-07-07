@@ -2,20 +2,17 @@ package negocio;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-
 import persistencia.Servidor;
+import visualizacao.TelaDoJogadorDaVez;
 
-
-
-public class GerenciadorDeJogo {
+public class Gerenciador {
 	
 	private ArrayList<Jogador> listaJogadores;
 	private Servidor server;
 
-	public GerenciadorDeJogo(Servidor server) {
+	public Gerenciador(Servidor server) {
 		this.server = server;
-
+		
 		// crio uma coneção com os jogadores
 		this.listaJogadores = new ArrayList<Jogador>();
 
@@ -27,7 +24,6 @@ public class GerenciadorDeJogo {
 
 	private void comecarJogo() {
 		sortCartas();
-		sortJogadorDaVez();
 		
 		jogo();
 	}
@@ -36,7 +32,10 @@ public class GerenciadorDeJogo {
 		
 		//Sempre enviar as informações de todas as alterações para os jogadores
 		while (!isFimDoJogo()) {
+			
 			Jogada jogada = new Jogada();
+			sortJogadorDaVez();
+			
 			mostrarTelas(new Jogador(0));
 			// Espero o jogador clicar na tela e enviar a carta e a dica
 			exibirDica();
@@ -62,24 +61,40 @@ public class GerenciadorDeJogo {
 
 	private Jogador sortJogadorDaVez() {
 
-		// usa a classe random para sortear um jogador da vez e retorna um jogador ou
-		// entao um id
 		Random aleatorio = new Random();
 		int idJogadorDaVez = aleatorio.nextInt(4);
 
-		if (listaJogadores.get(idJogadorDaVez).getJaJogou())
+		if (listaJogadores.get(idJogadorDaVez).getJaJogouNaRodada())
 			return sortJogadorDaVez();
 		return listaJogadores.get(idJogadorDaVez);
 		
 	}
 
 	private void sortCartas() {
-		
-		Random aleatorio = new Random();
-		//int idDaCarta = aleatorio.nextInt(24);
-		//sorteio 6 cartas de forma que as cartas nao se repitam e atribuo elas ao jogador 1, depois ao 2...
+		ArrayList<Integer> idDasCartas = sortIdCartas();
 		
 	}
+	
+	public ArrayList<Integer> sortIdCartas() {
+        
+        Random random = new Random();
+        ArrayList<Integer> numerosSort = new ArrayList<>();
+        ArrayList<Integer> numerosDisponiveis = new ArrayList<>();
+        
+        for (int i = 1; i <= 24; i++) {
+            numerosDisponiveis.add(i);
+        }
+        
+        while (!numerosDisponiveis.isEmpty()) {
+            int indiceSorteado = random.nextInt(numerosDisponiveis.size());
+            int numeroSorteado = numerosDisponiveis.remove(indiceSorteado);
+            numerosSort.add(numeroSorteado);
+        }
+        
+        return numerosSort;
+    }
+	
+	
 
 	private void mostrarTelas(Jogador jogadordavez) {
 		// Seto a tela de escolher cartas do jogador da vez como visible
@@ -118,7 +133,7 @@ public class GerenciadorDeJogo {
 	private boolean isFimDoJogo() {
 		// ou o jogoNaoAcabou()
 		for (Jogador jogador : listaJogadores) {
-			if (jogador.getPontuacao() > 30) {
+			if (jogador.getPontuacao() >= 30) {
 				return true;
 			}
 		}
