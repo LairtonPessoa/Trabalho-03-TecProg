@@ -5,9 +5,9 @@ import java.sql.Connection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import negocio.Jogada;
 import java.util.ArrayList;
+
+import controller.Jogada;
 
 import java.sql.PreparedStatement;
 

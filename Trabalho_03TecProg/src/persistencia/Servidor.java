@@ -12,8 +12,8 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import javax.swing.*;
 
+import controller.Jogador;
 import negocio.Gerenciador;
-import negocio.Jogador;
 
 import java.awt.*;
 import java.awt.event.*;

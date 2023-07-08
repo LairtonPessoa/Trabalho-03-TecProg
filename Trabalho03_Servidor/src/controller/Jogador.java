@@ -1,4 +1,4 @@
-package negocio;
+package controller;
 
 public class Jogador {
 
@@ -10,12 +10,12 @@ public class Jogador {
 	private Carta cartaEscolhida;
 
 	public Jogador(int id) {
-		this.isJogadorDaVez=false;
+		this.isJogadorDaVez = false;
 		this.jaJogouNaRodada = false;
 		this.id = id;
-		this.pontuacao=0;
+		this.pontuacao = 0;
 	}
-	
+
 	public Boolean getJaJogouNaRodada() {
 		return jaJogouNaRodada;
 	}
@@ -51,6 +51,7 @@ public class Jogador {
 	public int getId() {
 		return id;
 	}
+
 	public Carta getCartaEscolhida() {
 		return cartaEscolhida;
 	}
@@ -59,6 +60,4 @@ public class Jogador {
 		this.cartaEscolhida = cartaEscolhida;
 	}
 
-
-	
 }

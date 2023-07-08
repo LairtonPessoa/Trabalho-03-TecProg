@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import negocio.Carta;
-import negocio.Jogada;
-import negocio.Jogador;
+import controller.Carta;
+import controller.Jogada;
+import controller.Jogador;
 
 	
 public class CartasDAO {
