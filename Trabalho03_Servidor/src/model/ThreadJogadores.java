@@ -24,12 +24,15 @@ public class ThreadJogadores implements Runnable{
 	        Reader reader = new InputStreamReader(jogador.getInputStream());
 	        BufferedReader bufferedReader = new BufferedReader(reader);
 
-	        String mensagem = bufferedReader.readLine();
-	        System.out.println("Mensagem recebida do cliente: " + mensagem);
+	        String mensagem[] = bufferedReader.readLine().split(";");
+	        String momentoDoJogo = mensagem[mensagem.length-1];
+	        
+	        if(momentoDoJogo.equals("enviouDica")) {
+	        	controlador.distribuirDica(mensagem[0], jogador);
+	        }
 
 
-	        bufferedReader.close();
-	        reader.close();
+	        
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }

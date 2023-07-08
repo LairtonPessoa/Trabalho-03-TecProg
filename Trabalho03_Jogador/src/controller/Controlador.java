@@ -32,18 +32,17 @@ public class Controlador {
 		this.jogador=jogador;
 	}
 
-	public void enviarMensagem(String mensagem) {
+	public void enviarMensagem(String mensagem, String momentoDoJogo) {
 	    try {
 	        Writer writer = new OutputStreamWriter(jogador.getJogador().getOutputStream());
 	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
-	        bufferedWriter.write(mensagem);
+	        bufferedWriter.write(mensagem + ";" + momentoDoJogo);
 	        bufferedWriter.newLine();
 	        bufferedWriter.flush();
 
 
-	        bufferedWriter.close();
-	        writer.close();
+	        
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }

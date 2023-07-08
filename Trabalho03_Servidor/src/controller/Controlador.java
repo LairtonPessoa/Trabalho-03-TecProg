@@ -1,5 +1,10 @@
 package controller;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -138,6 +143,23 @@ public class Controlador {
 			}
 		}
 		return false;
+	}
+
+	public void distribuirDica(String dica, Socket jogador) {
+		try {
+	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
+	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+	        bufferedWriter.write(dica);
+	        bufferedWriter.newLine();
+	        bufferedWriter.flush();
+
+
+	        
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+		
 	}
 
 }
