@@ -41,8 +41,7 @@ public class Controlador {
 	        bufferedWriter.newLine();
 	        bufferedWriter.flush();
 
-
-	        bufferedWriter.close();
+	        bufferedWriter.close();-
 	        writer.close();
 	    } catch (IOException e) {
 	        e.printStackTrace();

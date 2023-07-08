@@ -2,6 +2,9 @@ package negocio;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import controller.Jogada;
+import controller.Jogador;
 import persistencia.Servidor;
 import visualizacao.TelaDoJogadorDaVez;
 

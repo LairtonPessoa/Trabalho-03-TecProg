@@ -1,4 +1,4 @@
-package negocio;
+package controller;
 
 public class Jogador {
 

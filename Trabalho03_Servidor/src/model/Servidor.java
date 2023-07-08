@@ -12,7 +12,7 @@ public class Servidor {
 	private Controlador controlador;
 	private ServerSocket servidor;
 	private ArrayList<Socket> jogadores;
-	private static final int PORT = 6000;
+	private static final int PORT = 9990;
 	private static final int maxPlayers = 4;
 
 	public Servidor(Controlador controlador) {
