@@ -7,7 +7,7 @@ public class Cliente {
 
 	private TelaPrincipal telaPrincipal;
 	private Jogador jogador;
-	
+
 	public Cliente() {
 		
 		telaPrincipal = new TelaPrincipal();

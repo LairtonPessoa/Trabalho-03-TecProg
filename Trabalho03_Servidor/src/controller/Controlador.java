@@ -7,6 +7,7 @@ import java.io.Writer;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
+import model.Servidor;
 
 import controller.*;
 import model.*;

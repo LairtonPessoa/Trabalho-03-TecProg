@@ -13,13 +13,15 @@ public class Carta {
 	public int getId() {
 		return id;
 	}
+
 	public ImageIcon getIconeDaCarta() {
 		return iconeFrenteDaCarta;
 	}
+
 	public ImageIcon getIconeVersoDaCarta() {
 		return iconeVersoDaCarta;
 	}
-	
+
 	public boolean isJaFoiSorteada() {
 		return jaFoiSorteada;
 	}
