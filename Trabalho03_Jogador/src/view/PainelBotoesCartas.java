@@ -31,16 +31,16 @@ public class PainelBotoesCartas extends JPanel{
 	//Criar o painel das cartas.
 	public JPanel painelcartas() {
 		painelcartas = new JPanel();
-
+		
 		ImageIcon cartaum = new ImageIcon("icons\\aviario.png");
 		carta1=criarBotao(cartaum);
 
 		ImageIcon cartadois = new ImageIcon("icons\\dragaobranco.png");
 		carta2=criarBotao(cartadois);
-
+		
 		ImageIcon cartatres = new ImageIcon("icons\\kuriboh.png");
 	    carta3=criarBotao(cartatres);
-
+	    
 		ImageIcon cartaquatro = new ImageIcon("icons\\magonegro.png");
 		carta4=criarBotao(cartaquatro);
 
@@ -68,7 +68,7 @@ public class PainelBotoesCartas extends JPanel{
 		JButton carta = new JButton();
 		carta.setPreferredSize(new Dimension(150,200));
 		carta.addActionListener(new acaoCarta(carta));
-
+		
 		int width = carta.getPreferredSize().width;
 	    int height = carta.getPreferredSize().height;
 	    ImageIcon resizedIcon = IconesCartas.resizeImageIcon(imgcartas, width, height);
@@ -87,7 +87,7 @@ public class PainelBotoesCartas extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if (cartaSelecionada == carta) { // Se a carta selecionada for clicada novamente
 				cartaSelecionada = null; // Limpa a carta selecionada
-
+				
 				// Ativar todas as cartas
 				for (Component component : painelcartas.getComponents()) {
 					if (component instanceof JButton) {
