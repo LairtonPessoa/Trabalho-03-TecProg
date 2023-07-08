@@ -12,7 +12,7 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import javax.swing.*;
 
-import negocio.GerenciadorDeJogo;
+import negocio.Gerenciador;
 import negocio.Jogador;
 
 import java.awt.*;
@@ -21,7 +21,7 @@ import java.awt.event.*;
 public class Servidor {
 	
 	private ServerSocket servSocket;
-	private GerenciadorDeJogo gerenciador;
+	private Gerenciador gerenciador;
 	private ArrayList<ConexaoJogares> jogadores;
 	private static final int maxJogadores = 4;
 
@@ -32,10 +32,10 @@ public class Servidor {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		gerenciador = new GerenciadorDeJogo(this);
+		gerenciador = new Gerenciador(this);
 	}
 
-	public void iniciar(GerenciadorDeJogo control) {
+	public void iniciar(Gerenciador control) {
 		int contator = 0;
 		try {
 			while (contator<maxJogadores) {

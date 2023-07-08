@@ -2,14 +2,14 @@ package persistencia;
 
 import java.net.Socket;
 
-import negocio.GerenciadorDeJogo;
+import negocio.Gerenciador;
 
 public class ConexaoJogares implements Runnable{
 
 	private Socket socket;
-	private GerenciadorDeJogo gerenciador;
+	private Gerenciador gerenciador;
 	
-	public ConexaoJogares(Socket s, GerenciadorDeJogo g) {
+	public ConexaoJogares(Socket s, Gerenciador g) {
 		socket=s;
 		gerenciador=g;
 	}
