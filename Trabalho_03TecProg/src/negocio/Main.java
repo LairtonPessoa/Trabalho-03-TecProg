@@ -9,7 +9,7 @@ public class Main {
 		//JogadaDAO jogada = new JogadaDAO();
 		//Jogada j = new Jogada("teste", "teste", "dica", "teste", 0);
 		//new TelaDeEscolha();
-		//new TelaDoJogadorDaVez();
+		new TelaDoJogadorDaVez();
 		//new TelaDosJogadores();
 		//jogada.inserir(j);
 		CartasDAO cartas = new CartasDAO();
