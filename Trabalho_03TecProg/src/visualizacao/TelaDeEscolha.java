@@ -5,9 +5,10 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class TelaDeEscolha extends JFrame{
+public class TelaDeEscolha extends JPanel{
 
 	
 	public TelaDeEscolha() {
@@ -26,10 +27,10 @@ public class TelaDeEscolha extends JFrame{
 		this.add(dica);
 		
 		setSize(800,600);
-		setVisible(true);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//setVisible(true);
+		//setLocationRelativeTo(null);
+		//setResizable(false);
+		//setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 		
 		

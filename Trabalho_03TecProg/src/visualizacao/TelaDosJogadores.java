@@ -5,9 +5,10 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class TelaDosJogadores extends JFrame{
+public class TelaDosJogadores extends JPanel{
 
 	public TelaDosJogadores() {
 		
@@ -29,9 +30,9 @@ public class TelaDosJogadores extends JFrame{
 		this.add(dica);
 		
 		setSize(800,600);
-		setVisible(true);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//setVisible(true);
+		//setLocationRelativeTo(null);
+		//setResizable(false);
+		//setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 }

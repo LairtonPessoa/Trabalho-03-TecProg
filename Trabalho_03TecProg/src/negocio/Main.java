@@ -10,8 +10,8 @@ public class Main {
 		//Jogada j = new Jogada("teste", "teste", "dica", "teste", 0);
 		//new TelaDeEscolha();
 		//new TelaDoJogadorDaVez(new Gerenciador(new Servidor()));
-		new TelaDoJogadorDaVez();
-		
+		//new TelaDoJogadorDaVez();
+		new TelaPrincipal();
 		//new TelaDosJogadores();
 		//new TelaDoJogadorDaVez();
 		//new TelaDosJogadores();
