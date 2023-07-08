@@ -9,12 +9,14 @@ public class Main {
 		//JogadaDAO jogada = new JogadaDAO();
 		//Jogada j = new Jogada("teste", "teste", "dica", "teste", 0);
 		//new TelaDeEscolha();
-		new TelaDoJogadorDaVez(new Gerenciador(new Servidor()));
+		//new TelaDoJogadorDaVez(new Gerenciador(new Servidor()));
+		new TelaDoJogadorDaVez();
+		
 		//new TelaDosJogadores();
 		//new TelaDoJogadorDaVez();
 		//new TelaDosJogadores();
 		//jogada.inserir(j);
-		CartasDAO cartas = new CartasDAO();
-		System.out.println(cartas.pegarCartas().get(1));
+		//CartasDAO cartas = new CartasDAO();
+		//System.out.println(cartas.pegarCartas().get(1));
 	}
 }

@@ -1,5 +1,4 @@
 package persistencia;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,7 +14,9 @@ import javax.swing.ImageIcon;
 
 import negocio.Carta;
 import negocio.Jogada;
+import negocio.Jogador;
 
+	
 public class CartasDAO {
 	
 	//Pegar carta selecionada
@@ -41,17 +42,16 @@ public class CartasDAO {
 	}*/
 	
 	//Inserir Carta Selecionada
-	/*public void inserir(Carta carta) {
+	public void inserir(Carta carta, Jogada jogada, Jogador jogador) {
 		try {
 			Connection conexao = new Conexao().getConexao();
 
 			PreparedStatement inserir = 
-			conexao.prepareStatement("insert into jogada (jogadorVez, fraseDica, cartaEscolhida, pontuacao) values (?, ?, ?, ?)");
+			conexao.prepareStatement("insert into cartas_selecionadas (jogada_id, carta_id, jogador) values (?, ?, ?)");
 			
-			inserir.setString(1, carta.getJogadorVez());
-			inserir.setString(2, carta.getFraseDica());
-			inserir.setString(3, carta.getCartaEscolhida());
-			inserir.setInt(4, carta.getPontuacao());
+			inserir.setInt(1, jogada.getId());
+			inserir.setInt(2, carta.getId());
+			inserir.setString(3, jogador.getNome());
 			
 			inserir.executeUpdate();
 
@@ -60,7 +60,7 @@ public class CartasDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
 	//Ler Arquivo
 	public ArrayList<String> pegarCartas(){
