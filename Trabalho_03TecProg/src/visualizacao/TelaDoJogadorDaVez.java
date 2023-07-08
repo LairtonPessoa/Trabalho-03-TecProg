@@ -25,7 +25,7 @@ public class TelaDoJogadorDaVez extends JPanel{
 		this.add(new PainelDica(), BorderLayout.SOUTH);
 
 		//this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		//this.setVisible(true);
+		this.setVisible(true);
 	}
        
 }
