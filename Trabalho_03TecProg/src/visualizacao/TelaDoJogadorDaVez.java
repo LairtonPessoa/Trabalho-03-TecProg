@@ -2,32 +2,30 @@ package visualizacao;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import negocio.Gerenciador;
 import persistencia.Servidor;
 
-public class TelaDoJogadorDaVez extends JFrame{
+public class TelaDoJogadorDaVez extends JPanel{
 	
-	private Gerenciador gerenciador;
+	//private Gerenciador gerenciador;
 	
-	public TelaDoJogadorDaVez(Gerenciador gerenciadorDeJogo) {
+	//Gerenciador gerenciadorDeJogo;
+	
+	public TelaDoJogadorDaVez() {
 		
-		gerenciador = new Gerenciador(new Servidor());
+		//gerenciador = new Gerenciador(new Servidor());
 		
 		this.setLayout(new BorderLayout());
 		this.setSize(530,510);
-		this.setLocationRelativeTo(null);
-		this.setResizable(false);
+		//this.setLocationRelativeTo(null);
+		//this.setResizable(false);
 		this.add(new PainelBotoesCartas(), BorderLayout.CENTER);
 		this.add(new PainelDica(), BorderLayout.SOUTH);
 
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setVisible(true);
-	}
-	private static class Main {
-		 public static void main(String[] args) {
-	     //new TelaDoJogadorDaVez();	
-	     }
+		//this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//this.setVisible(true);
 	}
        
 }

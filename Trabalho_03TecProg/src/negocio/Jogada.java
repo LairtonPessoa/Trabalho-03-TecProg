@@ -14,7 +14,8 @@ public class Jogada {
 		this.pontuacao = pontuacao;
 	}
 	public Jogada() {
-		this.jogadorVez.setNome("");
+//		jogadorVez = new Jogador();
+//		this.jogadorVez.setNome("");
 		this.fraseDica = "";
 		this.cartaEscolhida = "";
 		this.pontuacao = 0;
