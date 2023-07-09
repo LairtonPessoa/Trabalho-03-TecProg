@@ -4,8 +4,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import negocio.Gerenciador;
-import persistencia.Servidor;
+import controller.*;
+import model.*;
 
 public class TelaDoJogadorDaVez extends JPanel{
 	
