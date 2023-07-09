@@ -14,16 +14,14 @@ import javax.swing.event.DocumentListener;
 
 import controller.GerenciadorCliente;
 
-public class PainelDica extends JPanel implements ActionListener{
+public class PainelDica extends JPanel{
 
-	JTextField barra;
-	JButton enviar;
-	JPanel paineldica;
-	PainelBotoesCartas painelcartas;
-	private GerenciadorCliente controlador;
+	private JTextField barra;
+	private JButton enviar;
+	private JPanel paineldica;
+	private PainelJogadorVez painelcartas;
 
-	public PainelDica(GerenciadorCliente controlador) {
-		this.controlador=controlador;
+	public PainelDica() {
 		this.add(paineldica());
 		this.setBackground(new Color(100,149,237,70));
 	}
@@ -40,7 +38,6 @@ public class PainelDica extends JPanel implements ActionListener{
 		enviar = new JButton("Enviar");
 		enviar.setEnabled(true);
 		enviar.setPreferredSize(new Dimension(125,40));
-		enviar.addActionListener(this);
 
 		paineldica.setLayout(new FlowLayout());
 		paineldica.setPreferredSize(new Dimension(460,50));
@@ -52,9 +49,12 @@ public class PainelDica extends JPanel implements ActionListener{
 		return paineldica;
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		String mensagem = barra.getText();
-		controlador.enviarMensagem(mensagem);
-
+	public JTextField getBarra() {
+		return barra;
 	}
+
+	public JButton getEnviar() {
+		return enviar;
+	}
+	
 }
