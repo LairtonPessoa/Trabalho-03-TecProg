@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import model.Jogador;
-import view.TelaDoJogadorDaVez;
+import view.TelaDoJogo;
 
 public class Controlador {
 
@@ -24,7 +24,7 @@ public class Controlador {
 //		telaDeEspera.setVisible(false);
 		jogador = new Jogador("Rayssa");
 		jogador.joinConection("localhost", this);
-		new TelaDoJogadorDaVez(this);
+		new TelaDoJogo(this);
 
 	}
 

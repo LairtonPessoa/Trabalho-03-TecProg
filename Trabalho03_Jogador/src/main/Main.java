@@ -3,7 +3,7 @@ package main;
 import controller.Controlador;
 import model.Jogador;
 import view.TelaDeConexao;
-import view.TelaDoJogadorDaVez;
+import view.TelaDoJogo;
 
 public class Main {
 
