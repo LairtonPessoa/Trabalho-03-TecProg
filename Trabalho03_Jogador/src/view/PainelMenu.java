@@ -3,14 +3,12 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +20,8 @@ public class PainelMenu extends JPanel{
 	JPanel menu;
 	JPanel botoesmenu;
 	JPanel painellogo;
+	JPanel painelcombotoes;
+	JPanel paineldecorado;
 	JButton jogar;
 	JButton sair;
 	
@@ -45,7 +45,7 @@ public class PainelMenu extends JPanel{
 	}
 	
 	public JPanel painelComBotoesMenu() {
-		JPanel teste = new JPanel();
+		painelcombotoes = new JPanel();
 		
 		ImageIcon img = new ImageIcon("icons_menu\\imgfundo1.png");
 		JLabel imgfundo = new JLabel(img);
@@ -53,14 +53,14 @@ public class PainelMenu extends JPanel{
 		ImageIcon img2 = new ImageIcon("icons_menu\\imgfundo2.png");
 		JLabel imgfundo2 = new JLabel(img2);
 
-		teste.setLayout(new BoxLayout(teste, BoxLayout.X_AXIS));
-		teste.setBackground(null);
+		painelcombotoes.setLayout(new BoxLayout(painelcombotoes, BoxLayout.X_AXIS));
+		painelcombotoes.setBackground(null);
 		
-		teste.add(imgfundo2);
-		teste.add(painelBotoesMenu());
-		teste.add(imgfundo);
+		painelcombotoes.add(imgfundo2);
+		painelcombotoes.add(painelBotoesMenu());
+		painelcombotoes.add(imgfundo);
 		
-		return teste;
+		return painelcombotoes;
 	}
 	
 	public JPanel painelBotoesMenu() {
@@ -114,7 +114,7 @@ public class PainelMenu extends JPanel{
 	}
 	
 	public JPanel painelDecorado() {
-		JPanel paineldecorado = new JPanel();
+		paineldecorado = new JPanel();
 		
 		ImageIcon img = new ImageIcon("icons_menu\\atributos.png");
 		JLabel imgfundo = new JLabel(img);	
