@@ -32,6 +32,7 @@ public class ControladorDoJogo {
 	}
 
 	private void comecarJogo() {
+		
 		distribuirCartas();
 		
 		jogo();
@@ -53,6 +54,8 @@ public class ControladorDoJogo {
 			// espero os jogadores escolherem a carta
 			salvarDadosJogada(jogada);
 			exibirResultadosDaRodada();
+			
+			restaurarJogadores();
 		}
 	}
 
@@ -77,6 +80,12 @@ public class ControladorDoJogo {
 			return sortJogadorDaVez();
 		return listaJogadores.get(idJogadorDaVez);
 		
+	}
+	
+	private void restaurarJogadores() {
+		for(JogadorServidor jogador : listaJogadores) {
+			jogador.setJaJogouNaRodada(false);
+		}
 	}
 
 	public void distribuirCartas() {

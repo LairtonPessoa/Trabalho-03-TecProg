@@ -29,7 +29,8 @@ public class JogadorCliente {
 		try {
 			jogador = new Socket(host, PORT);
 			controlador = c;
-			
+			Thread thread = new Thread(new ThreadJogador(jogador, c));
+			thread.start();
 			
 
 		//	controlador.activeTelaDeEspera();
