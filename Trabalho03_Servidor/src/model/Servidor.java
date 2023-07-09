@@ -6,7 +6,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import controller.ControladorDoJogo;
-import controller.JogadorServidor;
 
 public class Servidor {
 
@@ -35,13 +34,14 @@ public class Servidor {
 				jogadores.add(jogador);
 				System.out.println("player conectado");
 				cont++;
-				controlador.getListaJogadores().add(new JogadorServidor(cont));
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		
+		
 		for (Socket socket : jogadores) {
 			Thread thread = new Thread(new ThreadServidor(socket, controlador));
 			thread.start();
