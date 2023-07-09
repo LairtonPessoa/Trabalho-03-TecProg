@@ -5,20 +5,24 @@ import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import controller.Controlador;
+import controller.GerenciadorCliente;
 
 public class TelaDoJogo extends JFrame{
-
-	public TelaDoJogo(Controlador controlador) {
-
+	
+	private PainelMenu painelMenu;
+	
+	public TelaDoJogo(GerenciadorCliente controlador) {
+		
 		this.setTitle("É hora do duelo !");
 		this.setLayout(new BorderLayout());
 		this.setSize(530,510);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
+		
+		this.painelMenu = new PainelMenu();
 		//this.add(new PainelBotoesCartas(), BorderLayout.CENTER);
 		//this.add(new PainelDica(controlador), BorderLayout.SOUTH);
-		this.add(new PainelMenu(), BorderLayout.CENTER);
+		this.add(painelMenu, BorderLayout.CENTER);
 		
 		ImageIcon icon = new ImageIcon("icons\\enigmadomilenio.png");
 		setIconImage(icon.getImage());

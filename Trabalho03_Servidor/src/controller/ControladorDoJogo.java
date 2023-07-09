@@ -5,12 +5,12 @@ import java.util.Random;
 import controller.*;
 import model.*;
 
-public class Controlador {
+public class ControladorDoJogo {
 	private ArrayList<Jogador> listaJogadores;
 	private Servidor server;
 	private CartasDAO cartasDAO;
 
-	public Controlador(Servidor server) {
+	public ControladorDoJogo(Servidor server) {
 		
 		this.server = server;
 		cartasDAO = new CartasDAO();
@@ -74,7 +74,7 @@ public class Controlador {
 		
 		for(Jogador jogador : listaJogadores) {
 			for(int i = 0; i<6; i++) {
-				jogador.getListaCartas().add(cartasDAO.pegarCartas().get(i));
+				//jogador.getListaCartas().add(cartasDAO.pegarCartas().get(i));
 			}
 		}
 		

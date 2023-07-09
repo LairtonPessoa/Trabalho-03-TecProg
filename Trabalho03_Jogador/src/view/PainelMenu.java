@@ -17,13 +17,13 @@ import javax.swing.JPanel;
 
 public class PainelMenu extends JPanel{
 
-	JPanel menu;
-	JPanel botoesmenu;
-	JPanel painellogo;
-	JPanel painelcombotoes;
-	JPanel paineldecorado;
-	JButton jogar;
-	JButton sair;
+	private JPanel menu;
+	private JPanel botoesmenu;
+	private JPanel painellogo;
+	private JPanel painelcombotoes;
+	private JPanel paineldecorado;
+	private JButton jogar;
+	private JButton sair;
 	
 	public PainelMenu() {
 
@@ -127,4 +127,14 @@ public class PainelMenu extends JPanel{
 		
 		return paineldecorado;
 	}
+	
+	public JButton getJogar() {
+		return jogar;
+	}
+
+	public JButton getSair() {
+		return sair;
+	}
+
+	
 }		

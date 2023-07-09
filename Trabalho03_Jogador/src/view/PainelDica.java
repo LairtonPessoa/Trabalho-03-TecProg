@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import controller.Controlador;
+import controller.GerenciadorCliente;
 
 public class PainelDica extends JPanel implements ActionListener{
 
@@ -20,9 +20,9 @@ public class PainelDica extends JPanel implements ActionListener{
 	JButton enviar;
 	JPanel paineldica;
 	PainelBotoesCartas painelcartas;
-	private Controlador controlador;
+	private GerenciadorCliente controlador;
 
-	public PainelDica(Controlador controlador) {
+	public PainelDica(GerenciadorCliente controlador) {
 		this.controlador=controlador;
 		this.add(paineldica());
 		this.setBackground(new Color(100,149,237,70));

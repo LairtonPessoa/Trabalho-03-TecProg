@@ -1,12 +1,12 @@
 package main;
 
-import controller.Controlador;
+import controller.ControladorDoJogo;
 import model.Servidor;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Servidor server = new Servidor(new Controlador());
+		Servidor server = new Servidor(new ControladorDoJogo());
 		server.conectarRede();
 
 	}

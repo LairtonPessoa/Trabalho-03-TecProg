@@ -6,14 +6,14 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.Socket;
 
-import controller.Controlador;
+import controller.ControladorDoJogo;
 
 public class ThreadJogadores implements Runnable {
 
 	private Socket jogador;
-	private Controlador controlador;
+	private ControladorDoJogo controlador;
 
-	protected ThreadJogadores(Socket s, Controlador c) {
+	protected ThreadJogadores(Socket s, ControladorDoJogo c) {
 		jogador = s;
 		controlador = c;
 	}

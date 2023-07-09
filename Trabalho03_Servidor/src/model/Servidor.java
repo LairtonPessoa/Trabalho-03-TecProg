@@ -5,17 +5,17 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import controller.Controlador;
+import controller.ControladorDoJogo;
 
 public class Servidor {
 
-	private Controlador controlador;
+	private ControladorDoJogo controlador;
 	private ServerSocket servidor;
 	private ArrayList<Socket> jogadores;
 	private static final int PORT = 9990;
 	private static final int maxPlayers = 4;
 
-	public Servidor(Controlador controlador) {
+	public Servidor(ControladorDoJogo controlador) {
 		this.controlador = controlador;
 		try {
 			servidor = new ServerSocket(PORT);
