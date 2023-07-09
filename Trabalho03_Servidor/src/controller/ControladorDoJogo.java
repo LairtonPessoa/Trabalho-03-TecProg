@@ -205,7 +205,6 @@ public class ControladorDoJogo {
 		 */
 		
 	}
-<<<<<<< HEAD
 	private void instanciarCartas() {
 		ArrayList<String> enderecoCartas = cartasDAO.pegarCartas();
 		
@@ -219,7 +218,7 @@ public class ControladorDoJogo {
 		return listaJogadores;
 	}
 
-=======
+
 
 	public void enviarTodasAsCartasParaOsSockets(Socket jogador) {
 		/* Aqui o controlador deverá ler do banco de dados todas as cartas 
@@ -247,5 +246,5 @@ public class ControladorDoJogo {
 	    }
 		
 	}
->>>>>>> 2386afa0667ed6e1b1069ed492e2a4a7d7f0a423
+
 }
