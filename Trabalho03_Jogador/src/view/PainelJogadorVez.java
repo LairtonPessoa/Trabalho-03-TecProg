@@ -13,12 +13,6 @@ public class PainelJogadorVez extends JPanel{
 
 	private GerenciadorCliente controlador;
 
-	JButton carta1;
-	JButton carta2;
-	JButton carta3;
-	JButton carta4;
-	JButton carta5;
-	JButton carta6;
 	JButton cartaSelecionada;
 	PainelDica paineldica;
 	PainelCartas painelcartas;
