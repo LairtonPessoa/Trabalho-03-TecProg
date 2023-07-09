@@ -11,21 +11,23 @@ import javax.swing.JLabel;
 
 import model.Jogador;
 import view.TelaDoJogadorDaVez;
+import view.TelaDoJogo;
 
-public class Controlador {
+public class GerenciadorCliente {
 
 	private JFrame telaDeEspera;
 	private Jogador jogador;
+	private TelaDoJogo tela;
 
-	public Controlador() {
+	public GerenciadorCliente() {
 //		telaDeEspera = new JFrame();
 //		telaDeEspera.add(new JLabel("Aguarde..."));
 //		telaDeEspera.setSize(600,600);
 //		telaDeEspera.setVisible(false);
+		
 		jogador = new Jogador("Rayssa");
 		jogador.joinConection("localhost", this);
-		new TelaDoJogadorDaVez(this);
-
+		tela = new TelaDoJogo(this);
 	}
 
 	public void setJogador(Jogador jogador) {
@@ -41,11 +43,11 @@ public class Controlador {
 	        bufferedWriter.newLine();
 	        bufferedWriter.flush();
 
-
 	        bufferedWriter.close();
 	        writer.close();
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
 	}
+	
 }

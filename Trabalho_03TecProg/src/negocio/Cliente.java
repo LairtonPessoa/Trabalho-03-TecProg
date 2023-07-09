@@ -1,5 +1,6 @@
 package negocio;
 
+import controller.Jogador;
 import visualizacao.TelaDoJogadorDaVez;
 import visualizacao.TelaPrincipal;
 
@@ -11,6 +12,7 @@ public class Cliente {
 	public Cliente() {
 		
 		telaPrincipal = new TelaPrincipal();
-		telaPrincipal.getCardPanel()
+		
+		
 	}
 }

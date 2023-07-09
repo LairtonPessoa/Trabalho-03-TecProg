@@ -1,16 +1,14 @@
 package main;
 
-import controller.Controlador;
+import controller.GerenciadorCliente;
 import model.Jogador;
 import view.TelaDeConexao;
-import view.TelaDoJogadorDaVez;
+import view.TelaDoJogo;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Controlador c = new Controlador();
-
-
+		GerenciadorCliente c = new GerenciadorCliente();
 	}
 
 }

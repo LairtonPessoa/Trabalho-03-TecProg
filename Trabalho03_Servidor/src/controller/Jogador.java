@@ -1,15 +1,19 @@
 package controller;
 
+import java.util.ArrayList;
+
 public class Jogador {
 
 	private String nome;
 	private int id;
 	private int pontuacao;
 	private boolean isJogadorDaVez;
-	private Boolean jaJogouNaRodada;
+	private boolean jaJogouNaRodada;
+	private ArrayList<Carta> listaCartas;
+
 	private Carta cartaEscolhida;
 
-	public Jogador(int id) {
+	public Jogador(int id, String nome) {
 		this.isJogadorDaVez=false;
 		this.jaJogouNaRodada = false;
 		this.id = id;
@@ -57,6 +61,10 @@ public class Jogador {
 
 	public void setCartaEscolhida(Carta cartaEscolhida) {
 		this.cartaEscolhida = cartaEscolhida;
+	}
+	
+	public ArrayList<Carta> getListaCartas() {
+		return listaCartas;
 	}
 
 
