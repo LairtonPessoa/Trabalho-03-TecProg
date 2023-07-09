@@ -24,6 +24,7 @@ public class TelaDoJogo extends JFrame{
 		
 		this.gerenciadorCliente = gerenciadorCliente;
 		this.painelMenu = new PainelMenu();
+		painelMenu.getJogar().addActionListener(new acaoJogar());
 		//this.add(new PainelBotoesCartas(), BorderLayout.CENTER);
 		//this.add(new PainelDica(controlador), BorderLayout.SOUTH);
 		this.add(painelMenu, BorderLayout.CENTER);
@@ -42,6 +43,7 @@ public class TelaDoJogo extends JFrame{
 	private class acaoJogar implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
+			gerenciadorCliente.iniciarJogador("Lairton");
 			
 			gerenciadorCliente.iniciarJogador("Nome ai");
 			
