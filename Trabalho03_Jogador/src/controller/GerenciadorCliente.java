@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.WriteAbortedException;
 import java.io.Writer;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -24,7 +23,7 @@ public class GerenciadorCliente {
 		
 	}
 
-	private void iniciarJogador(String nome) {
+	public void iniciarJogador(String nome) {
 		jogador = new Jogador(nome);
 		jogador.joinConection("localhost", this);
 		

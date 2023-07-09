@@ -6,7 +6,7 @@ import controller.*;
 import model.*;
 
 public class ControladorDoJogo {
-	private ArrayList<Jogador> listaJogadores;
+	private ArrayList <Jogador> listaJogadores;
 	private CartasDAO cartasDAO;
 
 	public ControladorDoJogo() {
@@ -14,7 +14,7 @@ public class ControladorDoJogo {
 		cartasDAO = new CartasDAO();
 		this.listaJogadores = new ArrayList<Jogador>();
 		
-		if (jogadoresProntos()) {
+		while (jogadoresProntos()) {
 			comecarJogo();
 		}
 	}

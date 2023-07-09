@@ -13,6 +13,7 @@ public class TelaDoJogo extends JFrame{
 	
 	private PainelMenu painelMenu;
 	private GerenciadorCliente gerenciadorCliente;
+	
 	public TelaDoJogo(GerenciadorCliente gerenciadorCliente) {
 		
 		this.setTitle("É hora do duelo !");
@@ -42,6 +43,7 @@ public class TelaDoJogo extends JFrame{
 
 		public void actionPerformed(ActionEvent e) {
 			
+			gerenciadorCliente.iniciarJogador("Nome ai");
 			
 		}
 		
