@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Jogador {
 
-	private String nome;
 	private int id;
 	private int pontuacao;
 	private boolean isJogadorDaVez;
@@ -13,10 +12,10 @@ public class Jogador {
 
 	private Carta cartaEscolhida;
 
-	public Jogador(int id, String nome) {
+	public Jogador(int id) {
 		this.isJogadorDaVez=false;
-		this.jaJogouNaRodada = false;
 		this.id = id;
+		this.jaJogouNaRodada = false;
 		this.pontuacao=0;
 	}
 	
@@ -34,14 +33,6 @@ public class Jogador {
 
 	public void setJogadorDaVez(boolean isJogadorDaVez) {
 		this.isJogadorDaVez = isJogadorDaVez;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public int getPontuacao() {

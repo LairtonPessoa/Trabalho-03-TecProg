@@ -23,8 +23,7 @@ public class JogadaDAO {
 			ResultSet resultado = r.executeQuery();
 
 			while (resultado.next()) {
-				Jogada jogada = new Jogada(resultado.getString("jogadorVez"), resultado.getString("fraseDica"),
-						resultado.getString("cartaEscolhida"), resultado.getInt("pontuacao"));
+				Jogada jogada = new Jogada(resultado.getInt("jogadorVez_id") ,resultado.getString("fraseDica"),resultado.getString("cartaEscolhida"), resultado.getInt("pontuacao"));
 				jogadas.add(jogada);
 			}
 			conexao.close();
@@ -46,8 +45,7 @@ public class JogadaDAO {
 			ResultSet resultado = result.executeQuery();
 
 			while (resultado.next()) {
-				jogada = new Jogada(resultado.getString("jogadorVez"), resultado.getString("fraseDica"),
-						resultado.getString("cartaEscolhida"), resultado.getInt("pontuacao"));
+				jogada = new Jogada(resultado.getInt("jogadorVez_id"),resultado.getString("fraseDica"),resultado.getString("cartaEscolhida"), resultado.getInt("pontuacao"));
 			}
 			conexao.close();
 		} catch (Exception e) {
@@ -59,9 +57,9 @@ public class JogadaDAO {
 	public void update(Jogada jog) {
 		try {
 			Connection conexao = new Conexao().getConexao();
-			PreparedStatement up = conexao.prepareStatement("uptdate jogada set jogadorVez=?, " + "fraseDica=?, "
+			PreparedStatement up = conexao.prepareStatement("uptdate jogada set jogadorVez_id=?, " + "fraseDica=?, "
 					+ "cartaEscolhida=?, " + "pontuacao=?, " + "where Id=?");
-			up.setString(1, jog.getJogadorVez());
+			up.setInt(1, jog.getJogadorVez().getId());
 			up.setString(2, jog.getFraseDica());
 			up.setString(3, jog.getCartaEscolhida());
 			up.setInt(4, jog.getPontuacao());
@@ -78,9 +76,9 @@ public class JogadaDAO {
 			Connection conexao = new Conexao().getConexao();
 
 			PreparedStatement inserir = conexao.prepareStatement(
-					"insert into jogada (jogadorVez, fraseDica, cartaEscolhida, pontuacao) values (?, ?, ?, ?)");
+					"insert into jogada (jogadorVez_id, fraseDica, cartaEscolhida, pontuacao) values (?, ?, ?, ?)");
 
-			inserir.setString(1, jog.getJogadorVez());
+			inserir.setInt(1, jog.getJogadorVez().getId());
 			inserir.setString(2, jog.getFraseDica());
 			inserir.setString(3, jog.getCartaEscolhida());
 			inserir.setInt(4, jog.getPontuacao());

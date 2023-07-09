@@ -153,7 +153,7 @@ public class ControladorDoJogo {
 			
 		}
 		
-		Jogador jogador = new Jogador(maiorId+1, nome);
+		Jogador jogador = new Jogador(maiorId+1);
 		listaJogadores.add(jogador);
 	}
 }
