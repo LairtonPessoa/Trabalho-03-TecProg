@@ -22,4 +22,3 @@ icons\\reicaveira.png
 icons\\slifer.png
 icons\\tributotorrencial.png
 icons\\trocadealma.png
-icons\\versocarta.jpg

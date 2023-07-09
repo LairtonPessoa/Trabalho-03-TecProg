@@ -7,12 +7,10 @@ import model.*;
 
 public class ControladorDoJogo {
 	private ArrayList<Jogador> listaJogadores;
-	private Servidor server;
 	private CartasDAO cartasDAO;
 
-	public ControladorDoJogo(Servidor server) {
+	public ControladorDoJogo() {
 		
-		this.server = server;
 		cartasDAO = new CartasDAO();
 		this.listaJogadores = new ArrayList<Jogador>();
 		
@@ -153,7 +151,7 @@ public class ControladorDoJogo {
 			
 		}
 		
-		Jogador jogador = new Jogador(maiorId+1, nome);
+		Jogador jogador = new Jogador(maiorId+1);
 		listaJogadores.add(jogador);
 	}
 }

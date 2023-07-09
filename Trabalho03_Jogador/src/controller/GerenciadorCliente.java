@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.BufferedWriter;
+
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.WriteAbortedException;
@@ -10,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import model.Jogador;
-import view.TelaDoJogadorDaVez;
 import view.TelaDoJogo;
 
 public class GerenciadorCliente {

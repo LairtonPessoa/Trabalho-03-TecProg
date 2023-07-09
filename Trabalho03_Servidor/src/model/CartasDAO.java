@@ -40,11 +40,10 @@ public class CartasDAO {
 			Connection conexao = new Conexao().getConexao();
 
 			PreparedStatement inserir = conexao.prepareStatement(
-					"insert into cartas_selecionadas (jogada_id, carta_id, jogador) values (?, ?, ?)");
+					"insert into cartas_selecionadas (jogada_id, carta_id) values (?, ?)");
 
 			inserir.setInt(1, jogada.getId());
 			inserir.setInt(2, carta.getId());
-			inserir.setString(3, jogador.getNome());
 
 			inserir.executeUpdate();
 
