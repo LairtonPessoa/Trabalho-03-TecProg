@@ -23,7 +23,7 @@ public class PainelDica extends JPanel{
 
 	public PainelDica() {
 		this.add(paineldica());
-		this.setBackground(new Color(100,149,237,70));
+		this.setBackground(null);
 	}
 
 	//Painel da dica
@@ -41,7 +41,7 @@ public class PainelDica extends JPanel{
 
 		paineldica.setLayout(new FlowLayout());
 		paineldica.setPreferredSize(new Dimension(460,50));
-		paineldica.setBackground(new Color(100,149,237,70));
+		paineldica.setBackground(null);
 
 		paineldica.add(barra);
 		paineldica.add(enviar);

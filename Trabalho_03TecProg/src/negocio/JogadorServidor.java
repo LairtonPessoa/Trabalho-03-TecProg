@@ -1,8 +1,8 @@
-package controller;
+package negocio;
 
 import java.util.ArrayList;
 
-public class Jogador {
+public class JogadorServidor {
 
 	private int id;
 	private int pontuacao;
@@ -12,7 +12,7 @@ public class Jogador {
 
 	private Carta cartaEscolhida;
 
-	public Jogador(int id) {
+	public JogadorServidor(int id) {
 		this.isJogadorDaVez=false;
 		this.id = id;
 		this.jaJogouNaRodada = false;

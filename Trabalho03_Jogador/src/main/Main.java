@@ -1,7 +1,7 @@
 package main;
 
 import controller.GerenciadorCliente;
-import model.Jogador;
+import model.JogadorCliente;
 import view.TelaDeConexao;
 import view.TelaDoJogo;
 

@@ -7,24 +7,32 @@ import java.io.Writer;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import controller.*;
 import model.*;
 
 public class ControladorDoJogo {
-	private ArrayList<Jogador> listaJogadores;
-	private CartasDAO cartasDAO;
 
+	private ArrayList <JogadorServidor> listaJogadores;
+	private CartasDAO cartasDAO;
+	private ArrayList<Carta> cartasDoJogo;
+	
 	public ControladorDoJogo() {
 		
 		cartasDAO = new CartasDAO();
-		this.listaJogadores = new ArrayList<Jogador>();
+		this.listaJogadores = new ArrayList<JogadorServidor>();
+		this.cartasDoJogo = new ArrayList<Carta>();
 		
-		if (jogadoresProntos()) {
-			comecarJogo();
-		}
+		instanciarCartas();
+		
+		//while (jogadoresProntos()) {
+		//	comecarJogo();
+		//}
 	}
 
 	private void comecarJogo() {
+		
 		distribuirCartas();
 		
 		jogo();
@@ -46,6 +54,8 @@ public class ControladorDoJogo {
 			// espero os jogadores escolherem a carta
 			salvarDadosJogada(jogada);
 			exibirResultadosDaRodada();
+			
+			restaurarJogadores();
 		}
 	}
 
@@ -61,7 +71,7 @@ public class ControladorDoJogo {
 		return false;
 	}
 
-	private Jogador sortJogadorDaVez() {
+	private JogadorServidor sortJogadorDaVez() {
 
 		Random aleatorio = new Random();
 		int idJogadorDaVez = aleatorio.nextInt(4);
@@ -71,13 +81,23 @@ public class ControladorDoJogo {
 		return listaJogadores.get(idJogadorDaVez);
 		
 	}
+	
+	private void restaurarJogadores() {
+		for(JogadorServidor jogador : listaJogadores) {
+			jogador.setJaJogouNaRodada(false);
+		}
+	}
 
-	private void distribuirCartas() {
+	public void distribuirCartas() {
 		ArrayList<Integer> idDasCartas = sortIdCartas();
 		
-		for(Jogador jogador : listaJogadores) {
+		//nao está completo 
+		ArrayList<Carta> baralhoAuxiliar = cartasDoJogo;
+		
+		for(JogadorServidor jogador : listaJogadores) {
 			for(int i = 0; i<6; i++) {
-				//jogador.getListaCartas().add(cartasDAO.pegarCartas().get(i));
+				Carta carta = baralhoAuxiliar.remove(0);
+				jogador.getListaCartas().add(carta);
 			}
 		}
 		
@@ -138,7 +158,7 @@ public class ControladorDoJogo {
 
 	private boolean isFimDoJogo() {
 		// ou o jogoNaoAcabou()
-		for (Jogador jogador : listaJogadores) {
+		for (JogadorServidor jogador : listaJogadores) {
 			if (jogador.getPontuacao() >= 30) {
 				return true;
 			}
@@ -150,14 +170,14 @@ public class ControladorDoJogo {
 		
 		int maiorId = 0;
 		
-		for(Jogador jogadores : listaJogadores) {
+		for(JogadorServidor jogadores : listaJogadores) {
 	
 			if(jogadores.getId()>maiorId)
 				maiorId= jogadores.getId();
 			
 		}
 		
-		Jogador jogador = new Jogador(maiorId+1);
+		JogadorServidor jogador = new JogadorServidor(maiorId+1);
 		listaJogadores.add(jogador);
 	}
 
@@ -183,7 +203,7 @@ public class ControladorDoJogo {
 	}
 
 	public void salvarCartaEscolhida(String string) {
-		/*Este metodo irá salvar a carta escolhida pelo socket que 
+		/* Este metodo irá salvar a carta escolhida pelo socket que 
 		 * enviou dependendo do momento do jogo que o socket especi-
 		 * fico esta, como o jogador da vez n ira enviar a carta dele 
 		 * mesmo momento que os outros ela sera salva no banco de dados 
@@ -194,4 +214,46 @@ public class ControladorDoJogo {
 		 */
 		
 	}
+
+	private void instanciarCartas() {
+		ArrayList<String> enderecoCartas = cartasDAO.pegarCartas();
+		
+		for(int i = 0; i<24; i++) {
+			Carta carta = new Carta(i);
+			carta.setIconeFrenteDaCarta(new ImageIcon(enderecoCartas.get(i)));
+		}
+	}
+	
+	public ArrayList<JogadorServidor> getListaJogadores() {
+		return listaJogadores;
+	}
+
+
+	public void enviarTodasAsCartasParaOsSockets(Socket jogador) {
+		/* Aqui o controlador deverá ler do banco de dados todas as cartas 
+		 * de uma rodada e enviar para todos os  sockets conectados a rede
+		 * 
+		 */
+		
+		try {
+	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
+	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+	        /* Aqui dentro do bufferedWriter.write devera ter as url das
+	         * quatro cartas e o qual é a carta da vez para poder fazer 
+	         * a logica la no cliente de acertar a carta ou não por favor
+	         * envie cada parte separada por ';' pois este sera o parametro 
+	         * para quebrar a string por meio do metodo .split
+	         */
+	        bufferedWriter.write("");
+	        bufferedWriter.newLine();
+	        bufferedWriter.flush();
+
+	        
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+		
+	}
+	
 }
