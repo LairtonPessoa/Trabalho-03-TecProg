@@ -58,5 +58,10 @@ public class GerenciadorCliente {
 		
 		
 	}
+
+	public void iniciarJogo() {
+		tela.getCardLayout().show(tela.getContentPane(), "painelJogadorVez");
+		
+	}
 	
 }

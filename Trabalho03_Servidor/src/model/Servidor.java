@@ -40,7 +40,11 @@ public class Servidor {
 				e.printStackTrace();
 			}
 		}
+		controlador.setSockets(jogadores);
 		
+		for (Socket socket : jogadores) {
+			controlador.comecarJogo(socket);
+		}
 		
 		for (Socket socket : jogadores) {
 			Thread thread = new Thread(new ThreadServidor(socket, controlador));

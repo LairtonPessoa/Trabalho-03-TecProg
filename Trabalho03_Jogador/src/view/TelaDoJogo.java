@@ -48,12 +48,16 @@ public class TelaDoJogo extends JFrame{
 		
 	}
 	
+	public CardLayout getCardLayout() {
+		return cardLayout;
+	}
+	
 	private class acaoJogar implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 			gerenciadorCliente.iniciarJogador("Nome ai");
 			
-			cardLayout.show(getContentPane(), "painelJogadorVez");	
+		//	cardLayout.show(getContentPane(), "painelJogadorVez");	
 		}
 	}
 	

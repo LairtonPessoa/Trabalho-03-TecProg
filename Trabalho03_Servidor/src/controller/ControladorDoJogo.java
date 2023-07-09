@@ -39,7 +39,7 @@ public class ControladorDoJogo {
 	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
 	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
-	        bufferedWriter.write("eHoraDoDuelo");
+	        bufferedWriter.write("HoraDoDuelo");
 	        bufferedWriter.newLine();
 	        bufferedWriter.flush();
 
@@ -249,7 +249,7 @@ public class ControladorDoJogo {
 
 
 
-	public void enviarTodasAsCartasParaOsSockets(Socket jogador) {
+	public void enviarTodasAsCartasParaOSocket(Socket jogador) {
 
 		/* Aqui o controlador deverá ler do banco de dados todas as cartas 
 		 * de uma rodada e enviar para todos os  sockets conectados a rede
