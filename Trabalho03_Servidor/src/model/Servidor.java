@@ -34,15 +34,12 @@ public class Servidor {
 				jogadores.add(jogador);
 				System.out.println("player conectado");
 				cont++;
+				Thread thread = new Thread(new ThreadServidor(jogador, controlador));
+				thread.start();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-
-		for (Socket socket : jogadores) {
-			Thread thread = new Thread(new ThreadJogadores(socket, controlador));
-			thread.start();
 		}
 
 	}

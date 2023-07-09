@@ -1,5 +1,10 @@
 package controller;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
 import controller.*;
@@ -140,6 +145,7 @@ public class ControladorDoJogo {
 		}
 		return false;
 	}
+	
 	public void adicionarJogadores(String nome) {
 		
 		int maiorId = 0;
@@ -153,5 +159,21 @@ public class ControladorDoJogo {
 		
 		Jogador jogador = new Jogador(maiorId+1);
 		listaJogadores.add(jogador);
+	}
+
+	public void distribuirDica(String dica, Socket jogador) {
+		try {
+	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
+	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+	        bufferedWriter.write(dica);
+	        bufferedWriter.newLine();
+	        bufferedWriter.flush();
+
+	        
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+		
 	}
 }

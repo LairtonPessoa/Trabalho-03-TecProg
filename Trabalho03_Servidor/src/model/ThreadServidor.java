@@ -8,12 +8,12 @@ import java.net.Socket;
 
 import controller.ControladorDoJogo;
 
-public class ThreadJogadores implements Runnable {
+public class ThreadServidor implements Runnable {
 
 	private Socket jogador;
 	private ControladorDoJogo controlador;
 
-	protected ThreadJogadores(Socket s, ControladorDoJogo c) {
+	protected ThreadServidor(Socket s, ControladorDoJogo c) {
 		jogador = s;
 		controlador = c;
 	}
