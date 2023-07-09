@@ -14,12 +14,12 @@ import javax.swing.event.DocumentListener;
 
 import controller.GerenciadorCliente;
 
-public class PainelDica extends JPanel{
+public class PainelEnviarDica extends JPanel{
 
 	private JTextField barra;
 	private JButton enviar;
 		
-	public PainelDica() {
+	public PainelEnviarDica() {
 
 		barra = new JTextField();
 		barra.setPreferredSize(new Dimension(325,40));

@@ -14,12 +14,12 @@ public class PainelJogadorVez extends JPanel{
 	private GerenciadorCliente controlador;
 
 	JButton cartaSelecionada;
-	PainelDica paineldica;
-	PainelCartas painelcartas;
+	PainelEnviarDica paineldica;
+	PainelCartasVez painelcartas;
 	
 	public PainelJogadorVez(GerenciadorCliente controlador) {
-		paineldica = new PainelDica();
-		painelcartas = new PainelCartas();
+		paineldica = new PainelEnviarDica();
+		painelcartas = new PainelCartasVez();
 		paineldica.getEnviar().addActionListener(new acaoEnviar());
 		this.controlador=controlador;
 		this.setBackground(Color.black);

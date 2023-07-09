@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class PainelCartas extends JPanel {
+public class PainelCartasVez extends JPanel {
 
     JButton carta1;
     JButton carta2;
@@ -21,7 +21,7 @@ public class PainelCartas extends JPanel {
     JButton carta6;
     JButton cartaSelecionada;
 
-    public PainelCartas() {
+    public PainelCartasVez() {
 
         ImageIcon cartaum = new ImageIcon("icons\\aviario.png");
         carta1 = criarBotao(cartaum);

@@ -29,6 +29,9 @@ public class TelaDoJogo extends JFrame{
 
 		this.gerenciadorCliente = gerenciadorCliente;
 		this.painelMenu = new PainelMenu();
+				
+		//this.add(new PainelIndividualJogador(), BorderLayout.CENTER); - Painel de cada jogador - (teste)!
+
 		this.painelJogadorVez = new PainelJogadorVez(gerenciadorCliente);
 		this.painelMenu.getJogar().addActionListener(new acaoJogar());
 		
