@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class PainelBotoesCartas extends JPanel{
-
+	
 	JPanel painelcartas;
 	JButton carta1;
 	JButton carta2;
@@ -107,4 +107,6 @@ public class PainelBotoesCartas extends JPanel{
 			}
 		}
 	}
+	
+	
 }

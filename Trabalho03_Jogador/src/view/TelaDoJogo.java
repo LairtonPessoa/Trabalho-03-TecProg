@@ -58,9 +58,16 @@ public class TelaDoJogo extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			gerenciadorCliente.iniciarJogador("Nome ai");
 			
-			cardLayout.show(getContentPane(), "painelDica");
+			cardLayout.show(getContentPane(), "painelBotoesCartas");
 			
-			
+		}
+		
+	}
+	
+	private class acaoEnviar implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+	
 		}
 		
 	}
