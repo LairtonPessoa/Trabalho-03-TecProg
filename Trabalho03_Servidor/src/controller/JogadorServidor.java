@@ -1,5 +1,6 @@
 package controller;
 
+import java.net.Socket;
 import java.util.ArrayList;
 
 public class JogadorServidor {
@@ -9,6 +10,7 @@ public class JogadorServidor {
 	private boolean isJogadorDaVez;
 	private boolean jaJogouNaRodada;
 	private ArrayList<Carta> listaCartas;
+	private Socket socket;
 
 	private Carta cartaEscolhida;
 
@@ -58,6 +60,13 @@ public class JogadorServidor {
 		return listaCartas;
 	}
 
+	public Socket getSocket() {
+		return socket;
+	}
+
+	public void setSocket(Socket socket) {
+		this.socket = socket;
+	}
 
 	
 }

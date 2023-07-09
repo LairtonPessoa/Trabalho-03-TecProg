@@ -15,7 +15,6 @@ public class TelaDoJogo extends JFrame{
 	private PainelMenu painelMenu;
 	private PainelJogadorVez painelJogadorVez;
 	private GerenciadorCliente gerenciadorCliente;
-	
 	private CardLayout cardLayout;
 	
 	public TelaDoJogo(GerenciadorCliente gerenciadorCliente) {
@@ -29,12 +28,7 @@ public class TelaDoJogo extends JFrame{
 		this.setLayout(cardLayout);
 
 		this.gerenciadorCliente = gerenciadorCliente;
-		
 		this.painelMenu = new PainelMenu();
-		painelMenu.getJogar().addActionListener(new acaoJogar());
-		
-		this.add(new PainelJogadorVez(gerenciadorCliente), BorderLayout.CENTER);
-		this.add(painelMenu, BorderLayout.CENTER);
 		this.painelJogadorVez = new PainelJogadorVez(gerenciadorCliente);
 		this.painelMenu.getJogar().addActionListener(new acaoJogar());
 		
@@ -51,16 +45,22 @@ public class TelaDoJogo extends JFrame{
 	
 	public PainelMenu getPainelMenu() {
 		return painelMenu;
+		
 	}
 	
 	private class acaoJogar implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			gerenciadorCliente.iniciarJogador("Lairton");	
-		
 			gerenciadorCliente.iniciarJogador("Nome ai");
 			
 			cardLayout.show(getContentPane(), "painelJogadorVez");	
+		}
+	}
+	
+	private class acaoEnviar implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+	
 		}
 	}
 }
