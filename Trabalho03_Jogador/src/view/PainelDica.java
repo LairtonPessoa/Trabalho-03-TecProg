@@ -18,35 +18,21 @@ public class PainelDica extends JPanel{
 
 	private JTextField barra;
 	private JButton enviar;
-	private JPanel paineldica;
-	private PainelJogadorVez painelcartas;
-
+		
 	public PainelDica() {
-		this.add(paineldica());
-		this.setBackground(null);
-	}
-
-	//Painel da dica
-	public JPanel paineldica() {
-		paineldica = new JPanel();
 
 		barra = new JTextField();
 		barra.setPreferredSize(new Dimension(325,40));
-		barra.setEditable(true);
+		barra.setEditable(false);
 		//barra.getDocument().addDocumentListener(new acaoBarra());
 
 		enviar = new JButton("Enviar");
-		enviar.setEnabled(true);
+		enviar.setEnabled(false);
 		enviar.setPreferredSize(new Dimension(125,40));
 
-		paineldica.setLayout(new FlowLayout());
-		paineldica.setPreferredSize(new Dimension(460,50));
-		paineldica.setBackground(null);
-
-		paineldica.add(barra);
-		paineldica.add(enviar);
-
-		return paineldica;
+		this.add(barra);
+		this.add(enviar);		
+		this.setBackground(null);
 	}
 
 	public JTextField getBarra() {
