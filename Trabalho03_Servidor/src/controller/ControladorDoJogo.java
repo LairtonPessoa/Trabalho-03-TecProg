@@ -161,12 +161,17 @@ public class ControladorDoJogo {
 		listaJogadores.add(jogador);
 	}
 
-	public void distribuirDica(String dica, Socket jogador) {
+	public void distribuirDica(String dica, String urlCartaDaVez, Socket jogador) {
+		/*Este metodo recebe a dica a ser enviada para cada socket,
+		 *e recebe o socket que irá receber a dica, assim enviara a 
+		 *dica para o socket indicado e tambem  pode receber a string 
+		 *da url da carta da vez para poder salvala no banco.
+		 */
 		try {
 	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
 	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
-	        bufferedWriter.write(dica);
+	        bufferedWriter.write(dica+";dica");
 	        bufferedWriter.newLine();
 	        bufferedWriter.flush();
 
@@ -174,6 +179,19 @@ public class ControladorDoJogo {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
+		
+	}
+
+	public void salvarCartaEscolhida(String string) {
+		/*Este metodo irá salvar a carta escolhida pelo socket que 
+		 * enviou dependendo do momento do jogo que o socket especi-
+		 * fico esta, como o jogador da vez n ira enviar a carta dele 
+		 * mesmo momento que os outros ela sera salva no banco de dados 
+		 * e depois repassada em outro momento, no caso acho que será 
+		 * quando o jogador da vez estiver no momento enviouDica que
+		 * ele ira enviar 3 coisas, a dica, a string do icone da carta.
+		 * 
+		 */
 		
 	}
 }

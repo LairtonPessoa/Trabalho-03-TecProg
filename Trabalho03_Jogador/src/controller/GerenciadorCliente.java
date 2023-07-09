@@ -15,7 +15,6 @@ import view.TelaDoJogo;
 
 public class GerenciadorCliente {
 
-	private JFrame telaDeEspera;
 	private Jogador jogador;
 	private TelaDoJogo tela;
 
@@ -24,7 +23,7 @@ public class GerenciadorCliente {
 		 
 	}
 
-	private void iniciarJogador(String nome) {
+	public void iniciarJogador(String nome) {
 		jogador = new Jogador(nome);
 		jogador.joinConection("localhost", this);
 		
@@ -47,6 +46,19 @@ public class GerenciadorCliente {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
+	}
+
+	public void exibirDica(String dicaParaSerRepassada) {
+		/*metodo que vai altterar a tela para a proxima etapa do jogo
+		 *aqui vai ter que acondecer uma verificação para saber de o jogador 
+		 *conectado é o jogador da vez, pois se for o jogador da vez ele
+		 *ficará numa tela de aguarde, pois este metodo sera utilizado quando
+		 *o servidor enviar a dica do jogador da vez para todos os outros,
+		 *ai se nao for o jogador da vez ele ficara na tela de escolha dos outros 
+		 *jogadores para escolher uma carta com base na dica passada.
+		 */
+		
+		
 	}
 	
 }

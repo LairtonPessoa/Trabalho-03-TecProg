@@ -11,7 +11,7 @@ public class Jogador {
 	private GerenciadorCliente controlador;
 	private String nome;
 	private Socket jogador;
-	private static final int PORT = 6000;
+	private static final int PORT = 9990;
 
 	public Jogador(String nome) {
 		this.nome=nome;
@@ -32,7 +32,7 @@ public class Jogador {
 
 		//	controlador.activeTelaDeEspera();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
