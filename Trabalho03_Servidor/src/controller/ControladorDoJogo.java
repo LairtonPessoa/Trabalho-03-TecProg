@@ -33,8 +33,25 @@ public class ControladorDoJogo {
 		//}
 	}
 
+
+	public void comecarJogo(Socket jogador) {
+		try {
+	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
+	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+	        bufferedWriter.write("eHoraDoDuelo");
+	        bufferedWriter.newLine();
+	        bufferedWriter.flush();
+
+	        
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+
 	private void comecarJogo() {
 		
+
 		distribuirCartas();
 		
 		jogo();
@@ -231,7 +248,9 @@ public class ControladorDoJogo {
 	}
 
 
+
 	public void enviarTodasAsCartasParaOsSockets(Socket jogador) {
+
 		/* Aqui o controlador deverá ler do banco de dados todas as cartas 
 		 * de uma rodada e enviar para todos os  sockets conectados a rede
 		 * 
