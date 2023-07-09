@@ -7,10 +7,8 @@ import java.io.Writer;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
 import controller.*;
 import model.*;
 
@@ -28,10 +26,11 @@ public class ControladorDoJogo {
 		
 		instanciarCartas();
 		
-		while (jogadoresProntos()) {
-			comecarJogo();
-		}
+		//while (jogadoresProntos()) {
+		//	comecarJogo();
+		//}
 	}
+
 
 	public void comecarJogo(Socket jogador) {
 		try {
@@ -46,6 +45,11 @@ public class ControladorDoJogo {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
+	}
+
+	private void comecarJogo() {
+		
+
 		distribuirCartas();
 		
 		jogo();
@@ -67,6 +71,8 @@ public class ControladorDoJogo {
 			// espero os jogadores escolherem a carta
 			salvarDadosJogada(jogada);
 			exibirResultadosDaRodada();
+			
+			restaurarJogadores();
 		}
 	}
 
@@ -92,15 +98,23 @@ public class ControladorDoJogo {
 		return listaJogadores.get(idJogadorDaVez);
 		
 	}
+	
+	private void restaurarJogadores() {
+		for(JogadorServidor jogador : listaJogadores) {
+			jogador.setJaJogouNaRodada(false);
+		}
+	}
 
-	private void distribuirCartas() {
+	public void distribuirCartas() {
 		ArrayList<Integer> idDasCartas = sortIdCartas();
 		
 		//nao está completo 
-		//JogadorServidor jogador : listaJogadores
-		for(int j= 0; j<4;j++) {
+		ArrayList<Carta> baralhoAuxiliar = cartasDoJogo;
+		
+		for(JogadorServidor jogador : listaJogadores) {
 			for(int i = 0; i<6; i++) {
-				listaJogadores.get(j).getListaCartas().add(cartasDoJogo.get(i));
+				Carta carta = baralhoAuxiliar.remove(0);
+				jogador.getListaCartas().add(carta);
 			}
 		}
 		
@@ -217,6 +231,7 @@ public class ControladorDoJogo {
 		 */
 		
 	}
+
 	private void instanciarCartas() {
 		ArrayList<String> enderecoCartas = cartasDAO.pegarCartas();
 		
@@ -232,7 +247,8 @@ public class ControladorDoJogo {
 
 
 
-	public void enviarTodasAsCartasParaOSocket(Socket jogador) {
+	public void enviarTodasAsCartasParaOsSockets(Socket jogador) {
+
 		/* Aqui o controlador deverá ler do banco de dados todas as cartas 
 		 * de uma rodada e enviar para todos os  sockets conectados a rede
 		 * 
@@ -258,5 +274,5 @@ public class ControladorDoJogo {
 	    }
 		
 	}
-
+	
 }

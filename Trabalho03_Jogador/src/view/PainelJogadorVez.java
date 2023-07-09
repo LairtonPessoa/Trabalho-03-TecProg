@@ -11,8 +11,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+<<<<<<< HEAD:Trabalho03_Jogador/src/view/PainelBotoesCartas.java
 public class PainelBotoesCartas extends JPanel{
+	
+=======
+import controller.GerenciadorCliente;
 
+public class PainelJogadorVez extends JPanel{
+
+	private GerenciadorCliente controlador;
+>>>>>>> ab5f4a9316dabb56792f7a1601fea4ef78d715a8:Trabalho03_Jogador/src/view/PainelJogadorVez.java
 	JPanel painelcartas;
 	JButton carta1;
 	JButton carta2;
@@ -22,14 +30,18 @@ public class PainelBotoesCartas extends JPanel{
 	JButton carta6;
 	JButton cartaSelecionada;
 	PainelDica paineldica;
-
-	public PainelBotoesCartas() {
-		this.add(painelcartas());
-		this.setBackground(new Color(100,149,237,70));
+	
+	public PainelJogadorVez(GerenciadorCliente controlador) {
+		paineldica = new PainelDica();
+		paineldica.getEnviar().addActionListener(new acaoEnviar());
+		this.controlador=controlador;
+		this.add(painelCartas());
+		this.setBackground(Color.black);
+		this.add(paineldica);
 	}
 
 	//Criar o painel das cartas.
-	public JPanel painelcartas() {
+	public JPanel painelCartas() {
 		painelcartas = new JPanel();
 		
 		ImageIcon cartaum = new ImageIcon("icons\\aviario.png");
@@ -57,7 +69,7 @@ public class PainelBotoesCartas extends JPanel{
 		painelcartas.add(carta5);
 		painelcartas.add(carta6);
 
-		painelcartas.setBackground(new Color(100,149,237,80));
+		painelcartas.setBackground(Color.black);
 		painelcartas.setLayout(new GridLayout(2,3,5,5));
 
 		return painelcartas;
@@ -68,7 +80,7 @@ public class PainelBotoesCartas extends JPanel{
 		JButton carta = new JButton();
 		carta.setPreferredSize(new Dimension(150,200));
 		carta.addActionListener(new acaoCarta(carta));
-		
+		carta.setBorderPainted(false);
 		int width = carta.getPreferredSize().width;
 	    int height = carta.getPreferredSize().height;
 	    ImageIcon resizedIcon = IconesCartas.resizeImageIcon(imgcartas, width, height);
@@ -107,4 +119,17 @@ public class PainelBotoesCartas extends JPanel{
 			}
 		}
 	}
+	
+<<<<<<< HEAD:Trabalho03_Jogador/src/view/PainelBotoesCartas.java
+	
+=======
+	private class  acaoEnviar implements ActionListener{ 
+	
+		public void actionPerformed(ActionEvent e) {
+			String mensagem = paineldica.getBarra().getText();
+			controlador.enviarMensagem(mensagem);			
+		}
+	}
+>>>>>>> ab5f4a9316dabb56792f7a1601fea4ef78d715a8:Trabalho03_Jogador/src/view/PainelJogadorVez.java
 }
+
