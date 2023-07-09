@@ -20,14 +20,14 @@ public class GerenciadorCliente {
 	private TelaDoJogo tela;
 
 	public GerenciadorCliente() {
-//		telaDeEspera = new JFrame();
-//		telaDeEspera.add(new JLabel("Aguarde..."));
-//		telaDeEspera.setSize(600,600);
-//		telaDeEspera.setVisible(false);
-		
-		jogador = new Jogador("Rayssa");
-		jogador.joinConection("localhost", this);
 		tela = new TelaDoJogo(this);
+		
+	}
+
+	private void iniciarJogador(String nome) {
+		jogador = new Jogador(nome);
+		jogador.joinConection("localhost", this);
+		
 	}
 
 	public void setJogador(Jogador jogador) {

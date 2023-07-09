@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -10,8 +12,8 @@ import controller.GerenciadorCliente;
 public class TelaDoJogo extends JFrame{
 	
 	private PainelMenu painelMenu;
-	
-	public TelaDoJogo(GerenciadorCliente controlador) {
+	private GerenciadorCliente gerenciadorCliente;
+	public TelaDoJogo(GerenciadorCliente gerenciadorCliente) {
 		
 		this.setTitle("É hora do duelo !");
 		this.setLayout(new BorderLayout());
@@ -19,6 +21,7 @@ public class TelaDoJogo extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		
+		this.gerenciadorCliente = gerenciadorCliente;
 		this.painelMenu = new PainelMenu();
 		//this.add(new PainelBotoesCartas(), BorderLayout.CENTER);
 		//this.add(new PainelDica(controlador), BorderLayout.SOUTH);
@@ -29,5 +32,18 @@ public class TelaDoJogo extends JFrame{
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
+	}
+	
+	public PainelMenu getPainelMenu() {
+		return painelMenu;
+	}
+	
+	private class acaoJogar implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			
+			
+		}
+		
 	}
 }
