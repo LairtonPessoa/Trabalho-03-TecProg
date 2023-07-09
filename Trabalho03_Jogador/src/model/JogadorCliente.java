@@ -29,6 +29,8 @@ public class JogadorCliente {
 		try {
 			jogador = new Socket(host, PORT);
 			controlador = c;
+			
+			
 
 		//	controlador.activeTelaDeEspera();
 		} catch (Exception e) {

@@ -194,7 +194,7 @@ public class ControladorDoJogo {
 	}
 
 	public void salvarCartaEscolhida(String string) {
-		/*Este metodo irá salvar a carta escolhida pelo socket que 
+		/* Este metodo irá salvar a carta escolhida pelo socket que 
 		 * enviou dependendo do momento do jogo que o socket especi-
 		 * fico esta, como o jogador da vez n ira enviar a carta dele 
 		 * mesmo momento que os outros ela sera salva no banco de dados 
@@ -205,6 +205,7 @@ public class ControladorDoJogo {
 		 */
 		
 	}
+<<<<<<< HEAD
 	private void instanciarCartas() {
 		ArrayList<String> enderecoCartas = cartasDAO.pegarCartas();
 		
@@ -218,4 +219,33 @@ public class ControladorDoJogo {
 		return listaJogadores;
 	}
 
+=======
+
+	public void enviarTodasAsCartasParaOsSockets(Socket jogador) {
+		/* Aqui o controlador deverá ler do banco de dados todas as cartas 
+		 * de uma rodada e enviar para todos os  sockets conectados a rede
+		 * 
+		 */
+		
+		try {
+	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
+	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+	        /* Aqui dentro do bufferedWriter.write devera ter as url das
+	         * quatro cartas e o qual é a carta da vez para poder fazer 
+	         * a logica la no cliente de acertar a carta ou não por favor
+	         * envie cada parte separada por ';' pois este sera o parametro 
+	         * para quebrar a string por meio do metodo .split
+	         */
+	        bufferedWriter.write("");
+	        bufferedWriter.newLine();
+	        bufferedWriter.flush();
+
+	        
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+		
+	}
+>>>>>>> 2386afa0667ed6e1b1069ed492e2a4a7d7f0a423
 }
