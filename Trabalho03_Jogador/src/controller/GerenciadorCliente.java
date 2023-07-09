@@ -8,7 +8,6 @@ import java.io.WriteAbortedException;
 import java.io.Writer;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import model.JogadorCliente;
 import view.TelaDoJogo;
 
