@@ -21,7 +21,7 @@ public class GerenciadorCliente {
 
 	public GerenciadorCliente() {
 		tela = new TelaDoJogo(this);
-		
+		 
 	}
 
 	private void iniciarJogador(String nome) {
