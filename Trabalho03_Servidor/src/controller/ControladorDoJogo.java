@@ -17,12 +17,14 @@ public class ControladorDoJogo {
 	private ArrayList <JogadorServidor> listaJogadores;
 	private CartasDAO cartasDAO;
 	private ArrayList<Carta> cartasDoJogo;
+	private ArrayList<Socket> sockets;
 	
 	public ControladorDoJogo() {
 		
-		cartasDAO = new CartasDAO();
+		this.sockets = new ArrayList<Socket>();
 		this.listaJogadores = new ArrayList<JogadorServidor>();
 		this.cartasDoJogo = new ArrayList<Carta>();
+		this.cartasDAO = new CartasDAO();
 		
 		instanciarCartas();
 		
@@ -255,5 +257,8 @@ public class ControladorDoJogo {
 	    }
 		
 	}
-	
+
+	public void setSockets(ArrayList<Socket> sockets) {
+		this.sockets = sockets;
+	}
 }
