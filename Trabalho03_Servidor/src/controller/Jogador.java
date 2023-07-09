@@ -9,7 +9,7 @@ public class Jogador {
 	private Boolean jaJogouNaRodada;
 	private Carta cartaEscolhida;
 
-	public Jogador(int id) {
+	public Jogador(int id, String nome) {
 		this.isJogadorDaVez=false;
 		this.jaJogouNaRodada = false;
 		this.id = id;
