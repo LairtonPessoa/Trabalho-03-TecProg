@@ -29,9 +29,9 @@ public class ThreadJogador implements Runnable {
                    if (oQueFoiEnviado.equals("dica")) {
                        gerenciadorCliente.exibirDica(mensagem[0]);
                    } else if (oQueFoiEnviado.equals("exibirCartasComDica")) {
-                       gerenciadorCliente.exibirCartasComDica();
+                      // gerenciadorCliente.exibirCartasComDica();
                    } else if (oQueFoiEnviado.equals("exibirResultadosDaRodada")) {
-                       gerenciadorCliente.exibirResultadosDaRodada();
+                       //gerenciadorCliente.exibirResultadosDaRodada();
                    }
                     // ...
                }

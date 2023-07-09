@@ -16,7 +16,6 @@ public class TelaDoJogo extends JFrame{
 	private PainelBotoesCartas painelBotoesCartas;
 	private PainelDica painelDica;
 	private GerenciadorCliente gerenciadorCliente;
-	
 	private CardLayout cardLayout;
 	
 	public TelaDoJogo(GerenciadorCliente gerenciadorCliente) {
@@ -31,7 +30,7 @@ public class TelaDoJogo extends JFrame{
 
 		this.gerenciadorCliente = gerenciadorCliente;
 		this.painelMenu = new PainelMenu();
-		this.painelDica = new PainelDica(gerenciadorCliente);
+		this.painelDica = new PainelDica();
 		this.painelBotoesCartas = new PainelBotoesCartas();
 		
 		this.painelMenu.getJogar().addActionListener(new acaoJogar());
