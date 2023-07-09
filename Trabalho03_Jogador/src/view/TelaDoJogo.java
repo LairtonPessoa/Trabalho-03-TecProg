@@ -43,8 +43,6 @@ public class TelaDoJogo extends JFrame{
 	private class acaoJogar implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			gerenciadorCliente.iniciarJogador("Lairton");
-			
 			gerenciadorCliente.iniciarJogador("Nome ai");
 			
 		}

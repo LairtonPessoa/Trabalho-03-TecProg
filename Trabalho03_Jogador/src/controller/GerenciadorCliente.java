@@ -9,12 +9,12 @@ import java.io.Writer;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import model.Jogador;
+import model.JogadorCliente;
 import view.TelaDoJogo;
 
 public class GerenciadorCliente {
 
-	private Jogador jogador;
+	private JogadorCliente jogador;
 	private TelaDoJogo tela;
 
 	public GerenciadorCliente() {
@@ -23,12 +23,12 @@ public class GerenciadorCliente {
 	}
 
 	public void iniciarJogador(String nome) {
-		jogador = new Jogador(nome);
+		jogador = new JogadorCliente(nome);
 		jogador.joinConection("localhost", this);
 		
 	}
 
-	public void setJogador(Jogador jogador) {
+	public void setJogador(JogadorCliente jogador) {
 		this.jogador=jogador;
 	}
 

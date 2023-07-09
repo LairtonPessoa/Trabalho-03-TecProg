@@ -6,14 +6,14 @@ import java.net.UnknownHostException;
 
 import controller.GerenciadorCliente;
 
-public class Jogador {
+public class JogadorCliente {
 
 	private GerenciadorCliente controlador;
 	private String nome;
 	private Socket jogador;
 	private static final int PORT = 9990;
 
-	public Jogador(String nome) {
+	public JogadorCliente(String nome) {
 		this.nome=nome;
 	}
 
