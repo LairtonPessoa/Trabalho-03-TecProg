@@ -22,10 +22,10 @@ public class Controlador {
 //		telaDeEspera.add(new JLabel("Aguarde..."));
 //		telaDeEspera.setSize(600,600);
 //		telaDeEspera.setVisible(false);
+		
 		jogador = new Jogador("Rayssa");
 		jogador.joinConection("localhost", this);
-		new TelaDoJogadorDaVez(this);
-
+		
 	}
 
 	public void setJogador(Jogador jogador) {
@@ -41,10 +41,11 @@ public class Controlador {
 	        bufferedWriter.newLine();
 	        bufferedWriter.flush();
 
-	        bufferedWriter.close();-
+	        bufferedWriter.close();
 	        writer.close();
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
 	}
+	
 }

@@ -8,10 +8,12 @@ import model.*;
 public class Controlador {
 	private ArrayList<Jogador> listaJogadores;
 	private Servidor server;
+	private CartasDAO cartasDAO;
 
 	public Controlador(Servidor server) {
-		this.server = server;
 		
+		this.server = server;
+		cartasDAO = new CartasDAO();
 		this.listaJogadores = new ArrayList<Jogador>();
 		
 		if (jogadoresProntos()) {
@@ -20,7 +22,7 @@ public class Controlador {
 	}
 
 	private void comecarJogo() {
-		sortCartas();
+		distribuirCartas();
 		
 		jogo();
 	}
@@ -33,7 +35,7 @@ public class Controlador {
 			Jogada jogada = new Jogada();
 			sortJogadorDaVez();
 			
-			mostrarTelas(new Jogador(0));
+			mostrarTelas();
 			// Espero o jogador clicar na tela e enviar a carta e a dica
 			exibirDica();
 			// espero os jogadores clicarem na tela e enviarem a carta
@@ -49,11 +51,11 @@ public class Controlador {
 	}
 
 	private boolean jogadoresProntos() {
-
-		// se os jogadores estiverem prontos:
-		return true;
-		// se nao estiverem prontos:
-		// return false;
+		
+		if(listaJogadores.size()==4)
+			return true;
+		
+		return false;
 	}
 
 	private Jogador sortJogadorDaVez() {
@@ -67,13 +69,18 @@ public class Controlador {
 		
 	}
 
-	private void sortCartas() {
+	private void distribuirCartas() {
 		ArrayList<Integer> idDasCartas = sortIdCartas();
 		
+		for(Jogador jogador : listaJogadores) {
+			for(int i = 0; i<6; i++) {
+				jogador.getListaCartas().add(cartasDAO.pegarCartas().get(i));
+			}
+		}
 		
 	}
 	
-	public ArrayList<Integer> sortIdCartas() {
+	private ArrayList<Integer> sortIdCartas() {
         
         Random random = new Random();
         ArrayList<Integer> numerosSort = new ArrayList<>();
@@ -90,11 +97,9 @@ public class Controlador {
         }
         
         return numerosSort;
-    }
-	
-	
+    }	
 
-	private void mostrarTelas(Jogador jogadordavez) {
+	private void mostrarTelas() {
 		// Seto a tela de escolher cartas do jogador da vez como visible
 		// jogadorDaVez.tela.setVisible;
 		// jogadordavez.PainelDica.setEnable;
@@ -141,11 +146,10 @@ public class Controlador {
 		
 		int maiorId = 0;
 		
-		for(Jogador jogadores :listaJogadores) {
+		for(Jogador jogadores : listaJogadores) {
 	
-			if(jogadores.getId()>maiorId) {
+			if(jogadores.getId()>maiorId)
 				maiorId= jogadores.getId();
-			}
 			
 		}
 		

@@ -17,7 +17,7 @@ public class Conexao {
 	}
 
 	public Connection getConexao() {
-		String url="jdbc:mysql://" + this.host + "/" + this.banco+"?verifyServerCertificate=false&useSSL=true";
+		String url = "jdbc:mysql://" + this.host + "/" + this.banco + "?verifyServerCertificate=false&useSSL=true";
 		try {
 			return DriverManager.getConnection(url, usuario, senha);
 		} catch (SQLException ex) {
