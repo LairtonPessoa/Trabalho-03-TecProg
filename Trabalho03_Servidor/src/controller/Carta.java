@@ -14,6 +14,12 @@ public class Carta {
 		this.iconeFrenteDaCarta = iconeFrenteDaCarta;
 		this.iconeVersoDaCarta = new ImageIcon("icons/versocarta.jpg");
 	}
+	public ImageIcon getIconeFrenteDaCarta() {
+		return iconeFrenteDaCarta;
+	}
+	public void setIconeFrenteDaCarta(ImageIcon iconeFrenteDaCarta) {
+		this.iconeFrenteDaCarta = iconeFrenteDaCarta;
+	}
 	public int getId() {
 		return id;
 	}

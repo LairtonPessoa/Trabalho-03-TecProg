@@ -1,14 +1,14 @@
 package controller;
 
 public class Jogada {
-	private Jogador jogadorVez;
+	private JogadorServidor jogadorVez;
 	private String fraseDica;
 	private String cartaEscolhida;
 	private int pontuacao;
 	private int id;
 
 	public Jogada(int idJogadorVez ,String fraseDica, String cartaEscolhida, int pontuacao) {
-		jogadorVez = new Jogador(idJogadorVez);
+		jogadorVez = new JogadorServidor(idJogadorVez);
 		this.fraseDica = fraseDica;
 		this.cartaEscolhida = cartaEscolhida;
 		this.pontuacao = pontuacao;
@@ -29,7 +29,7 @@ public class Jogada {
 		return fraseDica;
 	}
 
-	public Jogador getJogadorVez() {
+	public JogadorServidor getJogadorVez() {
 		return jogadorVez;
 	}
 

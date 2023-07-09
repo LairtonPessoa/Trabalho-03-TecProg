@@ -7,19 +7,28 @@ import java.io.Writer;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 import controller.*;
 import model.*;
 
 public class ControladorDoJogo {
-	private ArrayList<Jogador> listaJogadores;
-	private CartasDAO cartasDAO;
 
+	private ArrayList <JogadorServidor> listaJogadores;
+	private CartasDAO cartasDAO;
+	private ArrayList<Carta> cartasDoJogo;
+	
 	public ControladorDoJogo() {
 		
 		cartasDAO = new CartasDAO();
-		this.listaJogadores = new ArrayList<Jogador>();
+		this.listaJogadores = new ArrayList<JogadorServidor>();
+		this.cartasDoJogo = new ArrayList<Carta>();
 		
-		if (jogadoresProntos()) {
+		instanciarCartas();
+		
+		while (jogadoresProntos()) {
 			comecarJogo();
 		}
 	}
@@ -61,7 +70,7 @@ public class ControladorDoJogo {
 		return false;
 	}
 
-	private Jogador sortJogadorDaVez() {
+	private JogadorServidor sortJogadorDaVez() {
 
 		Random aleatorio = new Random();
 		int idJogadorDaVez = aleatorio.nextInt(4);
@@ -75,9 +84,11 @@ public class ControladorDoJogo {
 	private void distribuirCartas() {
 		ArrayList<Integer> idDasCartas = sortIdCartas();
 		
-		for(Jogador jogador : listaJogadores) {
+		//nao está completo 
+		//JogadorServidor jogador : listaJogadores
+		for(int j= 0; j<4;j++) {
 			for(int i = 0; i<6; i++) {
-				//jogador.getListaCartas().add(cartasDAO.pegarCartas().get(i));
+				listaJogadores.get(j).getListaCartas().add(cartasDoJogo.get(i));
 			}
 		}
 		
@@ -138,7 +149,7 @@ public class ControladorDoJogo {
 
 	private boolean isFimDoJogo() {
 		// ou o jogoNaoAcabou()
-		for (Jogador jogador : listaJogadores) {
+		for (JogadorServidor jogador : listaJogadores) {
 			if (jogador.getPontuacao() >= 30) {
 				return true;
 			}
@@ -150,14 +161,14 @@ public class ControladorDoJogo {
 		
 		int maiorId = 0;
 		
-		for(Jogador jogadores : listaJogadores) {
+		for(JogadorServidor jogadores : listaJogadores) {
 	
 			if(jogadores.getId()>maiorId)
 				maiorId= jogadores.getId();
 			
 		}
 		
-		Jogador jogador = new Jogador(maiorId+1);
+		JogadorServidor jogador = new JogadorServidor(maiorId+1);
 		listaJogadores.add(jogador);
 	}
 
@@ -194,6 +205,21 @@ public class ControladorDoJogo {
 		 */
 		
 	}
+<<<<<<< HEAD
+	private void instanciarCartas() {
+		ArrayList<String> enderecoCartas = cartasDAO.pegarCartas();
+		
+		for(int i = 0; i<24; i++) {
+			Carta carta = new Carta(i);
+			carta.setIconeFrenteDaCarta(new ImageIcon(enderecoCartas.get(i)));
+		}
+	}
+	
+	public ArrayList<JogadorServidor> getListaJogadores() {
+		return listaJogadores;
+	}
+
+=======
 
 	public void enviarTodasAsCartasParaOsSockets(Socket jogador) {
 		/* Aqui o controlador deverá ler do banco de dados todas as cartas 
@@ -221,4 +247,5 @@ public class ControladorDoJogo {
 	    }
 		
 	}
+>>>>>>> 2386afa0667ed6e1b1069ed492e2a4a7d7f0a423
 }
