@@ -7,10 +7,8 @@ import java.io.Writer;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
 import controller.*;
 import model.*;
 
@@ -28,9 +26,9 @@ public class ControladorDoJogo {
 		
 		instanciarCartas();
 		
-		while (jogadoresProntos()) {
-			comecarJogo();
-		}
+		//while (jogadoresProntos()) {
+		//	comecarJogo();
+		//}
 	}
 
 	private void comecarJogo() {
@@ -81,14 +79,16 @@ public class ControladorDoJogo {
 		
 	}
 
-	private void distribuirCartas() {
+	public void distribuirCartas() {
 		ArrayList<Integer> idDasCartas = sortIdCartas();
 		
 		//nao está completo 
-		//JogadorServidor jogador : listaJogadores
-		for(int j= 0; j<4;j++) {
+		ArrayList<Carta> baralhoAuxiliar = cartasDoJogo;
+		
+		for(JogadorServidor jogador : listaJogadores) {
 			for(int i = 0; i<6; i++) {
-				listaJogadores.get(j).getListaCartas().add(cartasDoJogo.get(i));
+				Carta carta = baralhoAuxiliar.remove(0);
+				jogador.getListaCartas().add(carta);
 			}
 		}
 		
@@ -205,7 +205,7 @@ public class ControladorDoJogo {
 		 */
 		
 	}
-<<<<<<< HEAD
+
 	private void instanciarCartas() {
 		ArrayList<String> enderecoCartas = cartasDAO.pegarCartas();
 		
@@ -219,7 +219,6 @@ public class ControladorDoJogo {
 		return listaJogadores;
 	}
 
-=======
 
 	public void enviarTodasAsCartasParaOsSockets(Socket jogador) {
 		/* Aqui o controlador deverá ler do banco de dados todas as cartas 
@@ -247,5 +246,5 @@ public class ControladorDoJogo {
 	    }
 		
 	}
->>>>>>> 2386afa0667ed6e1b1069ed492e2a4a7d7f0a423
+	
 }
