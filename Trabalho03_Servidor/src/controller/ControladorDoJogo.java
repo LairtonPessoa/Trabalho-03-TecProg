@@ -68,6 +68,8 @@ public class ControladorDoJogo {
 		int idJogadorVez = sortIdJogador();
 		listaJogadores.get(idJogadorVez).setJogadorDaVez(true);
 		
+		System.out.println("jogador davez é " + idJogadorVez);
+		System.out.println(listaJogadores.get(idJogadorVez).getSocket());
 		enviarMensagem("JogadorDaVez", listaJogadores.get(idJogadorVez).getSocket());
 
 	}

@@ -32,6 +32,7 @@ public class Servidor {
 			try {
 				Socket jogador = servidor.accept();
 				sockets.add(jogador);
+				System.out.println(jogador);
 				System.out.println("player conectado");
 				cont++;
 				

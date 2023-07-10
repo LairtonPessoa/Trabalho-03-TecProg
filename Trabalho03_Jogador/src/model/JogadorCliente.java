@@ -15,6 +15,7 @@ public class JogadorCliente {
 	private static final int PORT = 9999;
 
 	public JogadorCliente(String nome) {
+		this.isJogadorDaVez = false;
 		this.nome=nome;
 	}
 

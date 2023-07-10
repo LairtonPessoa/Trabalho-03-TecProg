@@ -77,7 +77,7 @@ public class TelaDoJogo extends JFrame{
 	private class acaoEnviar implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-	
+			
 		}
 	}
 }
