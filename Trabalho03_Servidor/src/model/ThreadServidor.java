@@ -24,16 +24,19 @@ public class ThreadServidor implements Runnable {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(jogador.getInputStream()));
 			
 			while (true) {
-				String mensagem[] = bufferedReader.readLine().split(";");
-				String momentoDoJogo = mensagem[mensagem.length - 1];
-		
-				if (momentoDoJogo.equals("enviouDica")) {
-					controlador.distribuirDica(mensagem[0], mensagem[1], jogador);
-				} else if (momentoDoJogo.equals("enviouCarta")) {
-					controlador.salvarCartaEscolhida(mensagem[0]);
-				//	controlador.enviarTodasAsCartasParaOSocket(jogador);
+				if(!jogador.isClosed()) {
+					String mensagem[] = bufferedReader.readLine().split(";");
+					String momentoDoJogo = mensagem[mensagem.length - 1];
+			
+					if (momentoDoJogo.equals("enviouDica")) {
+						controlador.distribuirDica(mensagem[0], mensagem[1], jogador);
+					} else if (momentoDoJogo.equals("enviouCarta")) {
+						controlador.salvarCartaEscolhida(mensagem[0]);
+					//	controlador.enviarTodasAsCartasParaOSocket(jogador);
+					}
+				}else if(jogador.isClosed()){
+					controlador.removerJogador(jogador);
 				}
-				
 			}
 		}catch (IOException e) {
 			e.printStackTrace();

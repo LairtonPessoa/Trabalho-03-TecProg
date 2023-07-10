@@ -60,7 +60,11 @@ public class GerenciadorCliente {
 	}
 
 	public void iniciarJogo() {
-		tela.getCardLayout().show(tela.getContentPane(), "painelJogadorVez");
+//		if(jogador.isJogadorDaVez()) {
+			tela.getCardLayout().show(tela.getContentPane(), "painelJogadorVez");
+//		}else {
+//			tela.getCardLayout().show(tela.getContentPane(), "painelIndividualJogador");
+//		}
 		
 	}
 	

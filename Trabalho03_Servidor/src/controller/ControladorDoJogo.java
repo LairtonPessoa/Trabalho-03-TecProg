@@ -39,6 +39,10 @@ public class ControladorDoJogo {
 	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
 	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
+	        /* Aqui antes de HoraDoDuelo devera ter alguma maneira de enviar
+	         * as 6 cartas para o socket conectado, seja pelo id ou passando 
+	         * a url da imagem
+	         */
 	        bufferedWriter.write("HoraDoDuelo");
 	        bufferedWriter.newLine();
 	        bufferedWriter.flush();
@@ -199,18 +203,13 @@ public class ControladorDoJogo {
 		JogadorServidor jogador = new JogadorServidor(maiorId+1);
 		listaJogadores.add(jogador);
 	}
-
-	public void distribuirDica(String dica, String urlCartaDaVez, Socket jogador) {
-		/*Este metodo recebe a dica a ser enviada para cada socket,
-		 *e recebe o socket que irá receber a dica, assim enviara a 
-		 *dica para o socket indicado e tambem  pode receber a string 
-		 *da url da carta da vez para poder salvala no banco.
-		 */
+	
+	public void enviarMensagem(String mensagem, Socket jogador) {
 		try {
 	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
 	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
-	        bufferedWriter.write(dica+";dica");
+	        bufferedWriter.write(mensagem);
 	        bufferedWriter.newLine();
 	        bufferedWriter.flush();
 
@@ -218,6 +217,15 @@ public class ControladorDoJogo {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
+	}
+
+	public void distribuirDica(String dica, String urlCartaDaVez, Socket jogador) {
+		/*Este metodo recebe a dica a ser enviada para cada socket,
+		 *e recebe o socket que irá receber a dica, assim enviara a 
+		 *dica para o socket indicado e tambem  pode receber a string 
+		 *da url da carta da vez para poder salvala no banco.
+		 */
+		this.enviarMensagem(dica+";dica", jogador);
 		
 	}
 
@@ -279,5 +287,11 @@ public class ControladorDoJogo {
 
 	public void setSockets(ArrayList<Socket> sockets) {
 		this.sockets = sockets;
+	}
+
+
+	public void removerJogador(Socket socket) {
+		sockets.remove(socket);
+		
 	}
 }
