@@ -1,10 +1,10 @@
 package view;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
-
-import controller.GerenciadorCliente;
 
 public class PainelIndividualJogador extends JPanel{
 
@@ -13,28 +13,11 @@ public class PainelIndividualJogador extends JPanel{
 	
 	public PainelIndividualJogador() {
 		
-		this.painelCartasIndividual = new PainelCartasIndividual();
 		this.painelRecebeDica = new PainelRecebeDica();
+		this.painelCartasIndividual = new PainelCartasIndividual(painelRecebeDica);
 		
 		this.add(painelCartasIndividual);
 		this.add(painelRecebeDica);
 		this.setBackground(Color.black);
 	}	
-	
-	/*
-	private GerenciadorCliente controlador;
-	public PainelEnviarDica painelDica;
-	public PainelCartasVez painelCartas;
-	
-	public PainelJogadorVez(GerenciadorCliente controlador) {
-		painelDica = new PainelEnviarDica();
-		painelCartas = new PainelCartasVez(painelDica);
-		//painelDica.getEnviar().addActionListener(new AcaoEnviar());
-		this.controlador=controlador;
-		this.setBackground(Color.black);
-		
-		this.add(painelCartas);
-		this.add(painelDica);	
-	}
-	*/
 }
