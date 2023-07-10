@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-//import controller.ControladorDoJogo;
+
 import controller.GerenciadorCliente;
 
 public class ThreadJogador implements Runnable {
@@ -29,9 +29,9 @@ public class ThreadJogador implements Runnable {
            
                 	// Chamar os métodos do controlador com base na mensagem recebida
                 	if(oQueFoiEnviado.equals("novoJogador")) {
-                		//gerenciadorDoJogo.adicionarJogador();
+                		//gerenciadorCliente.adicionarJogador();
                 	}else if(oQueFoiEnviado.equals("distribuirCartas")){
-                		gerenciadorCliente.distribuirCartas(mensagem);
+                		gerenciadorCliente.distribuirCartas(oQueFoiEnviado);
                    }else if(oQueFoiEnviado.equals("HoraDoDuelo")) {
                 		gerenciadorCliente.iniciarJogo();
 		           }else if (oQueFoiEnviado.equals("dica")) {

@@ -71,9 +71,9 @@ public class TelaDoJogo extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			gerenciadorCliente.iniciarJogador("Nome ai");
 			
-			if(gerenciadorCliente.getJogador().isJogadorDaVez()) {
+			//if(gerenciadorCliente.getJogador().isJogadorDaVez()) {
 				
-			}
+			//}
 		}
 	}
 	
