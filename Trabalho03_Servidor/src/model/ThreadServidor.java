@@ -30,6 +30,7 @@ public class ThreadServidor implements Runnable {
 			
 					if (momentoDoJogo.equals("enviouDica")) {
 						controlador.distribuirDica(mensagem[0], mensagem[1], jogador);
+						controlador.salvarDadosInicioJogada(mensagem[1], mensagem[0]);
 					} else if (momentoDoJogo.equals("enviouCarta")) {
 						controlador.salvarCartaEscolhida(mensagem[0]);
 					//	controlador.enviarTodasAsCartasParaOSocket(jogador);
