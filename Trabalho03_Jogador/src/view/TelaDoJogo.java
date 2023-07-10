@@ -26,7 +26,7 @@ public class TelaDoJogo extends JFrame{
 		this.painelMenu = new PainelMenu();
 		painelMenu.getJogar().addActionListener(new acaoJogar());
 		//this.add(new PainelBotoesCartas(), BorderLayout.CENTER);
-		//this.add(new PainelDica(controlador), BorderLayout.SOUTH);
+		//this.add(new PainelDica(gerenciadorCliente), BorderLayout.SOUTH);
 		this.add(painelMenu, BorderLayout.CENTER);
 		
 		ImageIcon icon = new ImageIcon("icons_menu\\enigmadomilenio.png");
