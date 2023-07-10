@@ -30,6 +30,15 @@ public class ControladorDoJogo {
 		
 	}
 
+
+//	public void salvarDadosInicioJogada(String url, String dica) {
+//		Jogada jogada = new Jogada();
+//		jogada.setCartaVez(url);
+//		jogada.setFraseDica(dica);
+//		
+//		cartasDAO.inserir(procurarCarta(url), jogada);
+//	}
+
 	public void salvarDadosInicioJogada(String url, String dica) {
 		Jogada jogada = new Jogada();
 		jogada.setCartaVez(url);
@@ -40,6 +49,7 @@ public class ControladorDoJogo {
 		}
 		cartasDAO.inserir(url, jogada.getJogadorVez());
 	}
+
 	
 	/*public Carta procurarCarta(String url) {
 		for (Carta carta : cartasDoJogo) {
