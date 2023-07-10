@@ -78,7 +78,7 @@ public class GerenciadorCliente {
 		for(String urlCartas : listaCartas){
 			listaIcones.add(new ImageIcon(urlCartas));
 			
-			System.out.println(urlCartas);
+			//System.out.println(urlCartas);
 		}
 		
 		/* Aqui eu fiz manual e adicionei os parametros pq nao precisa separar denovo, ja esta separando la na

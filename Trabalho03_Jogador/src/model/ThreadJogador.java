@@ -9,19 +9,19 @@ import java.net.Socket;
 import controller.GerenciadorCliente;
 
 public class ThreadJogador implements Runnable {
-    private Socket servidor;
+    private Socket socket;
     private GerenciadorCliente gerenciadorCliente;
  //    private ControladorDoJogo controladorDoJogo;
 
-    public ThreadJogador(Socket servidor, GerenciadorCliente gerenciadorCliente) {
-        this.servidor = servidor;
+    public ThreadJogador(Socket socket, GerenciadorCliente gerenciadorCliente) {
+        this.socket = socket;
         this.gerenciadorCliente = gerenciadorCliente;
     }
 
     public void run() {
         try {
             // Obter o BufferedReader para ler as mensagens do servidor
-            BufferedReader reader = new BufferedReader(new InputStreamReader(servidor.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             while (true) {
                 String mensagem[] = reader.readLine().split(";");
@@ -32,6 +32,7 @@ public class ThreadJogador implements Runnable {
                 		//gerenciadorDoJogo.adicionarJogador();
                 	}else if(oQueFoiEnviado.equals("distribuirCartas")){
                 		gerenciadorCliente.distribuirCartas(mensagem);
+                		System.out.println(socket);
                    }else if(oQueFoiEnviado.equals("HoraDoDuelo")) {
                 		gerenciadorCliente.iniciarJogo();
 		           }else if (oQueFoiEnviado.equals("dica")) {
