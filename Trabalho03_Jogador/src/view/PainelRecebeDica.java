@@ -28,6 +28,7 @@ public class PainelRecebeDica extends JPanel{
 		texto = new JLabel("Dica:");
 		texto.setForeground(Color.black);
 		enviarrecebe = new JButton("Enviar");
+		enviarrecebe.setEnabled(false);
 		try {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/squealer.ttf"));
 			Font font2 = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/squealer.ttf"));
@@ -83,5 +84,10 @@ public class PainelRecebeDica extends JPanel{
 	public void setDicarecebida(JLabel dicarecebida) {
 		this.dicarecebida = dicarecebida;
 	}
+
+	public JButton getEnviarrecebe() {
+		return enviarrecebe;
+	}
+	
 }
 

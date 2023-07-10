@@ -6,7 +6,6 @@ public class Jogada {
 	private JogadorServidor jogadorVez;
 	private String fraseDica;
 	private String cartaVez;
-	private ArrayList<String> cartasEscolhidas;
 	private int pontuacao;
 	private int id;
 
@@ -15,7 +14,6 @@ public class Jogada {
 		this.fraseDica = fraseDica;
 		this.cartaVez = cartaVez;
 		this.pontuacao = pontuacao;
-		cartasEscolhidas = new ArrayList<String>();
 	}
 
 	public Jogada() {
@@ -34,10 +32,6 @@ public class Jogada {
 
 	public void setCartaVez(String cartaVez) {
 		this.cartaVez = cartaVez;
-	}
-
-	public void setCartasEscolhidas(ArrayList<String> cartasEscolhidas) {
-		this.cartasEscolhidas = cartasEscolhidas;
 	}
 
 	public void setPontuacao(int pontuacao) {

@@ -61,21 +61,21 @@ public class PainelCartasVez extends JPanel {
         carta.setPreferredSize(new Dimension(150, 200));
         carta.addActionListener(new acaoCarta(carta, this));
         carta.setBorderPainted(false);
-        int width = carta.getPreferredSize().width;
-        int height = carta.getPreferredSize().height;
-        //ImageIcon resizedIcon = IconesCartas.resizeImageIcon(imgcartas, width, height);
-        //carta.setIcon(resizedIcon);
         return carta;
     }
 
     public void setIconesBotoes(ArrayList<ImageIcon> iconesCartas) {
-    
-    	carta1.setIcon(iconesCartas.get(0));
-    	carta2.setIcon(iconesCartas.get(1));
-    	carta3.setIcon(iconesCartas.get(2));
-    	carta4.setIcon(iconesCartas.get(3));
-    	carta5.setIcon(iconesCartas.get(4));
-    	carta6.setIcon(iconesCartas.get(5));
+        for (int i = 0; i < iconesCartas.size(); i++) {
+            ImageIcon imageIcon = iconesCartas.get(i);
+            ImageIcon imageIconAux = IconesCartas.resizeImageIcon(imageIcon, carta1.getWidth(), carta1.getHeight());
+            iconesCartas.set(i, imageIconAux);
+        }
+        carta1.setIcon(iconesCartas.get(0));
+        carta2.setIcon(iconesCartas.get(1));
+        carta3.setIcon(iconesCartas.get(2));
+        carta4.setIcon(iconesCartas.get(3));
+        carta5.setIcon(iconesCartas.get(4));
+        carta6.setIcon(iconesCartas.get(5));
     }
     
     // Ações nas cartas
