@@ -11,7 +11,7 @@ public class Servidor {
 
 	private ControladorDoJogo controlador;
 	private ServerSocket servidor;
-	private ArrayList<Socket> jogadores;
+	private ArrayList<Socket> sockets;
 	private static final int PORT = 9990;
 	private static final int maxPlayers = 4;
 
@@ -19,7 +19,7 @@ public class Servidor {
 		this.controlador = controlador;
 		try {
 			servidor = new ServerSocket(PORT);
-			jogadores = new ArrayList<Socket>();
+			sockets = new ArrayList<Socket>();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -31,7 +31,7 @@ public class Servidor {
 		while (cont < maxPlayers) {
 			try {
 				Socket jogador = servidor.accept();
-				jogadores.add(jogador);
+				sockets.add(jogador);
 				System.out.println("player conectado");
 				cont++;
 				
@@ -40,13 +40,13 @@ public class Servidor {
 				e.printStackTrace();
 			}
 		}
-		controlador.setSockets(jogadores);
+		controlador.setSockets(sockets);
 		
-		for (Socket socket : jogadores) {
+		for (Socket socket : sockets) {
 			controlador.comecarJogo(socket);
 		}
 		
-		for (Socket socket : jogadores) {
+		for (Socket socket : sockets) {
 			Thread thread = new Thread(new ThreadServidor(socket, controlador));
 			thread.start();
 		}
