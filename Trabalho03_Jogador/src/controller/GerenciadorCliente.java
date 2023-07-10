@@ -58,7 +58,7 @@ public class GerenciadorCliente {
 		 *ai se nao for o jogador da vez ele ficara na tela de escolha dos outros 
 		 *jogadores para escolher uma carta com base na dica passada.
 		 */
-	
+		
 		
 	}
 
@@ -78,23 +78,7 @@ public class GerenciadorCliente {
 		
 		for(String urlCartas : listaCartas){
 			listaIcones.add(new ImageIcon(urlCartas));
-			
-			//System.out.println(urlCartas);
-		}
-		
-		/* Aqui eu fiz manual e adicionei os parametros pq nao precisa separar denovo, ja esta separando la na
-		 * threadJogador,
-		 */
-		//listaIcones.add(new ImageIcon(carta1));
-		//listaIcones.add(new ImageIcon(carta2));
-		//listaIcones.add(new ImageIcon(carta3));
-		//listaIcones.add(new ImageIcon(carta4));
-		//listaIcones.add(new ImageIcon(carta5));
-		//listaIcones.add(new ImageIcon(carta6));
-		
-		
-		
-		//System.out.println(carta1+" " + carta2+" " +carta3+" "+carta4+" "+carta5+" "+carta6+" ");
+		}	
 		tela.getPainelJogadorVez().painelCartas.setIconesBotoes(listaIcones);
 	}
 	

@@ -4,14 +4,13 @@ import javax.swing.ImageIcon;
 
 public class Carta {
 
-	private ImageIcon iconeDaCarta;
 	private boolean jaFoiSorteada;
 	private ImageIcon iconeFrenteDaCarta;
 	private ImageIcon iconeVersoDaCarta;
 	private int id;
 	
 	public Carta(int id) {
-		this.iconeFrenteDaCarta = iconeFrenteDaCarta;
+		iconeFrenteDaCarta = new ImageIcon();
 		this.iconeVersoDaCarta = new ImageIcon("icons/versocarta.jpg");
 		this.id = id;
 	}
