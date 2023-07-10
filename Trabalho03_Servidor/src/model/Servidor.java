@@ -31,9 +31,7 @@ public class Servidor {
 		while (cont < maxPlayers) {
 			try {
 				Socket jogador = servidor.accept();
-				System.out.println(jogador);
 				sockets.add(jogador);
-				System.out.println(jogador);
 				System.out.println("player conectado");
 				cont++;
 				
@@ -43,8 +41,8 @@ public class Servidor {
 			}
 		}
 		controlador.setSockets(sockets);
-		controlador.distribuirCartas();
 		controlador.sortJogadorDaVez();
+		controlador.distribuirCartas();
 		for (Socket socket : sockets) {
 			controlador.comecarJogo(socket);
 		}

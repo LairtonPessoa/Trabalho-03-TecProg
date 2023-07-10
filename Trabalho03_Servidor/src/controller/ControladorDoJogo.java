@@ -30,6 +30,7 @@ public class ControladorDoJogo {
 		
 	}
 
+
 //	public void salvarDadosInicioJogada(String url, String dica) {
 //		Jogada jogada = new Jogada();
 //		jogada.setCartaVez(url);
@@ -37,15 +38,28 @@ public class ControladorDoJogo {
 //		
 //		cartasDAO.inserir(procurarCarta(url), jogada);
 //	}
+
+	public void salvarDadosInicioJogada(String url, String dica) {
+		Jogada jogada = new Jogada();
+		jogada.setCartaVez(url);
+		jogada.setFraseDica(dica);
+		for (JogadorServidor jogador  : listaJogadores) {
+			if(jogador.isJogadorDaVez()) {
+				jogada.setJogadorVez(jogador);
+			}
+		}
+		cartasDAO.inserir(url, jogada.getJogadorVez());
+	}
+
 	
-	public Carta procurarCarta(String url) {
+	/*public Carta procurarCarta(String url) {
 		for (Carta carta : cartasDoJogo) {
-			if(carta.getIconeFrenteDaCarta().toString() == url) {
+			if(carta.getIconeFrenteDaCarta().toString().equals(url)) {
 				return carta;
 			}
 		}
 		return null;
-	}
+	}*/
 
 	public void comecarJogo(Socket jogador) {
 		/* Aqui comentei a parte de distribuir pois o metodo distribuir ja envia
@@ -106,15 +120,6 @@ public class ControladorDoJogo {
 	}
 
 	public void distribuirCartas() {
-		/* aqui chamei o metodo instanciar as cartas pois um erro que estava acontecendo
-		 * era que quando atribuia as cartasDoJogo ao baralho auxiliar elas em nenhum
-		 * momento do codigo foram criadas, entao adicionei a parte de criar dentro do
-		 * metodo instanciarCartas, e a parte de sortId das cartas tambem movi pra la,
-		 * mas como n entendi a logica acho que em algum lugar nao esta sendo sorteado, 
-		 * pois quando eu dou um print la no cliente as cartas sao iguais e em ordem,
-		 * nao mexi muito nessa parte do sortei para nao mexer muito na pate do ryam e 
-		 * do Antonio para fazer sentido pra vcs
-		 */
 		instanciarCartas();
 		ArrayList<Carta> baralhoAuxiliar = cartasDoJogo;
 		Collections.shuffle(baralhoAuxiliar);
@@ -131,6 +136,7 @@ public class ControladorDoJogo {
 			}
 			enviarMensagem(baralhoDoJogador + "distribuirCartas", jogador.getSocket());
 		}
+	
 		
 	}
 	
@@ -208,13 +214,16 @@ public class ControladorDoJogo {
 	    }
 	}
 
-	public void distribuirDica(String dica, String urlCartaDaVez, Socket jogador) {
+	public void distribuirDica(String dica, String urlCartaDaVez) {
 		/*Este metodo recebe a dica a ser enviada para cada socket,
 		 *e recebe o socket que irá receber a dica, assim enviara a 
 		 *dica para o socket indicado e tambem  pode receber a string 
 		 *da url da carta da vez para poder salvala no banco.
 		 */
-		this.enviarMensagem(dica+";dica", jogador);
+		
+		for (JogadorServidor jogador : listaJogadores) {
+			this.enviarMensagem(dica+";dica", jogador.getSocket());
+		}
 		
 	}
 
@@ -233,15 +242,10 @@ public class ControladorDoJogo {
 
 	private void instanciarCartas() {
 		ArrayList<String> enderecoCartas = cartasDAO.pegarCartas();
-		//ArrayList<Integer> idDasCartas = sortIdCartas();
 		
 		for(int i = 0; i<24; i++) {
 			Carta carta = new Carta(i);
 			carta.setIconeFrenteDaCarta(new ImageIcon(enderecoCartas.get(i)));
-			
-			//for (Integer idAleatorio : idDasCartas) {
-			//	carta.setId(idAleatorio);
-			//}
 			cartasDoJogo.add(carta);
 		}
 	}
