@@ -62,7 +62,7 @@ public class PainelCartasVez extends JPanel {
         carta.setBorderPainted(false);
         int width = carta.getPreferredSize().width;
         int height = carta.getPreferredSize().height;
-       //ImageIcon resizedIcon = IconesCartas.resizeImageIcon(imgcartas, width, height);
+        //ImageIcon resizedIcon = IconesCartas.resizeImageIcon(imgcartas, width, height);
         //carta.setIcon(resizedIcon);
         return carta;
     }
