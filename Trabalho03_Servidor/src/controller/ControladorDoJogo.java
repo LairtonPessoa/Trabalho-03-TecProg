@@ -17,11 +17,11 @@ public class ControladorDoJogo {
 	private ArrayList <JogadorServidor> listaJogadores;
 	private CartasDAO cartasDAO;
 	private ArrayList<Carta> cartasDoJogo;
-	private ArrayList<Socket> sockets;
+//	private ArrayList<Socket> sockets;
 	
 	public ControladorDoJogo() {
 		
-		this.sockets = new ArrayList<Socket>();
+//		this.sockets = new ArrayList<Socket>();
 		this.listaJogadores = new ArrayList<JogadorServidor>();
 		this.cartasDoJogo = new ArrayList<Carta>();
 		this.cartasDAO = new CartasDAO();
@@ -32,9 +32,15 @@ public class ControladorDoJogo {
 
 
 	public void comecarJogo(Socket jogador) {
-		distribuirCartas();
+		/* Aqui comentei a parte de distribuir pois o metodo distribuir ja envia
+		 * para os 4 o baralho de uma vez, e este metodo vai ser chamado para 
+		 * cada socket individual, e comentei o metodo jogo() pq fica num laço
+		 * infinito e nunca atualiza os outros jogadores, esse metodo jogo() 
+		 * seria para a implementação em 1 unico projeto. 
+		 */
+//		distribuirCartas();
 		enviarMensagem("HoraDoDuelo", jogador);
-		jogo();
+//		jogo();
 	}
 
 	private void jogo() {
@@ -88,8 +94,17 @@ public class ControladorDoJogo {
 	}
 
 	public void distribuirCartas() {
-		ArrayList<Integer> idDasCartas = sortIdCartas();
-		
+	//	ArrayList<Integer> idDasCartas = sortIdCartas();
+		/* aqui chamei o metodo instanciar as cartas pois um erro que estava acontecendo
+		 * era que quando atribuia as cartasDoJogo ao baralho auxiliar elas em nenhum
+		 * momento do codigo foram criadas, entao adicionei a parte de criar dentro do
+		 * metodo instanciarCartas, e a parte de sortId das cartas tambem movi pra la,
+		 * mas como n entendi a logica acho que em algum lugar nao esta sendo sorteado, 
+		 * pois quando eu dou um print la no cliente as cartas sao iguais e em ordem,
+		 * nao mexi muito nessa parte do sortei para nao mexer muito na pate do ryam e 
+		 * do Antonio para fazer sentido pra vcs
+		 */
+		instanciarCartas();
 		//nao está completo 
 		ArrayList<Carta> baralhoAuxiliar = cartasDoJogo;
 		
@@ -225,10 +240,16 @@ public class ControladorDoJogo {
 
 	private void instanciarCartas() {
 		ArrayList<String> enderecoCartas = cartasDAO.pegarCartas();
+		ArrayList<Integer> idDasCartas = sortIdCartas();
 		
 		for(int i = 0; i<24; i++) {
 			Carta carta = new Carta(i);
 			carta.setIconeFrenteDaCarta(new ImageIcon(enderecoCartas.get(i)));
+			
+			for (Integer idAleatorio : idDasCartas) {
+				carta.setId(idAleatorio);
+			}
+			cartasDoJogo.add(carta);
 		}
 	}
 	
@@ -267,12 +288,25 @@ public class ControladorDoJogo {
 	}
 
 	public void setSockets(ArrayList<Socket> sockets) {
-		this.sockets = sockets;
-	}
-
-
-	public void removerJogador(Socket socket) {
-		sockets.remove(socket);
+		this.adicionarJogadores("Qualquer nome ai");
+		this.adicionarJogadores("Qualquer nome ai");
+		this.adicionarJogadores("Qualquer nome ai");
+		this.adicionarJogadores("Qualquer nome ai");
 		
+		for (Socket socket : sockets) {
+			for (JogadorServidor jogadorServidor : listaJogadores) {
+				jogadorServidor.setSocket(socket);
+			}
+		}
 	}
+
+
+//	public void removerJogador(Socket socket) {
+//		for (JogadorServidor jogadorServidor : listaJogadores) {
+//			if(jogadorServidor.getSocket()==socket) {
+//				jogadorServidor.se
+//			}
+//		}
+//		
+//	}
 }

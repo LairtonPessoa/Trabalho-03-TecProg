@@ -19,6 +19,7 @@ public class JogadorServidor {
 		this.id = id;
 		this.jaJogouNaRodada = false;
 		this.pontuacao=0;
+		listaCartas = new ArrayList<Carta>();
 	}
 	
 	public Boolean getJaJogouNaRodada() {

@@ -41,6 +41,7 @@ public class Servidor {
 			}
 		}
 		controlador.setSockets(sockets);
+		controlador.distribuirCartas();
 		
 		for (Socket socket : sockets) {
 			controlador.comecarJogo(socket);
