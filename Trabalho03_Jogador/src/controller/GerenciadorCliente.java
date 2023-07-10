@@ -59,7 +59,6 @@ public class GerenciadorCliente {
 		 *jogadores para escolher uma carta com base na dica passada.
 		 */
 		
-		
 	}
 
 	public void iniciarJogo() {
