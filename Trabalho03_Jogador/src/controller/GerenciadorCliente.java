@@ -59,6 +59,12 @@ public class GerenciadorCliente {
 		 *jogadores para escolher uma carta com base na dica passada.
 		 */
 		
+		if(jogador.isJogadorDaVez()) {
+			tela.getCardLayout().show(tela.getContentPane(), "painelEspera");
+		}else {
+			tela.getCardLayout().show(tela.getContentPane(), "painelIndividual");
+			tela.getPainelIndividual().painelRecebeDica.getDicarecebida().setText(dicaParaSerRepassada);;
+		}
 		
 	}
 
@@ -79,7 +85,11 @@ public class GerenciadorCliente {
 		for(String urlCartas : listaCartas){
 			listaIcones.add(new ImageIcon(urlCartas));
 		}	
-		tela.getPainelJogadorVez().painelCartas.setIconesBotoes(listaIcones);
+		
+		if(jogador.isJogadorDaVez())
+			tela.getPainelJogadorVez().painelCartas.setIconesBotoes(listaIcones);
+		else
+			tela.getPainelIndividual().painelCartasIndividual.setIconesBotoes(listaIcones);;
 	}
 	
 	public ArrayList<String> separarString(String string, String delimitador) {

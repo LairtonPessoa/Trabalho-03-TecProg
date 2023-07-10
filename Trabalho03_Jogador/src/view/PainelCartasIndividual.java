@@ -5,19 +5,20 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class PainelCartasIndividual extends JPanel{
-	JButton carta1ind;
-    JButton carta2ind;
-    JButton carta3ind;
-    JButton carta4ind;
-    JButton carta5ind;
-    JButton carta6ind;
-    JButton cartaSelecionadaind;
+	public JButton carta1ind;
+	public JButton carta2ind;
+    public JButton carta3ind;
+    public JButton carta4ind;
+    public JButton carta5ind;
+    public JButton carta6ind;
+    public JButton cartaSelecionadaind;
 
     public PainelCartasIndividual() {
 
@@ -61,6 +62,16 @@ public class PainelCartasIndividual extends JPanel{
         ImageIcon resizedIcon = IconesCartas.resizeImageIcon(imgcartas, width, height);
         carta.setIcon(resizedIcon);
         return carta;
+    }
+    
+    public void setIconesBotoes(ArrayList<ImageIcon> iconesCartas) {
+        
+    	carta1ind.setIcon(iconesCartas.get(0));
+    	carta2ind.setIcon(iconesCartas.get(1));
+    	carta3ind.setIcon(iconesCartas.get(2));
+    	carta4ind.setIcon(iconesCartas.get(3));
+    	carta5ind.setIcon(iconesCartas.get(4));
+    	carta6ind.setIcon(iconesCartas.get(5));
     }
 
     // Ações nas cartas

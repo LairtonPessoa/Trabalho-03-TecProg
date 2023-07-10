@@ -210,7 +210,7 @@ public class ControladorDoJogo {
 		 *dica para o socket indicado e tambem  pode receber a string 
 		 *da url da carta da vez para poder salvala no banco.
 		 */
-		System.out.println(dica+" "+urlCartaDaVez);
+		
 		for (JogadorServidor jogador : listaJogadores) {
 			this.enviarMensagem(dica+";dica", jogador.getSocket());
 		}

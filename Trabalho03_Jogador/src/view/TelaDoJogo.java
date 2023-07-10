@@ -67,6 +67,11 @@ public class TelaDoJogo extends JFrame{
 		this.painelJogadorVez = painelJogadorVez;
 	}
 	
+	public PainelIndividualJogador getPainelIndividual() {
+		return painelIndividual;
+	}
+
+
 	private class acaoJogar implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
