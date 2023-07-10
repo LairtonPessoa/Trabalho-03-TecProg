@@ -35,7 +35,7 @@ public class CartasDAO {
 	 */
 
 	// Inserir Carta Selecionada
-	public void inserir(Carta carta, Jogada jogada, JogadorServidor jogador) {
+	public void inserir(Carta carta, Jogada jogada) {
 		try {
 			Connection conexao = new Conexao().getConexao();
 
