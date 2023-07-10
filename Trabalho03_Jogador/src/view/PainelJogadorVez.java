@@ -30,7 +30,7 @@ public class PainelJogadorVez extends JPanel{
 	private class  acaoEnviar implements ActionListener{ 
 	
 		public void actionPerformed(ActionEvent e) {
-			String mensagem = paineldica.getBarra().getText();
+			String mensagem = paineldica.getBarra().getText() + ";enviouDica";
 			controlador.enviarMensagem(mensagem);			
 		}
 	}
