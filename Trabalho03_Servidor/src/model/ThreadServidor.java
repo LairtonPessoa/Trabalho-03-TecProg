@@ -35,7 +35,7 @@ public class ThreadServidor implements Runnable {
 					//	controlador.enviarTodasAsCartasParaOSocket(jogador);
 					}
 				}else if(jogador.isClosed()){
-				//	controlador.removerJogador(jogador);
+					controlador.removerJogador(jogador);
 				}
 			}
 		}catch (IOException e) {

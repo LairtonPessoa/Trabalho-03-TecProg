@@ -267,15 +267,12 @@ public class ControladorDoJogo {
 	}
 
 	public void setSockets(ArrayList<Socket> sockets) {
-		this.adicionarJogadores("Jogador1");
-		this.adicionarJogadores("Jogador2");
-		this.adicionarJogadores("Jogador3");
-		this.adicionarJogadores("Jogador4");
+		
 		
 		for (Socket socket : sockets) {
-			for (JogadorServidor jogadorServidor : listaJogadores) {
-				jogadorServidor.setSocket(socket);
-			}
+			JogadorServidor jogador = new JogadorServidor(listaJogadores.size()+1);
+			jogador.setSocket(socket);
+			listaJogadores.add(jogador);
 		}
 	}
 

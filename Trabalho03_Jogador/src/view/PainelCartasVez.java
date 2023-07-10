@@ -22,9 +22,10 @@ public class PainelCartasVez extends JPanel {
     JButton carta5;
     JButton carta6;
     JButton cartaSelecionada;
+    PainelEnviarDica painelDica;
 
-    public PainelCartasVez() {
-
+    public PainelCartasVez(PainelEnviarDica painel) {
+    	this.painelDica = painel;
        // ImageIcon cartaum = new ImageIcon("icons\\aviario.png");
         carta1 = criarBotao();
 
@@ -88,7 +89,9 @@ public class PainelCartasVez extends JPanel {
         }
 
         public void actionPerformed(ActionEvent e) {
-            if (cartaSelecionada == carta) { // Se a carta selecionada for clicada novamente
+            painelDica.getBarra().setEnabled(true);
+            painelDica.getEnviar().setEnabled(true);
+        	if (cartaSelecionada == carta) { // Se a carta selecionada for clicada novamente
                 cartaSelecionada = null; // Limpa a carta selecionada
 
                 // Ativar todas as cartas
@@ -98,6 +101,8 @@ public class PainelCartasVez extends JPanel {
                         outraCarta.setEnabled(true);
                     }
                 }
+                painelDica.getBarra().setEnabled(false);
+                painelDica.getEnviar().setEnabled(false);
             } else {
                 cartaSelecionada = carta;
                 // Desativar as outras cartas

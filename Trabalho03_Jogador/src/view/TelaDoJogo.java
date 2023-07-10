@@ -35,6 +35,7 @@ public class TelaDoJogo extends JFrame{
 		this.painelIndividual = new PainelIndividualJogador();		
 		this.painelJogadorVez = new PainelJogadorVez(gerenciadorCliente);
 		this.painelMenu.getJogar().addActionListener(new acaoJogar());
+		this.painelJogadorVez.painelDica.getEnviar().addActionListener(new acaoEnviar());
 		
 		this.add(painelEspera, "painelEspera");
 		this.add(painelIndividual, "painelIndividual");
@@ -76,8 +77,18 @@ public class TelaDoJogo extends JFrame{
 	
 	private class acaoEnviar implements ActionListener{
 
+		String url;
+		String dica;
 		public void actionPerformed(ActionEvent e) {
-			
+
+			url = painelJogadorVez.painelCartas.cartaSelecionada.getIcon().toString();
+			dica = painelJogadorVez.painelDica.getBarra().getText();
+			System.out.println(url);
+			System.out.println(dica);
+			/*
+			 * Pegar o texto escrito na barra, pegar a url da carta selecionada, chamar metodo do controlador de enviar a mensagem(dica;url;"enviouDica")
+			 * Guardar as coisas em arquivo
+			 */
 		}
 	}
 }
