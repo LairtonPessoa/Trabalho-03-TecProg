@@ -63,11 +63,12 @@ public class GerenciadorCliente {
 	}
 
 	public void iniciarJogo() {
-//		if(jogador.isJogadorDaVez()) {
+		
+		if(jogador.isJogadorDaVez()) {
 			tela.getCardLayout().show(tela.getContentPane(), "painelJogadorVez");
-//		}else {
-//			tela.getCardLayout().show(tela.getContentPane(), "painelIndividualJogador");
-//		}
+		}else {
+			tela.getCardLayout().show(tela.getContentPane(), "painelEspera");
+		}
 		
 	}
 
@@ -102,6 +103,7 @@ public class GerenciadorCliente {
         ArrayList<String> campos = new ArrayList<>(Arrays.asList(camposSeparados));
         return campos;
     }
+	
 	
 	public void setJogador(JogadorCliente jogador) {
 		this.jogador=jogador;
