@@ -28,36 +28,12 @@ public class ControladorDoJogo {
 		
 		instanciarCartas();
 		
-		//while (jogadoresProntos()) {
-		//	comecarJogo();
-		//}
 	}
 
 
 	public void comecarJogo(Socket jogador) {
-		try {
-	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
-	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
-
-	        /* Aqui antes de HoraDoDuelo devera ter alguma maneira de enviar
-	         * as 6 cartas para o socket conectado, seja pelo id ou passando 
-	         * a url da imagem
-	         */
-	        bufferedWriter.write("HoraDoDuelo");
-	        bufferedWriter.newLine();
-	        bufferedWriter.flush();
-
-	        
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	}
-
-	private void comecarJogo() {
-		
-
 		distribuirCartas();
-		
+		enviarMensagem("HoraDoDuelo", jogador);
 		jogo();
 	}
 
@@ -118,10 +94,15 @@ public class ControladorDoJogo {
 		ArrayList<Carta> baralhoAuxiliar = cartasDoJogo;
 		
 		for(JogadorServidor jogador : listaJogadores) {
+			
+			String baralhoDoJogador="";
 			for(int i = 0; i<6; i++) {
 				Carta carta = baralhoAuxiliar.remove(0);
 				jogador.getListaCartas().add(carta);
+				
+				baralhoDoJogador += cartasDAO.pegarCartas().get(i)+";";
 			}
+			enviarMensagem(baralhoDoJogador + "distribuirCartas", jogador.getSocket());
 		}
 		
 	}

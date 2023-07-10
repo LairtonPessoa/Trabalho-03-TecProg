@@ -13,9 +13,9 @@ public class PainelJogadorVez extends JPanel{
 
 	private GerenciadorCliente controlador;
 
-	JButton cartaSelecionada;
-	PainelEnviarDica paineldica;
-	PainelCartasVez painelcartas;
+	public JButton cartaSelecionada;
+	public PainelEnviarDica paineldica;
+	public PainelCartasVez painelcartas;
 	
 	public PainelJogadorVez(GerenciadorCliente controlador) {
 		paineldica = new PainelEnviarDica();

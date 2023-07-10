@@ -6,7 +6,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -23,23 +25,23 @@ public class PainelCartasVez extends JPanel {
 
     public PainelCartasVez() {
 
-        ImageIcon cartaum = new ImageIcon("icons\\aviario.png");
-        carta1 = criarBotao(cartaum);
+       // ImageIcon cartaum = new ImageIcon("icons\\aviario.png");
+        carta1 = criarBotao();
 
-        ImageIcon cartadois = new ImageIcon("icons\\dragaobranco.png");
-        carta2 = criarBotao(cartadois);
+       // ImageIcon cartadois = new ImageIcon("icons\\dragaobranco.png");
+        carta2 = criarBotao();
 
-        ImageIcon cartatres = new ImageIcon("icons\\kuriboh.png");
-        carta3 = criarBotao(cartatres);
+        //ImageIcon cartatres = new ImageIcon("icons\\kuriboh.png");
+        carta3 = criarBotao();
 
-        ImageIcon cartaquatro = new ImageIcon("icons\\magonegro.png");
-        carta4 = criarBotao(cartaquatro);
+        //ImageIcon cartaquatro = new ImageIcon("icons\\magonegro.png");
+        carta4 = criarBotao();
 
-        ImageIcon cartacinco = new ImageIcon("icons\\NEOASV.png");
-        carta5 = criarBotao(cartacinco);
+       // ImageIcon cartacinco = new ImageIcon("icons\\NEOASV.png");
+        carta5 = criarBotao();
 
-        ImageIcon cartaseis = new ImageIcon("icons\\reicaveira.png");
-        carta6 = criarBotao(cartaseis);
+        //ImageIcon cartaseis = new ImageIcon("icons\\reicaveira.png");
+        carta6 = criarBotao();
 
         this.add(carta1);
         this.add(carta2);
@@ -53,18 +55,27 @@ public class PainelCartasVez extends JPanel {
     }
 
     // Criar as cartas predefinidas.
-    public JButton criarBotao(ImageIcon imgcartas) {
+    public JButton criarBotao() {
         JButton carta = new JButton();
         carta.setPreferredSize(new Dimension(150, 200));
         carta.addActionListener(new acaoCarta(carta, this));
         carta.setBorderPainted(false);
         int width = carta.getPreferredSize().width;
         int height = carta.getPreferredSize().height;
-        ImageIcon resizedIcon = IconesCartas.resizeImageIcon(imgcartas, width, height);
-        carta.setIcon(resizedIcon);
+       //ImageIcon resizedIcon = IconesCartas.resizeImageIcon(imgcartas, width, height);
+        //carta.setIcon(resizedIcon);
         return carta;
     }
 
+    public void setIconesBotoes(ArrayList<Icon> iconesCartas) {
+    	carta1.setIcon(iconesCartas.get(0));
+    	carta2.setIcon(iconesCartas.get(1));
+    	carta3.setIcon(iconesCartas.get(2));
+    	carta4.setIcon(iconesCartas.get(3));
+    	carta5.setIcon(iconesCartas.get(4));
+    	carta6.setIcon(iconesCartas.get(5));
+    }
+    
     // Ações nas cartas
     private class acaoCarta implements ActionListener {
         private JButton carta;

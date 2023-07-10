@@ -1,11 +1,18 @@
 package controller;
 
+import java.awt.Component;
+import java.awt.Graphics;
 import java.io.BufferedWriter;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.WriteAbortedException;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import model.JogadorCliente;
@@ -67,5 +74,19 @@ public class GerenciadorCliente {
 //		}
 		
 	}
+
+	public void distribuirCartas(String cartas) {
+		ArrayList<Icon> listaIcones = new ArrayList<>();
+		System.out.println(cartas);
+		for(String urlCartas: separarString(cartas, ";")) {
+			listaIcones.add(new ImageIcon(urlCartas));
+		}
+		tela.getPainelJogadorVez().painelcartas.setIconesBotoes(listaIcones);
+	}
+	public ArrayList<String> separarString(String string, String delimitador) {
+        String[] camposSeparados = string.split(delimitador);
+        ArrayList<String> campos = new ArrayList<>(Arrays.asList(camposSeparados));
+        return campos;
+    }
 	
 }

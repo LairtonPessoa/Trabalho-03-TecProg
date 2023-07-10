@@ -36,10 +36,10 @@ public class TelaDoJogo extends JFrame{
 		this.painelJogadorVez = new PainelJogadorVez(gerenciadorCliente);
 		this.painelMenu.getJogar().addActionListener(new acaoJogar());
 		
-		this.add(painelEspera);
+		//this.add(painelEspera);
 		//this.add(painelIndividual);
-		//this.add(painelJogadorVez,"painelJogadorVez");
-		//this.add(painelMenu, "painelMenu");
+		this.add(painelJogadorVez,"painelJogadorVez");
+		this.add(painelMenu, "painelMenu");
 		cardLayout.show(getContentPane(), "painelMenu");
 		
 		ImageIcon icon = new ImageIcon("icons_menu\\enigmadomilenio.png");
@@ -56,6 +56,14 @@ public class TelaDoJogo extends JFrame{
 	
 	public CardLayout getCardLayout() {
 		return cardLayout;
+	}
+	
+	public PainelJogadorVez getPainelJogadorVez() {
+		return painelJogadorVez;
+	}
+
+	public void setPainelJogadorVez(PainelJogadorVez painelJogadorVez) {
+		this.painelJogadorVez = painelJogadorVez;
 	}
 	
 	private class acaoJogar implements ActionListener{
