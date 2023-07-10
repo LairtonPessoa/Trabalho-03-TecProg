@@ -79,11 +79,17 @@ public class TelaDoJogo extends JFrame{
 
 		String url;
 		String dica;
+		
 		public void actionPerformed(ActionEvent e) {
+
 			url = painelJogadorVez.painelCartas.cartaSelecionada.getIcon().toString();
 			dica = painelJogadorVez.painelDica.getBarra().getText();
-			String mensagem = dica + ";" + url + ";enviouDica";
-			gerenciadorCliente.enviarMensagem(mensagem);
+			System.out.println(url);
+			System.out.println(dica);
+			/*
+			 * Pegar o texto escrito na barra, pegar a url da carta selecionada, chamar metodo do controlador de enviar a mensagem(dica;url;"enviouDica")
+			 * Guardar as coisas em arquivo
+			 */
 		}
 	}
 }
