@@ -11,6 +11,7 @@ public class JogadorCliente {
 	private GerenciadorCliente controlador;
 	private String nome;
 	private Socket jogador;
+	private boolean isJogadorDaVez;
 	private static final int PORT = 9990;
 
 	public JogadorCliente(String nome) {
@@ -38,6 +39,14 @@ public class JogadorCliente {
 			e.printStackTrace();
 		}
 
+	}
+
+	public boolean isJogadorDaVez() {
+		return isJogadorDaVez;
+	}
+
+	public void setJogadorDaVez(boolean isJogadorDaVez) {
+		this.isJogadorDaVez = isJogadorDaVez;
 	}
 
 }

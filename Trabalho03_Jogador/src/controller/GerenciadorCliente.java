@@ -8,7 +8,6 @@ import java.io.WriteAbortedException;
 import java.io.Writer;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import model.JogadorCliente;
 import view.TelaDoJogo;
 
@@ -57,6 +56,15 @@ public class GerenciadorCliente {
 		 *jogadores para escolher uma carta com base na dica passada.
 		 */
 		
+		
+	}
+
+	public void iniciarJogo() {
+//		if(jogador.isJogadorDaVez()) {
+			tela.getCardLayout().show(tela.getContentPane(), "painelJogadorVez");
+//		}else {
+//			tela.getCardLayout().show(tela.getContentPane(), "painelIndividualJogador");
+//		}
 		
 	}
 	

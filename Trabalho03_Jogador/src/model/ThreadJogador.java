@@ -24,14 +24,16 @@ public class ThreadJogador implements Runnable {
             while (true) {
                 String mensagem[] = reader.readLine().split(";");
                 String oQueFoiEnviado = mensagem[mensagem.length-1];
-                
-                    // Chamar os métodos do controlador com base na mensagem recebida
-                   if (oQueFoiEnviado.equals("dica")) {
+           
+                	// Chamar os métodos do controlador com base na mensagem recebida
+                	if(oQueFoiEnviado.equals("HoraDoDuelo")) {
+                		gerenciadorCliente.iniciarJogo();
+		           }else if (oQueFoiEnviado.equals("dica")) {
                        gerenciadorCliente.exibirDica(mensagem[0]);
                    } else if (oQueFoiEnviado.equals("exibirCartasComDica")) {
-                       gerenciadorCliente.exibirCartasComDica();
+                      // gerenciadorCliente.exibirCartasComDica();
                    } else if (oQueFoiEnviado.equals("exibirResultadosDaRodada")) {
-                       gerenciadorCliente.exibirResultadosDaRodada();
+                       //gerenciadorCliente.exibirResultadosDaRodada();
                    }
                     // ...
                }
