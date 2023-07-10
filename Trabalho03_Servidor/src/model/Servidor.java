@@ -43,7 +43,7 @@ public class Servidor {
 		}
 		controlador.setSockets(sockets);
 		controlador.distribuirCartas();
-		
+		controlador.sortJogadorDaVez();
 		for (Socket socket : sockets) {
 			controlador.comecarJogo(socket);
 		}
