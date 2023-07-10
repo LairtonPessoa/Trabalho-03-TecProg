@@ -4,12 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-<<<<<<< HEAD
-=======
 
->>>>>>> 51c221072189f0d20cefe4b779288f90768c1f2c
-
-import controller.ControladorDoJogo;
+//import controller.ControladorDoJogo;
 import controller.GerenciadorCliente;
 
 public class ThreadJogador implements Runnable {
@@ -35,7 +31,7 @@ public class ThreadJogador implements Runnable {
                 	if(oQueFoiEnviado.equals("novoJogador")) {
                 		//gerenciadorDoJogo.adicionarJogador();
                 	}else if(oQueFoiEnviado.equals("distribuirCartas")){
-                		gerenciadorCliente.distribuirCartas(oQueFoiEnviado);
+                		gerenciadorCliente.distribuirCartas(mensagem);
                    }else if(oQueFoiEnviado.equals("HoraDoDuelo")) {
                 		gerenciadorCliente.iniciarJogo();
 		           }else if (oQueFoiEnviado.equals("dica")) {
