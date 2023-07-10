@@ -3,26 +3,26 @@ package controller;
 public class Jogada {
 	private JogadorServidor jogadorVez;
 	private String fraseDica;
-	private String cartaEscolhida;
+	private String cartaVez;
 	private int pontuacao;
 	private int id;
 
-	public Jogada(int idJogadorVez ,String fraseDica, String cartaEscolhida, int pontuacao) {
+	public Jogada(int idJogadorVez ,String fraseDica, String cartaVez, int pontuacao) {
 		jogadorVez = new JogadorServidor(idJogadorVez);
 		this.fraseDica = fraseDica;
-		this.cartaEscolhida = cartaEscolhida;
+		this.cartaVez = cartaVez;
 		this.pontuacao = pontuacao;
 	}
 
 	public Jogada() {
 
 		this.fraseDica = "";
-		this.cartaEscolhida = "";
+		this.cartaVez = "";
 		this.pontuacao = 0;
 	}
 
 	public String getCartaEscolhida() {
-		return cartaEscolhida;
+		return cartaVez;
 	}
 
 	public String getFraseDica() {
