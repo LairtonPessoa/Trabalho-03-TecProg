@@ -95,7 +95,7 @@ public class GerenciadorCliente {
 		
 		
 		//System.out.println(carta1+" " + carta2+" " +carta3+" "+carta4+" "+carta5+" "+carta6+" ");
-		tela.getPainelJogadorVez().painelcartas.setIconesBotoes(listaIcones);
+		tela.getPainelJogadorVez().painelCartas.setIconesBotoes(listaIcones);
 	}
 	
 	public ArrayList<String> separarString(String string, String delimitador) {
