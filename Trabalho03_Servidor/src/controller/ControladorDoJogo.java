@@ -6,9 +6,11 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+
 import controller.*;
 import model.*;
 
@@ -25,8 +27,6 @@ public class ControladorDoJogo {
 		this.listaJogadores = new ArrayList<JogadorServidor>();
 		this.cartasDoJogo = new ArrayList<Carta>();
 		this.cartasDAO = new CartasDAO();
-		
-		instanciarCartas();
 		
 	}
 
@@ -68,14 +68,6 @@ public class ControladorDoJogo {
 		
 	}
 
-	private boolean jogadoresProntos() {
-		
-		if(listaJogadores.size()==4)
-			return true;
-		
-		return false;
-	}
-
 	private JogadorServidor sortJogadorDaVez() {
 
 		Random aleatorio = new Random();
@@ -94,7 +86,6 @@ public class ControladorDoJogo {
 	}
 
 	public void distribuirCartas() {
-	//	ArrayList<Integer> idDasCartas = sortIdCartas();
 		/* aqui chamei o metodo instanciar as cartas pois um erro que estava acontecendo
 		 * era que quando atribuia as cartasDoJogo ao baralho auxiliar elas em nenhum
 		 * momento do codigo foram criadas, entao adicionei a parte de criar dentro do
@@ -105,42 +96,24 @@ public class ControladorDoJogo {
 		 * do Antonio para fazer sentido pra vcs
 		 */
 		instanciarCartas();
-		//nao está completo 
 		ArrayList<Carta> baralhoAuxiliar = cartasDoJogo;
-		
+		Collections.shuffle(baralhoAuxiliar);
+
 		for(JogadorServidor jogador : listaJogadores) {
 			
 			String baralhoDoJogador="";
-			for(int i = 0; i<6; i++) {
+			
+			for(int i = 0; i<6 ; i++) {
 				Carta carta = baralhoAuxiliar.remove(0);
 				jogador.getListaCartas().add(carta);
 				
-				baralhoDoJogador += cartasDAO.pegarCartas().get(i)+";";
+				baralhoDoJogador += cartasDAO.pegarCartas().get(carta.getId())+";";
 			}
 			enviarMensagem(baralhoDoJogador + "distribuirCartas", jogador.getSocket());
 		}
 		
 	}
 	
-	private ArrayList<Integer> sortIdCartas() {
-        
-        Random random = new Random();
-        ArrayList<Integer> numerosSort = new ArrayList<>();
-        ArrayList<Integer> numerosDisponiveis = new ArrayList<>();
-        
-        for (int i = 1; i <= 24; i++) {
-            numerosDisponiveis.add(i);
-        }
-        
-        while (!numerosDisponiveis.isEmpty()) {
-            int indiceSorteado = random.nextInt(numerosDisponiveis.size());
-            int numeroSorteado = numerosDisponiveis.remove(indiceSorteado);
-            numerosSort.add(numeroSorteado);
-        }
-        
-        return numerosSort;
-    }	
-
 	private void mostrarTelas() {
 		// Seto a tela de escolher cartas do jogador da vez como visible
 		// jogadorDaVez.tela.setVisible;
@@ -240,15 +213,15 @@ public class ControladorDoJogo {
 
 	private void instanciarCartas() {
 		ArrayList<String> enderecoCartas = cartasDAO.pegarCartas();
-		ArrayList<Integer> idDasCartas = sortIdCartas();
+		//ArrayList<Integer> idDasCartas = sortIdCartas();
 		
 		for(int i = 0; i<24; i++) {
 			Carta carta = new Carta(i);
 			carta.setIconeFrenteDaCarta(new ImageIcon(enderecoCartas.get(i)));
 			
-			for (Integer idAleatorio : idDasCartas) {
-				carta.setId(idAleatorio);
-			}
+			//for (Integer idAleatorio : idDasCartas) {
+			//	carta.setId(idAleatorio);
+			//}
 			cartasDoJogo.add(carta);
 		}
 	}

@@ -5,23 +5,23 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-
+//import controller.ControladorDoJogo;
 import controller.GerenciadorCliente;
 
 public class ThreadJogador implements Runnable {
-    private Socket socket;
+    private Socket servidor;
     private GerenciadorCliente gerenciadorCliente;
- //   private ControladorDoJogo controladorDoJogo;
+ //    private ControladorDoJogo controladorDoJogo;
 
-    public ThreadJogador(Socket socket, GerenciadorCliente gerenciadorCliente) {
-        this.socket = socket;
+    public ThreadJogador(Socket servidor, GerenciadorCliente gerenciadorCliente) {
+        this.servidor = servidor;
         this.gerenciadorCliente = gerenciadorCliente;
     }
 
     public void run() {
         try {
             // Obter o BufferedReader para ler as mensagens do servidor
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(servidor.getInputStream()));
 
             while (true) {
                 String mensagem[] = reader.readLine().split(";");
@@ -29,9 +29,9 @@ public class ThreadJogador implements Runnable {
            
                 	// Chamar os métodos do controlador com base na mensagem recebida
                 	if(oQueFoiEnviado.equals("novoJogador")) {
-//                		gerenciadorCliente.adicionarJogador();
+                		//gerenciadorDoJogo.adicionarJogador();
                 	}else if(oQueFoiEnviado.equals("distribuirCartas")){
-                		gerenciadorCliente.distribuirCartas(mensagem[0], mensagem[1], mensagem[2], mensagem[3], mensagem[4], mensagem[5]);
+                		gerenciadorCliente.distribuirCartas(mensagem);
                    }else if(oQueFoiEnviado.equals("HoraDoDuelo")) {
                 		gerenciadorCliente.iniciarJogo();
 		           }else if (oQueFoiEnviado.equals("dica")) {

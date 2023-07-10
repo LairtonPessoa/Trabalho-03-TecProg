@@ -4,9 +4,9 @@ import java.sql.Connection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import controller.*;
-import java.util.ArrayList;
 
 import java.sql.PreparedStatement;
 

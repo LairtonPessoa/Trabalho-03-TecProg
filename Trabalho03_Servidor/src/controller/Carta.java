@@ -13,6 +13,7 @@ public class Carta {
 	public Carta(int id) {
 		this.iconeFrenteDaCarta = iconeFrenteDaCarta;
 		this.iconeVersoDaCarta = new ImageIcon("icons/versocarta.jpg");
+		this.id = id;
 	}
 	public ImageIcon getIconeFrenteDaCarta() {
 		return iconeFrenteDaCarta;
