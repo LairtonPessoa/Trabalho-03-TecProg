@@ -34,6 +34,8 @@ public class ThreadJogador implements Runnable {
                 		gerenciadorCliente.distribuirCartas(oQueFoiEnviado);
                    }else if(oQueFoiEnviado.equals("HoraDoDuelo")) {
                 		gerenciadorCliente.iniciarJogo();
+                   }else if(oQueFoiEnviado.equals("JogadorDaVez")) {
+                	   gerenciadorCliente.getJogador().setJogadorDaVez(true);
 		           }else if (oQueFoiEnviado.equals("dica")) {
                        gerenciadorCliente.exibirDica(mensagem[0]);
                    } else if (oQueFoiEnviado.equals("exibirCartasComDica")) {

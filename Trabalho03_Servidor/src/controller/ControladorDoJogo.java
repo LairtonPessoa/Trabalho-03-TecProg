@@ -38,25 +38,20 @@ public class ControladorDoJogo {
 		 * infinito e nunca atualiza os outros jogadores, esse metodo jogo() 
 		 * seria para a implementação em 1 unico projeto. 
 		 */
-//		distribuirCartas();
+		
 		enviarMensagem("HoraDoDuelo", jogador);
-//		jogo();
+		//jogo();
+		//sortJogadorDaVez();
 	}
 
 	private void jogo() {
 		
-		//Sempre enviar as informações de todas as alterações para os jogadores
 		while (!isFimDoJogo()) {
 			
 			Jogada jogada = new Jogada();
 			sortJogadorDaVez();
-			
 			mostrarTelas();
-			// Espero o jogador clicar na tela e enviar a carta e a dica
-			exibirDica();
-			// espero os jogadores clicarem na tela e enviarem a carta
-			exibirCartasComDica();
-			// espero os jogadores escolherem a carta
+
 			salvarDadosJogada(jogada);
 			exibirResultadosDaRodada();
 			
@@ -68,14 +63,23 @@ public class ControladorDoJogo {
 		
 	}
 
-	private JogadorServidor sortJogadorDaVez() {
+	public void sortJogadorDaVez() {
 
+		int idJogadorVez = sortIdJogador();
+		listaJogadores.get(idJogadorVez).setJogadorDaVez(true);
+		
+		enviarMensagem("JogadorDaVez", listaJogadores.get(idJogadorVez).getSocket());
+
+	}
+	
+	private int sortIdJogador() {
 		Random aleatorio = new Random();
 		int idJogadorDaVez = aleatorio.nextInt(4);
-
-		if (listaJogadores.get(idJogadorDaVez).getJaJogouNaRodada())
-			return sortJogadorDaVez();
-		return listaJogadores.get(idJogadorDaVez);
+		
+		if(listaJogadores.get(idJogadorDaVez).getJaJogouNaRodada()) {
+			return sortIdJogador();
+		}
+		return idJogadorDaVez;
 		
 	}
 	
@@ -261,10 +265,10 @@ public class ControladorDoJogo {
 	}
 
 	public void setSockets(ArrayList<Socket> sockets) {
-		this.adicionarJogadores("Qualquer nome ai");
-		this.adicionarJogadores("Qualquer nome ai");
-		this.adicionarJogadores("Qualquer nome ai");
-		this.adicionarJogadores("Qualquer nome ai");
+		this.adicionarJogadores("Jogador1");
+		this.adicionarJogadores("Jogador2");
+		this.adicionarJogadores("Jogador3");
+		this.adicionarJogadores("Jogador4");
 		
 		for (Socket socket : sockets) {
 			for (JogadorServidor jogadorServidor : listaJogadores) {

@@ -36,8 +36,8 @@ public class TelaDoJogo extends JFrame{
 		this.painelJogadorVez = new PainelJogadorVez(gerenciadorCliente);
 		this.painelMenu.getJogar().addActionListener(new acaoJogar());
 		
-		//this.add(painelEspera);
-		//this.add(painelIndividual);
+		this.add(painelEspera, "painelEspera");
+		this.add(painelIndividual, "painelIndividual");
 		this.add(painelJogadorVez,"painelJogadorVez");
 		this.add(painelMenu, "painelMenu");
 		cardLayout.show(getContentPane(), "painelMenu");
@@ -71,9 +71,6 @@ public class TelaDoJogo extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			gerenciadorCliente.iniciarJogador("Nome ai");
 			
-			//if(gerenciadorCliente.getJogador().isJogadorDaVez()) {
-				
-			//}
 		}
 	}
 	
