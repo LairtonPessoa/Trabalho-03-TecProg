@@ -35,11 +35,6 @@ public class ControladorDoJogo {
 		jogada.setCartaVez(url);
 		jogada.setFraseDica(dica);
 		
-		for (JogadorServidor jogador  : listaJogadores) {
-			if(jogador.isJogadorDaVez()) {
-				jogada.setJogadorVez(jogador);
-			}
-		}
 		cartasDAO.inserir(procurarCarta(url), jogada);
 	}
 	
