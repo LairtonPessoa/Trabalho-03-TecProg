@@ -58,6 +58,7 @@ public class GerenciadorCliente {
 		 *ai se nao for o jogador da vez ele ficara na tela de escolha dos outros 
 		 *jogadores para escolher uma carta com base na dica passada.
 		 */
+	
 		
 	}
 
