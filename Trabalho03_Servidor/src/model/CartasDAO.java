@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-
 import controller.*;
+import model.Conexao;
 
 public class CartasDAO {
 
@@ -52,6 +52,29 @@ public class CartasDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<Carta> selecionar() {
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+
+		try {
+			Connection conexao = new Conexao().getConexao();
+
+			PreparedStatement r = 
+		    conexao.prepareStatement("select * from cartas_selecionadas order by id");
+
+			ResultSet resultado = r.executeQuery();
+
+			while (resultado.next()) {
+				Carta c = new Carta(resultado.getInt("id"));
+				cartas.add(c);
+			}
+
+			conexao.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return cartas;
 	}
 
 	// Ler Arquivo
