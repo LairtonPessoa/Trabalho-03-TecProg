@@ -67,7 +67,10 @@ public class PainelCartasVez extends JPanel {
         return carta;
     }
 
-    public void setIconesBotoes(ArrayList<Icon> iconesCartas) {
+    public void setIconesBotoes(ArrayList<ImageIcon> iconesCartas) {
+    	for (ImageIcon imageIcon : iconesCartas) {
+			imageIcon = IconesCartas.resizeImageIcon(imageIcon, carta1.getWidth(), carta1.getHeight());
+		}
     	carta1.setIcon(iconesCartas.get(0));
     	carta2.setIcon(iconesCartas.get(1));
     	carta3.setIcon(iconesCartas.get(2));
