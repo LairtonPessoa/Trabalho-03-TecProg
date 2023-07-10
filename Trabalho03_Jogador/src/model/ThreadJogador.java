@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import controller.C;
+import controller.*;
+import controller.ControladorDoJogo;
 
-import controller.GerenciadorCliente;
 
 public class ThreadJogador implements Runnable {
     private Socket servidor;
