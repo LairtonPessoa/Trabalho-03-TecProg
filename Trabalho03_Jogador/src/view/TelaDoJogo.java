@@ -35,9 +35,11 @@ public class TelaDoJogo extends JFrame{
 		this.painelIndividual = new PainelIndividualJogador();		
 		this.painelJogadorVez = new PainelJogadorVez(gerenciadorCliente);
 		this.painelMenu.getJogar().addActionListener(new acaoJogar());
+		this.painelJogadorVez.painelDica.getEnviar().addActionListener(new acaoEnviar());
 		
-		//this.add(painelEspera);
-		//this.add(painelIndividual);
+
+		this.add(painelEspera, "painelEspera");
+		this.add(painelIndividual, "painelIndividual");
 		this.add(painelJogadorVez,"painelJogadorVez");
 		this.add(painelMenu, "painelMenu");
 		cardLayout.show(getContentPane(), "painelMenu");
@@ -58,19 +60,36 @@ public class TelaDoJogo extends JFrame{
 		return cardLayout;
 	}
 	
+	public PainelJogadorVez getPainelJogadorVez() {
+		return painelJogadorVez;
+	}
+
+	public void setPainelJogadorVez(PainelJogadorVez painelJogadorVez) {
+		this.painelJogadorVez = painelJogadorVez;
+	}
+	
+	public PainelIndividualJogador getPainelIndividual() {
+		return painelIndividual;
+	}
+
+
 	private class acaoJogar implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 			gerenciadorCliente.iniciarJogador("Nome ai");
 			
-		//	cardLayout.show(getContentPane(), "painelJogadorVez");	
 		}
 	}
 	
 	private class acaoEnviar implements ActionListener{
 
+		String url;
+		String dica;
 		public void actionPerformed(ActionEvent e) {
-	
+			url = painelJogadorVez.painelCartas.cartaSelecionada.getIcon().toString();
+			dica = painelJogadorVez.painelDica.getBarra().getText();
+			String mensagem = dica + ";" + url + ";enviouDica";
+			gerenciadorCliente.enviarMensagem(mensagem);
 		}
 	}
 }

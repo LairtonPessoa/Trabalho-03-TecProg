@@ -12,7 +12,7 @@ public class Servidor {
 	private ControladorDoJogo controlador;
 	private ServerSocket servidor;
 	private ArrayList<Socket> sockets;
-	private static final int PORT = 9990;
+	private static final int PORT = 9999;
 	private static final int maxPlayers = 4;
 
 	public Servidor(ControladorDoJogo controlador) {
@@ -41,7 +41,8 @@ public class Servidor {
 			}
 		}
 		controlador.setSockets(sockets);
-		
+		controlador.sortJogadorDaVez();
+		controlador.distribuirCartas();
 		for (Socket socket : sockets) {
 			controlador.comecarJogo(socket);
 		}

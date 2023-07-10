@@ -6,33 +6,34 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-	
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 import controller.GerenciadorCliente;
 
 public class PainelJogadorVez extends JPanel{
 
 	private GerenciadorCliente controlador;
-
-	JButton cartaSelecionada;
-	PainelEnviarDica paineldica;
-	PainelCartasVez painelcartas;
+	public PainelEnviarDica painelDica;
+	public PainelCartasVez painelCartas;
 	
 	public PainelJogadorVez(GerenciadorCliente controlador) {
-		paineldica = new PainelEnviarDica();
-		painelcartas = new PainelCartasVez();
-		paineldica.getEnviar().addActionListener(new acaoEnviar());
+		painelDica = new PainelEnviarDica();
+		painelCartas = new PainelCartasVez(painelDica);
+		//painelDica.getEnviar().addActionListener(new AcaoEnviar());
 		this.controlador=controlador;
 		this.setBackground(Color.black);
-		this.add(painelcartas);
-		this.add(paineldica);
+		
+		this.add(painelCartas);
+		this.add(painelDica);
 	}
 
-	private class  acaoEnviar implements ActionListener{ 
+	/*private class  AcaoEnviar implements ActionListener{ 
 	
 		public void actionPerformed(ActionEvent e) {
-			String mensagem = paineldica.getBarra().getText();
+			String mensagem = painelDica.getBarra().getText() + ";enviouDica";
 			controlador.enviarMensagem(mensagem);			
 		}
-	}
+	}*/
 }
 

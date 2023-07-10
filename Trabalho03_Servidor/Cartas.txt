@@ -6,7 +6,7 @@ icons\\chamadodosassombrados.png
 icons\\cilindromagico.png
 icons\\controlecerebral.png
 icons\\cyberdragao.png
-icons\\defusao.png
+icons\\desfusao.png
 icons\\dragaobranco.png
 icons\\exodia.png
 icons\\forcaespelho.png

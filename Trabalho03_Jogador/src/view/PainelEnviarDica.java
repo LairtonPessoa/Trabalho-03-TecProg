@@ -23,15 +23,14 @@ public class PainelEnviarDica extends JPanel{
 
 		barra = new JTextField();
 		barra.setPreferredSize(new Dimension(325,40));
-		barra.setEditable(false);
-		//barra.getDocument().addDocumentListener(new acaoBarra());
+		//barra.setEditable(false);
 
 		enviar = new JButton("Enviar");
 		enviar.setEnabled(false);
 		enviar.setPreferredSize(new Dimension(125,40));
 
 		this.add(barra);
-		this.add(enviar);		
+		this.add(enviar);
 		this.setBackground(null);
 	}
 

@@ -6,9 +6,11 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+
 import controller.*;
 import model.*;
 
@@ -17,64 +19,69 @@ public class ControladorDoJogo {
 	private ArrayList <JogadorServidor> listaJogadores;
 	private CartasDAO cartasDAO;
 	private ArrayList<Carta> cartasDoJogo;
-	private ArrayList<Socket> sockets;
+//	private ArrayList<Socket> sockets;
 	
 	public ControladorDoJogo() {
 		
-		this.sockets = new ArrayList<Socket>();
+//		this.sockets = new ArrayList<Socket>();
 		this.listaJogadores = new ArrayList<JogadorServidor>();
 		this.cartasDoJogo = new ArrayList<Carta>();
 		this.cartasDAO = new CartasDAO();
 		
-		instanciarCartas();
-		
-		//while (jogadoresProntos()) {
-		//	comecarJogo();
-		//}
 	}
 
+
+//	public void salvarDadosInicioJogada(String url, String dica) {
+//		Jogada jogada = new Jogada();
+//		jogada.setCartaVez(url);
+//		jogada.setFraseDica(dica);
+//		
+//		cartasDAO.inserir(procurarCarta(url), jogada);
+//	}
+
+	public void salvarDadosInicioJogada(String url, String dica) {
+		Jogada jogada = new Jogada();
+		jogada.setCartaVez(url);
+		jogada.setFraseDica(dica);
+		for (JogadorServidor jogador  : listaJogadores) {
+			if(jogador.isJogadorDaVez()) {
+				jogada.setJogadorVez(jogador);
+			}
+		}
+		cartasDAO.inserir(url, jogada.getJogadorVez());
+	}
+
+	
+	/*public Carta procurarCarta(String url) {
+		for (Carta carta : cartasDoJogo) {
+			if(carta.getIconeFrenteDaCarta().toString().equals(url)) {
+				return carta;
+			}
+		}
+		return null;
+	}*/
 
 	public void comecarJogo(Socket jogador) {
-		try {
-	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
-	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
-
-	        /* Aqui antes de HoraDoDuelo devera ter alguma maneira de enviar
-	         * as 6 cartas para o socket conectado, seja pelo id ou passando 
-	         * a url da imagem
-	         */
-	        bufferedWriter.write("HoraDoDuelo");
-	        bufferedWriter.newLine();
-	        bufferedWriter.flush();
-
-	        
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	}
-
-	private void comecarJogo() {
+		/* Aqui comentei a parte de distribuir pois o metodo distribuir ja envia
+		 * para os 4 o baralho de uma vez, e este metodo vai ser chamado para 
+		 * cada socket individual, e comentei o metodo jogo() pq fica num laço
+		 * infinito e nunca atualiza os outros jogadores, esse metodo jogo() 
+		 * seria para a implementação em 1 unico projeto. 
+		 */
 		
-
-		distribuirCartas();
-		
-		jogo();
+		enviarMensagem("HoraDoDuelo", jogador);
+		//jogo();
+		//sortJogadorDaVez();
 	}
 
 	private void jogo() {
 		
-		//Sempre enviar as informações de todas as alterações para os jogadores
 		while (!isFimDoJogo()) {
 			
 			Jogada jogada = new Jogada();
 			sortJogadorDaVez();
-			
 			mostrarTelas();
-			// Espero o jogador clicar na tela e enviar a carta e a dica
-			exibirDica();
-			// espero os jogadores clicarem na tela e enviarem a carta
-			exibirCartasComDica();
-			// espero os jogadores escolherem a carta
+
 			salvarDadosJogada(jogada);
 			exibirResultadosDaRodada();
 			
@@ -86,22 +93,23 @@ public class ControladorDoJogo {
 		
 	}
 
-	private boolean jogadoresProntos() {
+	public void sortJogadorDaVez() {
+
+		int idJogadorVez = sortIdJogador();
+		listaJogadores.get(idJogadorVez).setJogadorDaVez(true);
 		
-		if(listaJogadores.size()==4)
-			return true;
-		
-		return false;
+		enviarMensagem("JogadorDaVez", listaJogadores.get(idJogadorVez).getSocket());
+
 	}
-
-	private JogadorServidor sortJogadorDaVez() {
-
+	
+	private int sortIdJogador() {
 		Random aleatorio = new Random();
 		int idJogadorDaVez = aleatorio.nextInt(4);
-
-		if (listaJogadores.get(idJogadorDaVez).getJaJogouNaRodada())
-			return sortJogadorDaVez();
-		return listaJogadores.get(idJogadorDaVez);
+		
+		if(listaJogadores.get(idJogadorDaVez).getJaJogouNaRodada()) {
+			return sortIdJogador();
+		}
+		return idJogadorDaVez;
 		
 	}
 	
@@ -112,39 +120,26 @@ public class ControladorDoJogo {
 	}
 
 	public void distribuirCartas() {
-		ArrayList<Integer> idDasCartas = sortIdCartas();
-		
-		//nao está completo 
+		instanciarCartas();
 		ArrayList<Carta> baralhoAuxiliar = cartasDoJogo;
-		
+		Collections.shuffle(baralhoAuxiliar);
+
 		for(JogadorServidor jogador : listaJogadores) {
-			for(int i = 0; i<6; i++) {
+			
+			String baralhoDoJogador="";
+			
+			for(int i = 0; i<6 ; i++) {
 				Carta carta = baralhoAuxiliar.remove(0);
 				jogador.getListaCartas().add(carta);
+				
+				baralhoDoJogador += cartasDAO.pegarCartas().get(carta.getId())+";";
 			}
+			enviarMensagem(baralhoDoJogador + "distribuirCartas", jogador.getSocket());
 		}
+	
 		
 	}
 	
-	private ArrayList<Integer> sortIdCartas() {
-        
-        Random random = new Random();
-        ArrayList<Integer> numerosSort = new ArrayList<>();
-        ArrayList<Integer> numerosDisponiveis = new ArrayList<>();
-        
-        for (int i = 1; i <= 24; i++) {
-            numerosDisponiveis.add(i);
-        }
-        
-        while (!numerosDisponiveis.isEmpty()) {
-            int indiceSorteado = random.nextInt(numerosDisponiveis.size());
-            int numeroSorteado = numerosDisponiveis.remove(indiceSorteado);
-            numerosSort.add(numeroSorteado);
-        }
-        
-        return numerosSort;
-    }	
-
 	private void mostrarTelas() {
 		// Seto a tela de escolher cartas do jogador da vez como visible
 		// jogadorDaVez.tela.setVisible;
@@ -219,13 +214,16 @@ public class ControladorDoJogo {
 	    }
 	}
 
-	public void distribuirDica(String dica, String urlCartaDaVez, Socket jogador) {
+	public void distribuirDica(String dica, String urlCartaDaVez) {
 		/*Este metodo recebe a dica a ser enviada para cada socket,
 		 *e recebe o socket que irá receber a dica, assim enviara a 
 		 *dica para o socket indicado e tambem  pode receber a string 
 		 *da url da carta da vez para poder salvala no banco.
 		 */
-		this.enviarMensagem(dica+";dica", jogador);
+		
+		for (JogadorServidor jogador : listaJogadores) {
+			this.enviarMensagem(dica+";dica", jogador.getSocket());
+		}
 		
 	}
 
@@ -248,6 +246,7 @@ public class ControladorDoJogo {
 		for(int i = 0; i<24; i++) {
 			Carta carta = new Carta(i);
 			carta.setIconeFrenteDaCarta(new ImageIcon(enderecoCartas.get(i)));
+			cartasDoJogo.add(carta);
 		}
 	}
 	
@@ -286,12 +285,22 @@ public class ControladorDoJogo {
 	}
 
 	public void setSockets(ArrayList<Socket> sockets) {
-		this.sockets = sockets;
-	}
-
-
-	public void removerJogador(Socket socket) {
-		sockets.remove(socket);
 		
+		
+		for (Socket socket : sockets) {
+			JogadorServidor jogador = new JogadorServidor(listaJogadores.size()+1);
+			jogador.setSocket(socket);
+			listaJogadores.add(jogador);
+		}
 	}
+
+
+//	public void removerJogador(Socket socket) {
+//	for (JogadorServidor jogadorServidor : listaJogadores) {
+//		if(jogadorServidor.getSocket()==socket) {
+//			jogadorServidor.se
+//		}
+//	}
+//	
+//}
 }

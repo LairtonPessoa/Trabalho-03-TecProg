@@ -12,9 +12,10 @@ public class JogadorCliente {
 	private String nome;
 	private Socket jogador;
 	private boolean isJogadorDaVez;
-	private static final int PORT = 9990;
+	private static final int PORT = 9999;
 
 	public JogadorCliente(String nome) {
+		this.isJogadorDaVez = false;
 		this.nome=nome;
 	}
 
