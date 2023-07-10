@@ -35,6 +35,7 @@ public class TelaDoJogo extends JFrame{
 		this.painelIndividual = new PainelIndividualJogador();		
 		this.painelJogadorVez = new PainelJogadorVez(gerenciadorCliente);
 		this.painelMenu.getJogar().addActionListener(new acaoJogar());
+		this.painelIndividual.painelRecebeDica.getEnviarrecebe().addActionListener(new AcaoEnviarInd());
 		this.painelJogadorVez.painelDica.getEnviar().addActionListener(new acaoEnviar());
 		
 
@@ -89,6 +90,16 @@ public class TelaDoJogo extends JFrame{
 			url = painelJogadorVez.painelCartas.cartaSelecionada.getIcon().toString();
 			dica = painelJogadorVez.painelDica.getBarra().getText();
 			String mensagem = dica + ";" + url + ";enviouDica";
+			gerenciadorCliente.enviarMensagem(mensagem);
+		}
+	}
+	
+	private class AcaoEnviarInd implements ActionListener{
+
+		String url;
+		public void actionPerformed(ActionEvent e) {
+			url = painelIndividual.painelCartasIndividual.cartaSelecionadaind.getIcon().toString();
+			String mensagem = url + ";enviouCarta";
 			gerenciadorCliente.enviarMensagem(mensagem);
 		}
 	}

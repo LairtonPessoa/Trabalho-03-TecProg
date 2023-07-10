@@ -38,7 +38,7 @@ public class Jogada {
 		this.pontuacao = pontuacao;
 	}
 
-	public String getCartaEscolhida() {
+	public String getCartaVez() {
 		return cartaVez;
 	}
 

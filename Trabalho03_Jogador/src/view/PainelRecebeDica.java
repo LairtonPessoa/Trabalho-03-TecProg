@@ -18,17 +18,17 @@ import javax.swing.JTextField;
 
 public class PainelRecebeDica extends JPanel{
 
-	private JButton enviarrecebe;
+	private JButton enviarRecebe;
 	private JLabel texto;	
-	private JLabel dicarecebida;
-	private JPanel paineldicarecebida;
+	private JLabel dicaRecebida;
+	private JPanel painelDicaRecebida;
 	
 	public PainelRecebeDica() {
 		
 		texto = new JLabel("Dica:");
 		texto.setForeground(Color.black);
-		enviarrecebe = new JButton("Enviar");
-		enviarrecebe.setEnabled(false);
+		enviarRecebe = new JButton("Enviar");
+		enviarRecebe.setEnabled(false);
 		try {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/squealer.ttf"));
 			Font font2 = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/squealer.ttf"));
@@ -36,41 +36,41 @@ public class PainelRecebeDica extends JPanel{
             font2 = font2.deriveFont(Font.PLAIN, 15);
 
             texto.setFont(font);
-            enviarrecebe.setFont(font2);
+            enviarRecebe.setFont(font2);
         } catch (FontFormatException | IOException e) {
            e.printStackTrace();
         }
-		enviarrecebe.setPreferredSize(new Dimension(125,40));
+		enviarRecebe.setPreferredSize(new Dimension(125,40));
 
 		this.setPreferredSize(new Dimension(470,53));
 		this.setBackground(Color.white);
 		
 		this.add(texto);
 		this.add(painelDicaRecebida());
-		this.add(enviarrecebe);
+		this.add(enviarRecebe);
 	}
 
 	public JPanel painelDicaRecebida() {
 		
-		paineldicarecebida = new JPanel();
-		dicarecebida = new JLabel(" Mermao essse aqui é o diabo doido");
-		dicarecebida.setForeground(Color.black);
+		painelDicaRecebida = new JPanel();
+		dicaRecebida = new JLabel(" Mermao essse aqui é o diabo doido");
+		dicaRecebida.setForeground(Color.black);
 		try {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\LilitaOne-Regular.ttf"));
             font = font.deriveFont(Font.PLAIN, 13);
         
-            dicarecebida.setFont(font);
+            dicaRecebida.setFont(font);
         } catch (FontFormatException | IOException e) {
            e.printStackTrace();
         }
-		paineldicarecebida.setPreferredSize(new Dimension(250,20));
-		paineldicarecebida.setLayout(new BorderLayout());
-		paineldicarecebida.setBackground(Color.white);
-		paineldicarecebida.setLayout(new BorderLayout());
+		painelDicaRecebida.setPreferredSize(new Dimension(250,20));
+		painelDicaRecebida.setLayout(new BorderLayout());
+		painelDicaRecebida.setBackground(Color.white);
+		painelDicaRecebida.setLayout(new BorderLayout());
 		
-		paineldicarecebida.add(dicarecebida, BorderLayout.CENTER);
+		painelDicaRecebida.add(dicaRecebida, BorderLayout.CENTER);
 	
-		return paineldicarecebida;
+		return painelDicaRecebida;
 	}
 	
 	public JLabel getTexto() {
@@ -78,15 +78,15 @@ public class PainelRecebeDica extends JPanel{
 	}
 
 	public JLabel getDicarecebida() {
-		return dicarecebida;
+		return dicaRecebida;
 	}
 
 	public void setDicarecebida(JLabel dicarecebida) {
-		this.dicarecebida = dicarecebida;
+		this.dicaRecebida = dicarecebida;
 	}
 
 	public JButton getEnviarrecebe() {
-		return enviarrecebe;
+		return enviarRecebe;
 	}
 	
 }
