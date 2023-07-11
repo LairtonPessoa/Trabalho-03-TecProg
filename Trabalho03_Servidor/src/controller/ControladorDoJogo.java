@@ -43,45 +43,16 @@ public class ControladorDoJogo {
 				jogada.setJogadorVez(jogador);
 			}
 		}
-	//	jogadaDAO.inserir(jogada);
+		jogadaDAO.inserir(jogada);
 	}
 	
-	/*public Carta procurarCarta(String url) {
-		for (Carta carta : cartasDoJogo) {
-			if(carta.getIconeFrenteDaCarta().toString().equals(url)) {
-				return carta;
-			}
-		}
-		return null;
-	}*/
 
 	public void comecarJogo(Socket jogador) {
-		/* Aqui comentei a parte de distribuir pois o metodo distribuir ja envia
-		 * para os 4 o baralho de uma vez, e este metodo vai ser chamado para 
-		 * cada socket individual, e comentei o metodo jogo() pq fica num laço
-		 * infinito e nunca atualiza os outros jogadores, esse metodo jogo() 
-		 * seria para a implementação em 1 unico projeto. 
-		 */
 		
 		enviarMensagem("HoraDoDuelo", jogador);
 		//jogo();
 		//sortJogadorDaVez();
 	}
-
-	private void jogo() {
-		
-		while (!isFimDoJogo()) {
-			
-			Jogada jogada = new Jogada();
-			sortJogadorDaVez();
-			mostrarTelas();
-
-			exibirResultadosDaRodada();
-			
-			restaurarJogadores();
-		}
-	}
-
 
 	public void sortJogadorDaVez() {
 
@@ -129,40 +100,6 @@ public class ControladorDoJogo {
 	
 		
 	}
-	
-	private void mostrarTelas() {
-		// Seto a tela de escolher cartas do jogador da vez como visible
-		// jogadorDaVez.tela.setVisible;
-		// jogadordavez.PainelDica.setEnable;
-		// jogador 1, jogador2, jogador3, jogador 4. set enable painelEspera;
-		//botao vai alterar os valores da jogada
-	}
-
-	private void exibirDica() {
-		// seto a tela dos jogadores como a tela que aparece a dica e que tem as cartas
-		// para eles escolherem
-		// seto a tela do jogador da vez para esperar os outros jogadores
-	}
-
-	private void exibirCartasComDica() {
-		// exibe a tela em que os jogadores vao escolher entre as 4 cartas com base na
-		// dica
-		// o jogador tem que ter uma excessão para nao poder escolher a própria carta
-
-	}
-
-	private void exibirResultadosDaRodada() {
-		calcularPontos();
-		// atualizar pontuaçao no painel de pontuação
-		// exibe os resultados finais da rodada, a pontuação e quem era o jogador da vez
-		// reseto alguns valores necessários, como jogador.jaJogou;
-	}
-
-	private void calcularPontos() {
-		//determina quais jogadores acertaram ou erraram 
-		// calcula os pontos com base nos acertos de cada jogador, de acordo com a regra específica
-
-	}
 
 	private boolean isFimDoJogo() {
 		// ou o jogoNaoAcabou()
@@ -205,11 +142,6 @@ public class ControladorDoJogo {
 	}
 
 	public void distribuirDica(String dica, String urlCartaDaVez) {
-		/*Este metodo recebe a dica a ser enviada para cada socket,
-		 *e recebe o socket que irá receber a dica, assim enviara a 
-		 *dica para o socket indicado e tambem  pode receber a string 
-		 *da url da carta da vez para poder salvala no banco.
-		 */
 		for (JogadorServidor jogador : listaJogadores) {
 			this.enviarMensagem(dica+";dica", jogador.getSocket());
 		}
@@ -217,17 +149,6 @@ public class ControladorDoJogo {
 	}
 
 	public void salvarCartaEscolhida(String url) {
-
-		/* Este metodo irá salvar a carta escolhida pelo socket que 
-		 * enviou dependendo do momento do jogo que o socket especi-
-		 * fico esta, como o jogador da vez n ira enviar a carta dele 
-		 * mesmo momento que os outros ela sera salva no banco de dados 
-		 * e depois repassada em outro momento, no caso acho que será 
-		 * quando o jogador da vez estiver no momento enviouDica que
-		 * ele ira enviar 3 coisas, a dica, a string do icone da carta.
-		 * 
-		 */
-
 		ArrayList<String> listaUrl = new ArrayList<String>();
 		cartasDAO.inserir(url);
 
@@ -279,22 +200,11 @@ public class ControladorDoJogo {
 
 
 	public void enviarTodasAsCartasParaOSocket(Socket jogador) {
-
-		/* Aqui o controlador deverá ler do banco de dados todas as cartas 
-		 * de uma rodada e enviar para todos os  sockets conectados a rede
-		 * 
-		 */
 		
 		try {
 	        Writer writer = new OutputStreamWriter(jogador.getOutputStream());
 	        BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
-	        /* Aqui dentro do bufferedWriter.write devera ter as url das
-	         * quatro cartas e o qual é a carta da vez para poder fazer 
-	         * a logica la no cliente de acertar a carta ou não por favor
-	         * envie cada parte separada por ';' pois este sera o parametro 
-	         * para quebrar a string por meio do metodo .split
-	         */
 	        bufferedWriter.write("");
 	        bufferedWriter.newLine();
 	        bufferedWriter.flush();
@@ -319,11 +229,20 @@ public class ControladorDoJogo {
 			for (JogadorServidor jogador : listaJogadores) {
 				if(jogador.getSocket() == socket) {
 					jogador.setPontuacao(jogador.getPontuacao()+2);
-					this.enviarMensagem(jogador.getPontuacao()+";pontuacao", socket);
+					jogadaDAO.update(jogada);
+					jogada = jogadaDAO.selecionarJogada(jogada);
+					this.enviarMensagem(jogador.getPontuacao()+ ";" + jogada.getCartaVez() + ";" + jogada.getFraseDica() + ";" + jogada.getJogadorVez().getId() +";pontuacao", socket);
 				}
 			}
 		}else{
-			this.enviarMensagem(0+";pontuacao", socket);
+			for (JogadorServidor jogador : listaJogadores) {
+				if(jogador.getSocket() == socket) {
+					jogador.setPontuacao(jogador.getPontuacao() - 1);
+					jogadaDAO.update(jogada);
+					jogada = jogadaDAO.selecionarJogada(jogada);
+					this.enviarMensagem(jogador.getPontuacao()+ ";" + jogada.getCartaVez() + ";" + jogada.getFraseDica() + ";" + jogada.getJogadorVez().getId() +";pontuacao", socket);
+				}
+			}
 		}
 		
 	}

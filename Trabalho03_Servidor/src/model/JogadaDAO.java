@@ -18,7 +18,7 @@ public class JogadaDAO {
 		try {
 			Connection conexao = new Conexao().getConexao();
 
-			PreparedStatement r = conexao.prepareStatement("select * from carta order by nome");
+			PreparedStatement r = conexao.prepareStatement("select * from jogada order by id");
 
 			ResultSet resultado = r.executeQuery();
 
@@ -33,14 +33,14 @@ public class JogadaDAO {
 		return jogadas;
 	}
 
-	public Jogada selecionarId(int id) {
+	public Jogada selecionarJogada(Jogada jog) {
 		Jogada jogada = null;
 
 		try {
 			Connection conexao = new Conexao().getConexao();
 
-			PreparedStatement result = conexao.prepareStatement("select * from jogada where id=?");
-			result.setInt(1, id);
+			PreparedStatement result = conexao.prepareStatement("select * from jogada where JogadorVez_id=?");
+			result.setInt(1, jog.getJogadorVez().getId());
 
 			ResultSet resultado = result.executeQuery();
 
@@ -57,10 +57,10 @@ public class JogadaDAO {
 	public void update(Jogada jog) {
 		try {
 			Connection conexao = new Conexao().getConexao();
-			PreparedStatement up = conexao.prepareStatement("uptdate jogada set pontuacao=?, " + "where Id=?");
+			PreparedStatement up = conexao.prepareStatement("update jogada set pontuacao=? " + "where fraseDica=?");
 			
 			up.setInt(1, jog.getPontuacao());
-			
+			up.setString(2, jog.getFraseDica());
 
 			up.executeUpdate();
 		} catch (Exception e) {

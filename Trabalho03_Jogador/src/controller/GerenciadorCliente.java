@@ -122,8 +122,8 @@ public class GerenciadorCliente {
 			tela.getCardLayout().show(tela.getContentPane(), "painelFinalRodada");
 	}
 
-	public void computarPontuacao(String string) {
-		JOptionPane.showMessageDialog(tela, "A pontuação do Jogador é "+string);
+	public void computarPontuacao(String[] string) {
+		JOptionPane.showMessageDialog(tela, "A pontuação do Jogador é "+string[0]+"\n A Carta da vez foi " + string[1] + "\n A frase dica foi " + string[2] + "\n E o id do jogador da vez foi " + string[3]);
 	}
 
 	
