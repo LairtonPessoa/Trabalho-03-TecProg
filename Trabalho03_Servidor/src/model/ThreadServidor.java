@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.Socket;
+import java.net.SocketException;
 
 import controller.ControladorDoJogo;
 
@@ -22,9 +23,8 @@ public class ThreadServidor implements Runnable {
 		
 		try {	
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(jogador.getInputStream()));
-			
-			while (true) {
-				if(!jogador.isClosed()) {
+				while (true) {
+				
 					String mensagem[] = bufferedReader.readLine().split(";");
 					String momentoDoJogo = mensagem[mensagem.length - 1];
 			
@@ -35,10 +35,10 @@ public class ThreadServidor implements Runnable {
 						controlador.salvarCartaEscolhida(mensagem[0]);
 						controlador.enviarTodasAsCartasParaOSocket(jogador);
 					}
-				}else if(jogador.isClosed()){
-					//controlador.removerJogador(jogador);
 				}
-			}
+		} catch (SocketException e) {
+	        // A conexão foi redefinida, encerrar a thread
+	        Thread.currentThread().interrupt();
 		}catch (IOException e) {
 			e.printStackTrace();
 		}

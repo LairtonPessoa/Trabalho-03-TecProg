@@ -300,13 +300,5 @@ public class ControladorDoJogo {
 		}
 	}
 
-
-//	public void removerJogador(Socket socket) {
-//	for (JogadorServidor jogadorServidor : listaJogadores) {
-//		if(jogadorServidor.getSocket()==socket) {
-//			jogadorServidor.se
-//		}
-//	}
-//	
-//}
+	
 }
