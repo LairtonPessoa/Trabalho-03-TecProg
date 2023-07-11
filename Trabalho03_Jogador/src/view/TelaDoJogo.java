@@ -41,11 +41,11 @@ public class TelaDoJogo extends JFrame{
 		this.painelJogadorVez.painelDica.getEnviar().addActionListener(new acaoEnviar());
 		
 
-		//this.add(painelEspera, "painelEspera");
-		//this.add(painelIndividual, "painelIndividual");
-		//this.add(painelJogadorVez,"painelJogadorVez");
-		//this.add(painelMenu, "painelMenu");
-		this.add(painelFinalRodada);
+		this.add(painelEspera, "painelEspera");
+		this.add(painelIndividual, "painelIndividual");
+		this.add(painelJogadorVez,"painelJogadorVez");
+		this.add(painelMenu, "painelMenu");
+		this.add(painelFinalRodada, "painelFinalRodada");
 		cardLayout.show(getContentPane(), "painelMenu");
 		
 		ImageIcon icon = new ImageIcon("icons_menu\\enigmadomilenio.png");
@@ -75,18 +75,23 @@ public class TelaDoJogo extends JFrame{
 	public PainelIndividualJogador getPainelIndividual() {
 		return painelIndividual;
 	}
+	
+	public PainelFinalRodada getPainelFinalRodada() {
+		return painelFinalRodada;
+	}
 
 
 	private class acaoJogar implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
+			cardLayout.show(getContentPane(), "painelEspera");
 			gerenciadorCliente.iniciarJogador("Nome ai");
 			
 		}
 	}
 	
 	private class acaoEnviar implements ActionListener{
-
+		
 		String url;
 		String dica;
 		public void actionPerformed(ActionEvent e) {
@@ -98,9 +103,12 @@ public class TelaDoJogo extends JFrame{
 	}
 	
 	private class AcaoEnviarInd implements ActionListener{
-
+		
 		String url;
 		public void actionPerformed(ActionEvent e) {
+			
+			cardLayout.show(getContentPane(), "painelEspera");
+			
 			url = painelIndividual.painelCartasIndividual.cartaSelecionadaind.getIcon().toString();
 			String mensagem = url + ";enviouCarta";
 			gerenciadorCliente.enviarMensagem(mensagem);

@@ -25,7 +25,6 @@ public class GerenciadorCliente {
 
 	public GerenciadorCliente() {
 		tela = new TelaDoJogo(this);
-		 
 	}
 
 	public void iniciarJogador(String nome) {
@@ -106,9 +105,19 @@ public class GerenciadorCliente {
 		return jogador;
 	}
 
-	public void exibirTelaDeAdivinhacao(String[] mensagem) {
+	public void exibirTelaDeAdivinhacao(String[] cartas) {
 		
+		ArrayList<ImageIcon> listaIcones = new ArrayList<>();
+		ArrayList<String> listaCartas =	new ArrayList<>(Arrays.asList(cartas));
 		
+		for(String urlCartas : listaCartas){
+			listaIcones.add(new ImageIcon(urlCartas));
+		}	
+		tela.getPainelFinalRodada().painelTextoFinalRodada.getDica().setText(listaCartas.get(listaCartas.size()-2));
+		tela.getPainelFinalRodada().painelCartasRecebidas.setIconesBotoes(listaIcones);
+		
+		if(!jogador.isJogadorDaVez())
+			tela.getCardLayout().show(tela.getContentPane(), "painelFinalRodada");
 	}
 
 	
