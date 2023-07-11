@@ -22,21 +22,6 @@ public class PainelCartasVez extends JPanel {
 
     public PainelCartasVez(PainelEnviarDica painel) {
     	this.painelDica = painel;
-    	
-        carta1 = criarBotao();
-        carta2 = criarBotao();
-        carta3 = criarBotao();
-        carta4 = criarBotao();
-        carta5 = criarBotao();
-        carta6 = criarBotao();
-
-        this.add(carta1);
-        this.add(carta2);
-        this.add(carta3);
-        this.add(carta4);
-        this.add(carta5);
-        this.add(carta6);
-
     	botoesCartas = new ArrayList<JButton>();
     	
     	for(int i = 0; i < 6; i++) {
@@ -106,4 +91,3 @@ public class PainelCartasVez extends JPanel {
         }
     }
 }
-
