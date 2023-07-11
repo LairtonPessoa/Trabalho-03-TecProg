@@ -26,6 +26,7 @@ public class ControladorDoJogo {
 	public ControladorDoJogo() {
 		
 //		this.sockets = new ArrayList<Socket>();
+		this.jogada = new Jogada();
 		this.listaJogadores = new ArrayList<JogadorServidor>();
 		this.cartasDoJogo = new ArrayList<Carta>();
 		this.cartasDAO = new CartasDAO();
@@ -33,7 +34,7 @@ public class ControladorDoJogo {
 	}
 
 	public void salvarDadosInicioJogada(String url, String dica) {
-		jogada = new Jogada();
+		//jogada = new Jogada();
 		jogada.setCartaVez(url);
 		jogada.setFraseDica(dica);
 		for (JogadorServidor jogador  : listaJogadores) {
@@ -224,16 +225,23 @@ public class ControladorDoJogo {
 		 * ele ira enviar 3 coisas, a dica, a string do icone da carta.
 		 * 
 		 */
+		cartasDAO.inserir(url);
 		jogada.getCartasDosOutrosJogadores().add(url);
 		
 		if(jogada.getCartasDosOutrosJogadores().size()==3) {
 			
-			String cartasDaJogada = jogada.getCartaVez() + ";";
-			for (String cartas : jogada.getCartasDosOutrosJogadores()) {
+			ArrayList<String> cartasJogadaAux = jogada.getCartasDosOutrosJogadores();
+			cartasJogadaAux.add(jogada.getCartaVez());
+			
+			Collections.shuffle(cartasJogadaAux);
+			
+			String cartasDaJogada="";
+			for (String cartas : cartasJogadaAux) {
 				cartasDaJogada += cartas + ";";
+				
 			}
 			for (JogadorServidor jogador : listaJogadores) {
-				enviarMensagem(cartasDaJogada + "telaDeAdivinhacao", jogador.getSocket());
+				enviarMensagem(cartasDaJogada + jogada.getFraseDica() + ";" + "telaDeAdivinhacao", jogador.getSocket());
 			}
 		}
 		

@@ -45,6 +45,8 @@ public class PainelCartasRecebidas extends JPanel{
 		painelCartasRecebidas.setBackground(null);
 		return painelCartasRecebidas;
 	}
+	
+	
 
 	// Criar as cartas predefinidas.
 	public JButton criarBotao() {
@@ -54,6 +56,7 @@ public class PainelCartasRecebidas extends JPanel{
 		carta.setBorderPainted(false);
 		return carta;
 	}
+	
 
 	public void setIconesBotoes(ArrayList<ImageIcon> iconesCartas) {
 		for (int i = 0; i < iconesCartas.size(); i++) {

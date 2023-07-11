@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 
 public class PainelFinalRodada extends JPanel{
 
-	PainelCartasRecebidas painelCartasRecebidas;
-	PainelTextoFinalRodada painelTextoFinalRodada;
-	Image img;
+	public PainelCartasRecebidas painelCartasRecebidas;
+	public PainelTextoFinalRodada painelTextoFinalRodada;
+	public Image img;
 	
 	public PainelFinalRodada() {
 		try {

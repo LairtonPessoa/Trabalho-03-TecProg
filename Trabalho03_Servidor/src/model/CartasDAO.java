@@ -35,15 +35,14 @@ public class CartasDAO {
 	 */
 
 	// Inserir Carta Selecionada
-	public void inserir(String urlCarta, JogadorServidor jogador) {
+	public void inserir(String urlCarta) {
 		try {
 			Connection conexao = new Conexao().getConexao();
 
 			PreparedStatement inserir = conexao.prepareStatement(
-					"insert into cartas_selecionadas (carta_url, jogador_id) values (?, ?)");
+					"insert into cartas_selecionadas (carta_url) values (?)");
 
 			inserir.setString(1, urlCarta);
-			inserir.setInt(2, jogador.getId());
 
 			inserir.executeUpdate();
 
@@ -54,7 +53,7 @@ public class CartasDAO {
 		}
 	}
 	
-	public ArrayList<Carta> selecionar() {
+	public ArrayList<Carta> selecionarCartas() {
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
 
 		try {
