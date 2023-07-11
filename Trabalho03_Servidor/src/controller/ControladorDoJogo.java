@@ -21,11 +21,8 @@ public class ControladorDoJogo {
 	private JogadaDAO jogadaDAO;
 	private ArrayList<Carta> cartasDoJogo;
 	private Jogada jogada;
-//	private ArrayList<Socket> sockets;
 	
 	public ControladorDoJogo() {
-		
-//		this.sockets = new ArrayList<Socket>();
 		this.jogada = new Jogada();
 		this.listaJogadores = new ArrayList<JogadorServidor>();
 		this.cartasDoJogo = new ArrayList<Carta>();
@@ -33,9 +30,11 @@ public class ControladorDoJogo {
 		this.jogadaDAO = new JogadaDAO();
 		
 	}
+	public ArrayList<JogadorServidor> getListaJogadores() {
+		return listaJogadores;
+	}
 
 	public void salvarDadosInicioJogada(String url, String dica) {
-		//jogada = new Jogada();
 		jogada.setCartaVez(url);
 		jogada.setFraseDica(dica);
 		for (JogadorServidor jogador  : listaJogadores) {
@@ -73,12 +72,6 @@ public class ControladorDoJogo {
 		return idJogadorDaVez;
 		
 	}
-	
-	private void restaurarJogadores() {
-		for(JogadorServidor jogador : listaJogadores) {
-			jogador.setJaJogouNaRodada(false);
-		}
-	}
 
 	public void distribuirCartas() {
 		instanciarCartas();
@@ -97,18 +90,6 @@ public class ControladorDoJogo {
 			}
 			enviarMensagem(baralhoDoJogador + "distribuirCartas", jogador.getSocket());
 		}
-	
-		
-	}
-
-	private boolean isFimDoJogo() {
-		// ou o jogoNaoAcabou()
-		for (JogadorServidor jogador : listaJogadores) {
-			if (jogador.getPontuacao() >= 30) {
-				return true;
-			}
-		}
-		return false;
 	}
 	
 	public void adicionarJogadores(String nome) {
@@ -149,7 +130,7 @@ public class ControladorDoJogo {
 	}
 
 	public void salvarCartaEscolhida(String url) {
-		ArrayList<String> listaUrl = new ArrayList<String>();
+		//ArrayList<String> listaUrl = new ArrayList<String>();
 		cartasDAO.inserir(url);
 
 		ArrayList<String> listaCartaOutrosJogadoresBanco = new ArrayList<String>();
@@ -193,11 +174,7 @@ public class ControladorDoJogo {
 		}
 	}
 	
-	public ArrayList<JogadorServidor> getListaJogadores() {
-		return listaJogadores;
-	}
-
-
+	
 
 	public void enviarTodasAsCartasParaOSocket(Socket jogador) {
 		

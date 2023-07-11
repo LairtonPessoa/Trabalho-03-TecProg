@@ -121,7 +121,6 @@ public class TelaDoJogo extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			url = painelFinalRodada.painelCartasRecebidas.cartaSelecionadaind.getIcon().toString();
-			System.out.println(url);
 			String mensagem = url + ";calcularPontos";
 			gerenciadorCliente.enviarMensagem(mensagem);
 		}

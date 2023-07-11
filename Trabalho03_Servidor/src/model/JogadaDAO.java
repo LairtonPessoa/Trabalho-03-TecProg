@@ -12,26 +12,7 @@ import java.sql.PreparedStatement;
 
 public class JogadaDAO {
 
-	public ArrayList<Jogada> selecionar() {
-		ArrayList<Jogada> jogadas = new ArrayList<Jogada>();
-
-		try {
-			Connection conexao = new Conexao().getConexao();
-
-			PreparedStatement r = conexao.prepareStatement("select * from jogada order by id");
-
-			ResultSet resultado = r.executeQuery();
-
-			while (resultado.next()) {
-				Jogada jogada = new Jogada(resultado.getInt("jogadorVez_id") ,resultado.getString("fraseDica"),resultado.getString("cartaEscolhida"), resultado.getInt("pontuacao"));
-				jogadas.add(jogada);
-			}
-			conexao.close();
-		} catch (Exception e) {
-
-		}
-		return jogadas;
-	}
+	
 
 	public Jogada selecionarJogada(Jogada jog) {
 		Jogada jogada = null;

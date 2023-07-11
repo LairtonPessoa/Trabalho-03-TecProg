@@ -29,6 +29,8 @@ public class PainelRecebeDica extends JPanel{
 		texto.setForeground(Color.black);
 		enviarRecebe = new JButton("Enviar");
 		enviarRecebe.setEnabled(false);
+		enviarRecebe.setBackground(null);
+		enviarRecebe.setBorderPainted(false);
 		try {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/squealer.ttf"));
 			Font font2 = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/squealer.ttf"));
@@ -36,14 +38,16 @@ public class PainelRecebeDica extends JPanel{
             font2 = font2.deriveFont(Font.PLAIN, 15);
 
             texto.setFont(font);
+            texto.setForeground(new Color(139,69,19));
             enviarRecebe.setFont(font2);
+            enviarRecebe.setForeground(new Color(139,69,19));
         } catch (FontFormatException | IOException e) {
            e.printStackTrace();
         }
 		enviarRecebe.setPreferredSize(new Dimension(125,40));
 
 		this.setPreferredSize(new Dimension(470,53));
-		this.setBackground(Color.white);
+		this.setBackground(new Color(210,180,140));
 		
 		this.add(texto);
 		this.add(painelDicaRecebida());
@@ -65,8 +69,7 @@ public class PainelRecebeDica extends JPanel{
         }
 		painelDicaRecebida.setPreferredSize(new Dimension(250,20));
 		painelDicaRecebida.setLayout(new BorderLayout());
-		painelDicaRecebida.setBackground(Color.white);
-		painelDicaRecebida.setLayout(new BorderLayout());
+		painelDicaRecebida.setBackground(new Color(210,180,140));
 		
 		painelDicaRecebida.add(dicaRecebida, BorderLayout.CENTER);
 	
@@ -90,4 +93,3 @@ public class PainelRecebeDica extends JPanel{
 	}
 	
 }
-

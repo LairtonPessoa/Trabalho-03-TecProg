@@ -17,23 +17,6 @@ import model.Conexao;
 
 public class CartasDAO {
 
-	// Pegar carta selecionada
-	/*
-	 * public Carta selecionarId(int id) { Carta carta = null;
-	 * 
-	 * try { Connection conexao = new Conexao().getConexao();
-	 * 
-	 * PreparedStatement result =
-	 * conexao.prepareStatement("select * from cartas_selecionadas where id=?");
-	 * result.setInt(1, id);
-	 * 
-	 * ResultSet resultado = result.executeQuery();
-	 * 
-	 * while (resultado.next()) { carta = new Carta(new
-	 * ImageIcon(resultado.getString("icone"))); } conexao.close(); } catch
-	 * (Exception e) { // TODO: handle exception } return carta; }
-	 */
-
 	// Inserir Carta Selecionada
 	public void inserir(String urlCarta) {
 		try {
@@ -71,7 +54,6 @@ public class CartasDAO {
 
 			conexao.close();
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		return urlsCartas;
 	}

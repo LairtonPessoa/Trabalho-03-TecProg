@@ -51,15 +51,6 @@ public class GerenciadorCliente {
 	}
 
 	public void exibirDica(String dicaParaSerRepassada) {
-		/*metodo que vai altterar a tela para a proxima etapa do jogo
-		 *aqui vai ter que acondecer uma verificação para saber de o jogador 
-		 *conectado é o jogador da vez, pois se for o jogador da vez ele
-		 *ficará numa tela de aguarde, pois este metodo sera utilizado quando
-		 *o servidor enviar a dica do jogador da vez para todos os outros,
-		 *ai se nao for o jogador da vez ele ficara na tela de escolha dos outros 
-		 *jogadores para escolher uma carta com base na dica passada.
-		 */
-		
 		if(jogador.isJogadorDaVez()) {
 			tela.getCardLayout().show(tela.getContentPane(), "painelEspera");
 		}else {
