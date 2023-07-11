@@ -30,6 +30,7 @@ public class ControladorDoJogo {
 		this.listaJogadores = new ArrayList<JogadorServidor>();
 		this.cartasDoJogo = new ArrayList<Carta>();
 		this.cartasDAO = new CartasDAO();
+		this.jogadaDAO = new JogadaDAO();
 		
 	}
 
@@ -226,7 +227,14 @@ public class ControladorDoJogo {
 		 * 
 		 */
 		cartasDAO.inserir(url);
-		jogada.getCartasDosOutrosJogadores().add(url);
+		ArrayList<String> listaCartaOutrosJogadoresBanco = new ArrayList<String>();
+		for (String string : cartasDAO.selecionarCartas()) {
+			if(!listaCartaOutrosJogadoresBanco.contains(string)) {
+				listaCartaOutrosJogadoresBanco.add(string);
+				System.out.println(string);
+			}
+		}
+		jogada.setCartasDosOutrosJogadores(listaCartaOutrosJogadoresBanco);
 		
 		if(jogada.getCartasDosOutrosJogadores().size()==3) {
 			

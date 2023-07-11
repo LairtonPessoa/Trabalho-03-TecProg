@@ -53,8 +53,8 @@ public class CartasDAO {
 		}
 	}
 	
-	public ArrayList<Carta> selecionarCartas() {
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
+	public ArrayList<String> selecionarCartas() {
+		ArrayList<String> urlsCartas = new ArrayList<String>();
 
 		try {
 			Connection conexao = new Conexao().getConexao();
@@ -65,15 +65,15 @@ public class CartasDAO {
 			ResultSet resultado = r.executeQuery();
 
 			while (resultado.next()) {
-				Carta c = new Carta(resultado.getInt("id"));
-				cartas.add(c);
+				String url = resultado.getString("carta_url");
+	            urlsCartas.add(url);
 			}
 
 			conexao.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return cartas;
+		return urlsCartas;
 	}
 
 	// Ler Arquivo
