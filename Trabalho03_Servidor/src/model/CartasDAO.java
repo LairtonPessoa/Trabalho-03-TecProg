@@ -1,7 +1,6 @@
 package model;
 
 import java.io.BufferedReader;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -96,22 +95,5 @@ public class CartasDAO {
 			System.out.println("Ocorreu um erro ao ler o arquivo: " + e1.getMessage());
 		}
 		return cartas;
-	}
-	
-	public void deletar(String url) {
-		try {
-			Connection conexao = new Conexao().getConexao();
-
-			PreparedStatement inserir = 
-			conexao.prepareStatement("delete from carta_selecionadas where carta_url =?");
-			
-			inserir.setString(1, url);
-			inserir.executeUpdate();
-
-			conexao.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }

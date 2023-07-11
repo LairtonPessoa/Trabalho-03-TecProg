@@ -12,14 +12,17 @@ public class Servidor {
 	private ControladorDoJogo controlador;
 	private ServerSocket servidor;
 	private ArrayList<Socket> sockets;
+	private ArrayList<Thread> threadsDosJogadores;
 	private static final int PORT = 9999;
 	private static final int maxPlayers = 4;
+	
 
 	public Servidor(ControladorDoJogo controlador) {
 		this.controlador = controlador;
 		try {
 			servidor = new ServerSocket(PORT);
 			sockets = new ArrayList<Socket>();
+			threadsDosJogadores = new ArrayList<Thread>();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -50,6 +53,7 @@ public class Servidor {
 		
 		for (Socket socket : sockets) {
 			Thread thread = new Thread(new ThreadServidor(socket, controlador));
+			threadsDosJogadores.add(thread);
 			thread.start();
 		}
 
