@@ -28,24 +28,18 @@ public class ThreadJogador implements Runnable {
                 String oQueFoiEnviado = mensagem[mensagem.length-1];
            
                 	// Chamar os métodos do controlador com base na mensagem recebida
-                	if(oQueFoiEnviado.equals("novoJogador")) {
-                		//gerenciadorDoJogo.adicionarJogador();
+                	if(oQueFoiEnviado.equals("JogadorDaVez")) {
+                		gerenciadorCliente.getJogador().setJogadorDaVez(true);
                 	}else if(oQueFoiEnviado.equals("distribuirCartas")){
                 		gerenciadorCliente.distribuirCartas(mensagem);
-                		System.out.println(socket);
-                   }else if(oQueFoiEnviado.equals("HoraDoDuelo")) {
+                	}else if(oQueFoiEnviado.equals("HoraDoDuelo")) {
                 		gerenciadorCliente.iniciarJogo();
-                   }else if(oQueFoiEnviado.equals("JogadorDaVez")) {
-                	   gerenciadorCliente.getJogador().setJogadorDaVez(true);
-		           }else if (oQueFoiEnviado.equals("dica")) {
+                	}else if (oQueFoiEnviado.equals("dica")) {
                        gerenciadorCliente.exibirDica(mensagem[0]);
-                   } else if (oQueFoiEnviado.equals("exibirCartasComDica")) {
-                      // gerenciadorCliente.exibirCartasComDica();
-                   } else if (oQueFoiEnviado.equals("exibirResultadosDaRodada")) {
-                       //gerenciadorCliente.exibirResultadosDaRodada();
-                   } 
-                    // ...
-               }
+                	}else if (oQueFoiEnviado.equals("telaDeAdivinhacao")) {
+                		gerenciadorCliente.exibirTelaDeAdivinhacao(mensagem);
+                	}
+            }
             
         } catch (IOException e) {
             //e.printStackTrace();

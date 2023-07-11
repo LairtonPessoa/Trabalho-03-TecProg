@@ -57,13 +57,10 @@ public class JogadaDAO {
 	public void update(Jogada jog) {
 		try {
 			Connection conexao = new Conexao().getConexao();
-			PreparedStatement up = conexao.prepareStatement("uptdate jogada set jogadorVez_id=?, " + "fraseDica=?, "
-					+ "cartaEscolhida=?, " + "pontuacao=?, " + "where Id=?");
-			up.setInt(1, jog.getJogadorVez().getId());
-			up.setString(2, jog.getFraseDica());
-			up.setString(3, jog.getCartaEscolhida());
-			up.setInt(4, jog.getPontuacao());
-			up.setInt(5, jog.getId());
+			PreparedStatement up = conexao.prepareStatement("uptdate jogada set pontuacao=?, " + "where Id=?");
+			
+			up.setInt(1, jog.getPontuacao());
+			
 
 			up.executeUpdate();
 		} catch (Exception e) {
@@ -76,12 +73,11 @@ public class JogadaDAO {
 			Connection conexao = new Conexao().getConexao();
 
 			PreparedStatement inserir = conexao.prepareStatement(
-					"insert into jogada (jogadorVez_id, fraseDica, cartaEscolhida, pontuacao) values (?, ?, ?, ?)");
+					"insert into jogada (jogadorVez_id, fraseDica, cartaEscolhida) values (?, ?, ?)");
 
 			inserir.setInt(1, jog.getJogadorVez().getId());
 			inserir.setString(2, jog.getFraseDica());
-			inserir.setString(3, jog.getCartaEscolhida());
-			inserir.setInt(4, jog.getPontuacao());
+			inserir.setString(3, jog.getCartaVez());
 
 			inserir.executeUpdate();
 

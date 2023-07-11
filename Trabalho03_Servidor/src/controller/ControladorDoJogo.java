@@ -18,7 +18,9 @@ public class ControladorDoJogo {
 
 	private ArrayList <JogadorServidor> listaJogadores;
 	private CartasDAO cartasDAO;
+	private JogadaDAO jogadaDAO;
 	private ArrayList<Carta> cartasDoJogo;
+	private Jogada jogada;
 //	private ArrayList<Socket> sockets;
 	
 	public ControladorDoJogo() {
@@ -30,17 +32,8 @@ public class ControladorDoJogo {
 		
 	}
 
-
-//	public void salvarDadosInicioJogada(String url, String dica) {
-//		Jogada jogada = new Jogada();
-//		jogada.setCartaVez(url);
-//		jogada.setFraseDica(dica);
-//		
-//		cartasDAO.inserir(procurarCarta(url), jogada);
-//	}
-
 	public void salvarDadosInicioJogada(String url, String dica) {
-		Jogada jogada = new Jogada();
+		jogada = new Jogada();
 		jogada.setCartaVez(url);
 		jogada.setFraseDica(dica);
 		for (JogadorServidor jogador  : listaJogadores) {
@@ -48,9 +41,8 @@ public class ControladorDoJogo {
 				jogada.setJogadorVez(jogador);
 			}
 		}
-		cartasDAO.inserir(url, jogada.getJogadorVez());
+		jogadaDAO.inserir(jogada);
 	}
-
 	
 	/*public Carta procurarCarta(String url) {
 		for (Carta carta : cartasDoJogo) {
@@ -82,16 +74,12 @@ public class ControladorDoJogo {
 			sortJogadorDaVez();
 			mostrarTelas();
 
-			salvarDadosJogada(jogada);
 			exibirResultadosDaRodada();
 			
 			restaurarJogadores();
 		}
 	}
 
-	private void salvarDadosJogada(Jogada jogada) {
-		
-	}
 
 	public void sortJogadorDaVez() {
 
@@ -220,14 +208,13 @@ public class ControladorDoJogo {
 		 *dica para o socket indicado e tambem  pode receber a string 
 		 *da url da carta da vez para poder salvala no banco.
 		 */
-		
 		for (JogadorServidor jogador : listaJogadores) {
 			this.enviarMensagem(dica+";dica", jogador.getSocket());
 		}
 		
 	}
 
-	public void salvarCartaEscolhida(String string) {
+	public void salvarCartaEscolhida(String url) {
 		/* Este metodo irá salvar a carta escolhida pelo socket que 
 		 * enviou dependendo do momento do jogo que o socket especi-
 		 * fico esta, como o jogador da vez n ira enviar a carta dele 
@@ -237,6 +224,18 @@ public class ControladorDoJogo {
 		 * ele ira enviar 3 coisas, a dica, a string do icone da carta.
 		 * 
 		 */
+		jogada.getCartasDosOutrosJogadores().add(url);
+		
+		if(jogada.getCartasDosOutrosJogadores().size()==3) {
+			
+			String cartasDaJogada = jogada.getCartaVez() + ";";
+			for (String cartas : jogada.getCartasDosOutrosJogadores()) {
+				cartasDaJogada += cartas + ";";
+			}
+			for (JogadorServidor jogador : listaJogadores) {
+				enviarMensagem(cartasDaJogada + "telaDeAdivinhacao", jogador.getSocket());
+			}
+		}
 		
 	}
 

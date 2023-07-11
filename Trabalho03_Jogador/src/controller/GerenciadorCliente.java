@@ -106,5 +106,10 @@ public class GerenciadorCliente {
 		return jogador;
 	}
 
+	public void exibirTelaDeAdivinhacao(String[] mensagem) {
+		
+		
+	}
+
 	
 }
