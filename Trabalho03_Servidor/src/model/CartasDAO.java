@@ -97,21 +97,5 @@ public class CartasDAO {
 		return cartas;
 	}
 	
-	public void inserir(String urlCarta) {
-		try {
-			Connection conexao = new Conexao().getConexao();
-
-			PreparedStatement inserir = conexao.prepareStatement(
-					"insert into cartas_selecionadas (carta_url) values (?)");
-
-			inserir.setString(1, urlCarta);
-
-			inserir.executeUpdate();
-
-			conexao.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 }

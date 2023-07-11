@@ -43,7 +43,7 @@ public class ControladorDoJogo {
 				jogada.setJogadorVez(jogador);
 			}
 		}
-		jogadaDAO.inserir(jogada);
+	//	jogadaDAO.inserir(jogada);
 	}
 	
 	/*public Carta procurarCarta(String url) {
@@ -226,7 +226,7 @@ public class ControladorDoJogo {
 		 * ele ira enviar 3 coisas, a dica, a string do icone da carta.
 		 * 
 		 */
-		cartasDAO.inserir(url);
+	//	cartasDAO.inserir(url);
 		ArrayList<String> listaCartaOutrosJogadoresBanco = new ArrayList<String>();
 		for (String string : cartasDAO.selecionarCartas()) {
 			if(!listaCartaOutrosJogadoresBanco.contains(string)) {
