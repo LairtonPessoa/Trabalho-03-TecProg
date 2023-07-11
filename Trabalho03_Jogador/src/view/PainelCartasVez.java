@@ -26,22 +26,11 @@ public class PainelCartasVez extends JPanel {
 
     public PainelCartasVez(PainelEnviarDica painel) {
     	this.painelDica = painel;
-       // ImageIcon cartaum = new ImageIcon("icons\\aviario.png");
         carta1 = criarBotao();
-
-       // ImageIcon cartadois = new ImageIcon("icons\\dragaobranco.png");
         carta2 = criarBotao();
-
-        //ImageIcon cartatres = new ImageIcon("icons\\kuriboh.png");
         carta3 = criarBotao();
-
-        //ImageIcon cartaquatro = new ImageIcon("icons\\magonegro.png");
         carta4 = criarBotao();
-
-       // ImageIcon cartacinco = new ImageIcon("icons\\NEOASV.png");
         carta5 = criarBotao();
-
-        //ImageIcon cartaseis = new ImageIcon("icons\\reicaveira.png");
         carta6 = criarBotao();
 
         this.add(carta1);

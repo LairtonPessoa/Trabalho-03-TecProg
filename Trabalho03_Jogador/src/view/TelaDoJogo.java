@@ -16,6 +16,7 @@ public class TelaDoJogo extends JFrame{
 	private PainelJogadorVez painelJogadorVez;
 	private PainelEspera painelEspera;
 	private PainelIndividualJogador painelIndividual;
+	private PainelFinalRodada painelFinalRodada;
 	private GerenciadorCliente gerenciadorCliente;
 	private CardLayout cardLayout;
 	
@@ -32,16 +33,18 @@ public class TelaDoJogo extends JFrame{
 		this.gerenciadorCliente = gerenciadorCliente;
 		this.painelMenu = new PainelMenu();
 		this.painelEspera = new PainelEspera();
-		this.painelIndividual = new PainelIndividualJogador();		
+		this.painelIndividual = new PainelIndividualJogador();	
+		this.painelFinalRodada = new PainelFinalRodada();
 		this.painelJogadorVez = new PainelJogadorVez(gerenciadorCliente);
 		this.painelMenu.getJogar().addActionListener(new acaoJogar());
 		this.painelJogadorVez.painelDica.getEnviar().addActionListener(new acaoEnviar());
 		
 
-		this.add(painelEspera, "painelEspera");
-		this.add(painelIndividual, "painelIndividual");
-		this.add(painelJogadorVez,"painelJogadorVez");
-		this.add(painelMenu, "painelMenu");
+		//this.add(painelEspera, "painelEspera");
+		//this.add(painelIndividual, "painelIndividual");
+		//this.add(painelJogadorVez,"painelJogadorVez");
+		//this.add(painelMenu, "painelMenu");
+		this.add(painelFinalRodada);
 		cardLayout.show(getContentPane(), "painelMenu");
 		
 		ImageIcon icon = new ImageIcon("icons_menu\\enigmadomilenio.png");
