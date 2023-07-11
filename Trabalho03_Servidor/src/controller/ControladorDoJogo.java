@@ -43,7 +43,7 @@ public class ControladorDoJogo {
 				jogada.setJogadorVez(jogador);
 			}
 		}
-		jogadaDAO.inserir(jogada);
+	//	jogadaDAO.inserir(jogada);
 	}
 	
 	/*public Carta procurarCarta(String url) {
@@ -217,8 +217,20 @@ public class ControladorDoJogo {
 	}
 
 	public void salvarCartaEscolhida(String url) {
-		//ArrayList<String> listaUrl = new ArrayList<String>();
+
+		/* Este metodo irá salvar a carta escolhida pelo socket que 
+		 * enviou dependendo do momento do jogo que o socket especi-
+		 * fico esta, como o jogador da vez n ira enviar a carta dele 
+		 * mesmo momento que os outros ela sera salva no banco de dados 
+		 * e depois repassada em outro momento, no caso acho que será 
+		 * quando o jogador da vez estiver no momento enviouDica que
+		 * ele ira enviar 3 coisas, a dica, a string do icone da carta.
+		 * 
+		 */
+
+		ArrayList<String> listaUrl = new ArrayList<String>();
 		cartasDAO.inserir(url);
+
 		ArrayList<String> listaCartaOutrosJogadoresBanco = new ArrayList<String>();
 		for (String string : cartasDAO.selecionarCartas()) {
 			if(!listaCartaOutrosJogadoresBanco.contains(string)) {
