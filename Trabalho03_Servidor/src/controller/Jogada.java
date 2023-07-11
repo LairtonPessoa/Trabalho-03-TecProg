@@ -6,6 +6,7 @@ public class Jogada {
 	private JogadorServidor jogadorVez;
 	private String fraseDica;
 	private String cartaVez;
+	private ArrayList<String> cartasDosOutrosJogadores;
 	private int pontuacao;
 	private int id;
 
@@ -14,12 +15,14 @@ public class Jogada {
 		this.fraseDica = fraseDica;
 		this.cartaVez = cartaVez;
 		this.pontuacao = pontuacao;
+		cartasDosOutrosJogadores = new ArrayList<String>();
 	}
 
 	public Jogada() {
 		this.fraseDica = "";
 		this.cartaVez = "";
 		this.pontuacao = 0;
+		cartasDosOutrosJogadores = new ArrayList<String>();
 	}
 
 	public void setJogadorVez(JogadorServidor jogadorVez) {
@@ -56,6 +59,10 @@ public class Jogada {
 
 	public int getId() {
 		return id;
+	}
+
+	public ArrayList<String> getCartasDosOutrosJogadores() {
+		return cartasDosOutrosJogadores;
 	}
 
 }
