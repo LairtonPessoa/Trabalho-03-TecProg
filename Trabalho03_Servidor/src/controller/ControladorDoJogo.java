@@ -30,6 +30,7 @@ public class ControladorDoJogo {
 		this.listaJogadores = new ArrayList<JogadorServidor>();
 		this.cartasDoJogo = new ArrayList<Carta>();
 		this.cartasDAO = new CartasDAO();
+		this.jogadaDAO = new JogadaDAO();
 		
 	}
 
@@ -42,7 +43,7 @@ public class ControladorDoJogo {
 				jogada.setJogadorVez(jogador);
 			}
 		}
-		//jogadaDAO.inserir(jogada);
+		jogadaDAO.inserir(jogada);
 	}
 	
 	/*public Carta procurarCarta(String url) {
@@ -225,7 +226,15 @@ public class ControladorDoJogo {
 		 * ele ira enviar 3 coisas, a dica, a string do icone da carta.
 		 * 
 		 */
-		jogada.getCartasDosOutrosJogadores().add(url);
+		cartasDAO.inserir(url);
+		ArrayList<String> listaCartaOutrosJogadoresBanco = new ArrayList<String>();
+		for (String string : cartasDAO.selecionarCartas()) {
+			if(!listaCartaOutrosJogadoresBanco.contains(string)) {
+				listaCartaOutrosJogadoresBanco.add(string);
+				System.out.println(string);
+			}
+		}
+		jogada.setCartasDosOutrosJogadores(listaCartaOutrosJogadoresBanco);
 		
 		if(jogada.getCartasDosOutrosJogadores().size()==3) {
 			

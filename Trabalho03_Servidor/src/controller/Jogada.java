@@ -64,5 +64,8 @@ public class Jogada {
 	public ArrayList<String> getCartasDosOutrosJogadores() {
 		return cartasDosOutrosJogadores;
 	}
+	public void setCartasDosOutrosJogadores(ArrayList<String> cartasDosOutrosJogadores) {
+		this.cartasDosOutrosJogadores = cartasDosOutrosJogadores;
+	}
 
 }

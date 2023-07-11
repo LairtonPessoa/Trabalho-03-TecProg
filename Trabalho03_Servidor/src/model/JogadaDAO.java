@@ -73,11 +73,12 @@ public class JogadaDAO {
 			Connection conexao = new Conexao().getConexao();
 
 			PreparedStatement inserir = conexao.prepareStatement(
-					"insert into jogada (jogadorVez_id, fraseDica, cartaEscolhida) values (?, ?, ?)");
+					"insert into jogada (jogadorVez_id, fraseDica, cartaEscolhida, pontuacao) values (?, ?, ?, ?)");
 
 			inserir.setInt(1, jog.getJogadorVez().getId());
 			inserir.setString(2, jog.getFraseDica());
 			inserir.setString(3, jog.getCartaVez());
+			inserir.setInt(4, jog.getPontuacao());
 
 			inserir.executeUpdate();
 
