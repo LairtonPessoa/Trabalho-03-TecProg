@@ -96,6 +96,6 @@ public class CartasDAO {
 		}
 		return cartas;
 	}
-	
+
 	
 }
