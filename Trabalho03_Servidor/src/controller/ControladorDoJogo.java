@@ -217,21 +217,21 @@ public class ControladorDoJogo {
 	}
 
 	public void salvarCartaEscolhida(String url) {
-		ArrayList<String> listaUrl = new ArrayList<String>();
+		//ArrayList<String> listaUrl = new ArrayList<String>();
 		cartasDAO.inserir(url);
 		ArrayList<String> listaCartaOutrosJogadoresBanco = new ArrayList<String>();
 		for (String string : cartasDAO.selecionarCartas()) {
 			if(!listaCartaOutrosJogadoresBanco.contains(string)) {
 				listaCartaOutrosJogadoresBanco.add(string);
-				listaUrl.add(url);
+				//listaUrl.add(url);
 			}
 		}
 		jogada.setCartasDosOutrosJogadores(listaCartaOutrosJogadoresBanco);
 		
 		if(jogada.getCartasDosOutrosJogadores().size()==3) {
-			for (String string : listaUrl) {
-				cartasDAO.deletar(string);
-			}
+			//for (String string : listaUrl) {
+				//cartasDAO.deletar(string);
+			//}
 			ArrayList<String> cartasJogadaAux = jogada.getCartasDosOutrosJogadores();
 			cartasJogadaAux.add(jogada.getCartaVez());
 			
@@ -245,6 +245,7 @@ public class ControladorDoJogo {
 			for (JogadorServidor jogador : listaJogadores) {
 				enviarMensagem(cartasDaJogada + jogada.getFraseDica() + ";" + "telaDeAdivinhacao", jogador.getSocket());
 			}
+			jogada.getCartasDosOutrosJogadores().clear();
 		}
 		
 	}
@@ -294,8 +295,6 @@ public class ControladorDoJogo {
 	}
 
 	public void setSockets(ArrayList<Socket> sockets) {
-		
-		
 		for (Socket socket : sockets) {
 			JogadorServidor jogador = new JogadorServidor(listaJogadores.size()+1);
 			jogador.setSocket(socket);
@@ -303,5 +302,17 @@ public class ControladorDoJogo {
 		}
 	}
 
-	
+	public void computarPontos(String url, Socket socket) {
+		if(url.equals(jogada.getCartaVez())) {
+			for (JogadorServidor jogador : listaJogadores) {
+				if(jogador.getSocket() == socket) {
+					jogador.setPontuacao(jogador.getPontuacao()+2);
+					this.enviarMensagem(jogador.getPontuacao()+";pontuacao", socket);
+				}
+			}
+		}else{
+			this.enviarMensagem(0+";pontuacao", socket);
+		}
+		
+	}
 }

@@ -15,6 +15,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import model.JogadorCliente;
 import view.TelaDoJogo;
 
@@ -118,6 +120,10 @@ public class GerenciadorCliente {
 		
 		if(!jogador.isJogadorDaVez())
 			tela.getCardLayout().show(tela.getContentPane(), "painelFinalRodada");
+	}
+
+	public void computarPontuacao(String string) {
+		JOptionPane.showMessageDialog(tela, "A pontuação do Jogador é "+string);
 	}
 
 	

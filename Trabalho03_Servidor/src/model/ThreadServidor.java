@@ -34,6 +34,9 @@ public class ThreadServidor implements Runnable {
 					} else if (momentoDoJogo.equals("enviouCarta")) {
 						controlador.salvarCartaEscolhida(mensagem[0]);
 						controlador.enviarTodasAsCartasParaOSocket(jogador);
+					}else if (momentoDoJogo.equals("calcularPontos")) {
+						System.out.println("chegou auqi");
+						controlador.computarPontos(mensagem[0], jogador);
 					}
 				}
 		} catch (SocketException e) {

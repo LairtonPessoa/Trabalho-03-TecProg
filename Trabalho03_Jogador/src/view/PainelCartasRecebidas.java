@@ -20,7 +20,7 @@ public class PainelCartasRecebidas extends JPanel{
 	JButton carta2recebida;
 	JButton carta3recebida;
 	JButton carta4recebida;
-	JButton cartaSelecionadaind;
+	public JButton cartaSelecionadaind;
 
 	public PainelCartasRecebidas(PainelTextoFinalRodada painelTextoFinal) {
 		this.painelTextoFinal = painelTextoFinal;

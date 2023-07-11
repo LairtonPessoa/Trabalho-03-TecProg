@@ -38,6 +38,8 @@ public class ThreadJogador implements Runnable {
                        gerenciadorCliente.exibirDica(mensagem[0]);
                 	}else if (oQueFoiEnviado.equals("telaDeAdivinhacao")) {
                 		gerenciadorCliente.exibirTelaDeAdivinhacao(mensagem);
+                	}else if (oQueFoiEnviado.equals("pontuacao")) {
+                		gerenciadorCliente.computarPontuacao(mensagem[0]);
                 	}
             }
             

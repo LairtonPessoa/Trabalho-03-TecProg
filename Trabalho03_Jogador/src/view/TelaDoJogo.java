@@ -39,13 +39,8 @@ public class TelaDoJogo extends JFrame{
 		this.painelMenu.getJogar().addActionListener(new acaoJogar());
 		this.painelIndividual.painelRecebeDica.getEnviarrecebe().addActionListener(new AcaoEnviarInd());
 		this.painelJogadorVez.painelDica.getEnviar().addActionListener(new acaoEnviar());
+		this.painelFinalRodada.painelTextoFinalRodada.getEnviarfinal().addActionListener(new AcaoVotarCartas());
 		
-		this.add(painelEspera, "painelEspera");
-		this.add(painelIndividual, "painelIndividual");
-		this.add(painelJogadorVez,"painelJogadorVez");
-		this.add(painelMenu, "painelMenu");
-		this.add(painelFinalRodada);
-
 		this.add(painelEspera, "painelEspera");
 		this.add(painelIndividual, "painelIndividual");
 		this.add(painelJogadorVez,"painelJogadorVez");
@@ -118,5 +113,18 @@ public class TelaDoJogo extends JFrame{
 			String mensagem = url + ";enviouCarta";
 			gerenciadorCliente.enviarMensagem(mensagem);
 		}
+	}
+	
+	private class AcaoVotarCartas implements ActionListener{
+
+		String url;
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			url = painelFinalRodada.painelCartasRecebidas.cartaSelecionadaind.getIcon().toString();
+			System.out.println(url);
+			String mensagem = url + ";calcularPontos";
+			gerenciadorCliente.enviarMensagem(mensagem);
+		}
+		
 	}
 }
