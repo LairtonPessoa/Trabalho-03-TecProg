@@ -40,10 +40,9 @@ public class TelaDoJogo extends JFrame{
 		this.painelIndividual.painelRecebeDica.getEnviarrecebe().addActionListener(new AcaoEnviarInd());
 		this.painelJogadorVez.painelDica.getEnviar().addActionListener(new acaoEnviar());
 		
-
 		//this.add(painelEspera, "painelEspera");
 		//this.add(painelIndividual, "painelIndividual");
-		//this.add(painelJogadorVez,"painelJogadorVez");
+		this.add(painelJogadorVez,"painelJogadorVez");
 		//this.add(painelMenu, "painelMenu");
 		this.add(painelFinalRodada);
 		cardLayout.show(getContentPane(), "painelMenu");
